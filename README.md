@@ -9,7 +9,6 @@ It ingests documents, stores embeddings in a vector database, and retrieves rele
 
 * 📂 **Document Ingestion**
 
-  * Supports `.txt`, `.pdf`, `.docx`, `.pptx`
   * Automatic text extraction and chunking
 
 * 🧠 **RAG Pipeline**
