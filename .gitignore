@@ -1,0 +1,38 @@
+# 🔹 Python cache / compiled files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# 🔹 Virtual environments
+venv/
+.env/
+env/
+.venv/
+
+# 🔹 IDE files
+.idea/
+.vscode/
+
+# 🔹 Logs
+logs/
+*.log
+
+# 🔹 OS files
+.DS_Store
+Thumbs.db
+
+# 🔹 Environment variables / secrets
+.env
+
+# 🔹 Data / corpus (optional depending on use case)
+corpus/
+app/corpus/
+
+# 🔹 Build / packaging
+build/
+dist/
+*.egg-info/
+
+# 🔹 Jupyter
+.ipynb_checkpoints/
