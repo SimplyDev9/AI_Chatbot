@@ -15,6 +15,7 @@ import hashlib
 from app.document_loader import load_document
 from app.logger import log_ingest
 from pptx import Presentation
+import pandas as pd
 
 load_dotenv()
 
@@ -56,6 +57,14 @@ def extract_text(fp: Path) -> str:
             reader = PdfReader(str(fp))
             text = "\n".join(page.extract_text() or "" for page in reader.pages)
 
+        elif ext == ".csv":
+            df = pd.read_csv(fp)
+            text = df.to_string()
+
+        elif ext in [".xls", ".xlsx"]:
+            df = pd.read_excel(fp)
+            text = df.to_string()
+
         elif ext == ".pptx":
             presentation = Presentation(str(fp))
             slides_text = []
@@ -94,7 +103,6 @@ def ingest(corpus_dir=None, clear=False):
         aws_access_key_id=os.getenv("AWS_ACCESS_KEY_ID"),
         aws_secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY")
     )
-
 
     vectordb = Chroma(
         persist_directory=str(CHROMA_DIR),
@@ -135,18 +143,21 @@ def ingest(corpus_dir=None, clear=False):
         chunks = splitter.split_text(text)
 
         for i, chunk in enumerate(chunks, start=1):
-
             vectordb.add_texts(
                 texts=[chunk],
                 metadatas=[{
                     "filename": fpath.name,
                     "file_hash": file_hash,
                     "chunk_index": i,
-                    "ingestion_date": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                    "ingestion_date": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                    "source": "local",
+                    "file_type": fpath.suffix.lower(),
+                    "file_size": os.path.getsize(fpath),
                 }]
             )
 
         log_ingest(f"✅ {fpath.name} ingested with {len(chunks)} chunks")
+
 
 def calculate_file_hash(file_path: Path):
     """Generate hash for file to detect changes"""
@@ -158,39 +169,57 @@ def calculate_file_hash(file_path: Path):
 
     return hasher.hexdigest()
 
-def ingest_single_file(file_path: Path):
 
-    embed_model = BedrockEmbeddings(
-        model_id="amazon.titan-embed-text-v1",
-        region_name=os.getenv("AWS_DEFAULT_REGION"),
-        aws_access_key_id=os.getenv("AWS_ACCESS_KEY_ID"),
-        aws_secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY")
-    )
-
-    vectordb = Chroma(
-        persist_directory=str(CHROMA_DIR),
-        embedding_function=embed_model
-    )
-
-    file_hash = calculate_file_hash(file_path)
-
-    existing = vectordb.get(where={"filename": file_path.name})
-
-    if existing and existing.get("metadatas"):
-        vectordb.delete(where={"filename": file_path.name})
-
-    text = extract_text(file_path)
-
-    splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=150)
-
-    chunks = splitter.split_text(text)
-
-    for i, chunk in enumerate(chunks, start=1):
-        vectordb.add_texts(
-            texts=[chunk],
-            metadatas=[{
-                "filename": file_path.name,
-                "file_hash": file_hash,
-                "chunk_index": i
-            }]
+def ingest_single_file(file_path: Path, metadata=None):
+    try:
+        embed_model = BedrockEmbeddings(
+            model_id="amazon.titan-embed-text-v1",
+            region_name=os.getenv("AWS_DEFAULT_REGION"),
+            aws_access_key_id=os.getenv("AWS_ACCESS_KEY_ID"),
+            aws_secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY")
         )
+
+        vectordb = Chroma(
+            persist_directory=str(CHROMA_DIR),
+            embedding_function=embed_model
+        )
+
+        file_hash = calculate_file_hash(file_path)
+
+        existing = vectordb.get(where={"filename": file_path.name})
+
+        if existing and existing.get("metadatas"):
+            vectordb.delete(where={"filename": file_path.name})
+
+        text = extract_text(file_path)
+
+        splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=150)
+
+        chunks = splitter.split_text(text)
+
+        default_metadata = {
+            "filename": file_path.name,
+            "source_type": "upload",
+            "source_url": None
+        }
+
+        final_metadata = {**default_metadata, **(metadata or {})}
+
+        for i, chunk in enumerate(chunks):
+            vectordb.add_texts(
+                texts=[chunk],
+                metadatas=[{
+                    "filename": final_metadata["filename"],
+                    "file_hash": file_hash,
+                    "chunk_index": i,
+                    "source_type": final_metadata["source_type"],   # ✅ CRITICAL
+                    "source_url": final_metadata["source_url"],     # ✅ CRITICAL
+                    "file_type": file_path.suffix.lower(),
+                }]
+            )
+
+        print(f"✅ Ingested {file_path.name} with metadata:", final_metadata)
+        print("🔥 METADATA SAVED:", final_metadata)
+
+    except Exception as e:
+        print(f"❌ Error ingesting file: {str(e)}")

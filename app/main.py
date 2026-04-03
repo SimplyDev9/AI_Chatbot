@@ -14,8 +14,9 @@ import os
 import shutil
 import time
 from dotenv import load_dotenv
-
-
+from app.sharepoint_ingestion import ingest_from_sharepoint
+from app.sharepoint_loader import get_access_token
+import requests
 
 load_dotenv()
 
@@ -46,6 +47,24 @@ class ChatRequest(BaseModel):
 class IngestRequest(BaseModel):
     clear: bool = False
 
+class SiteRequest(BaseModel):
+    hostname: str
+    site_name: str
+
+
+@app.post("/get_site_id")
+def get_site_id(data: SiteRequest):
+    token = get_access_token()
+
+    url = f"https://graph.microsoft.com/v1.0/sites/{data.hostname}:/sites/{data.site_name}"
+
+    headers = {"Authorization": f"Bearer {token}"}
+
+    response = requests.get(url, headers=headers)
+
+    return response.json()
+
+
 # ============================================
 # Health
 # ============================================
@@ -55,9 +74,11 @@ def health_check():
     print("✅ /health endpoint hit")
     return {"status": "ok", "message": "AI Chatbot API is running 🚀"}
 
+
 @app.get("/")
 def home():
     return {"message": "AI Chatbot API is running 🚀"}
+
 
 # ============================================
 # Chat
@@ -65,8 +86,15 @@ def home():
 
 @app.post("/chat")
 def chat(req: ChatRequest):
-    response = answer_query(req.query)
-    return {"query": req.query, "response": response}
+    result = answer_query(req.query)
+
+    return {
+        "query": req.query,
+        "response": result["response"],
+        "sources": result["sources"],
+        "retrieved_context": result["retrieved_context"]
+    }
+
 
 # ============================================
 # Ingest
@@ -76,6 +104,7 @@ def chat(req: ChatRequest):
 def ingest_corpus(req: IngestRequest):
     ingest(clear=req.clear)
     return {"status": "success", "message": "Corpus ingested successfully."}
+
 
 # ============================================
 # Clear Entire DB
@@ -95,13 +124,14 @@ def clear_db():
             log_ingest(f"✅ Chroma DB cleared successfully from {CHROMA_DIR}")
             return {"status": "success", "message": "Chroma DB cleared."}
         except PermissionError as e:
-            log_ingest(f"⚠️ DB file locked (attempt {attempt+1}/{max_retries}): {e}")
+            log_ingest(f"⚠️ DB file locked (attempt {attempt + 1}/{max_retries}): {e}")
             time.sleep(1)
         except Exception as e:
             log_ingest(f"❌ Failed to clear DB: {e}")
             return {"status": "error", "message": str(e)}
 
     return {"status": "error", "message": f"Could not clear {CHROMA_DIR} after {max_retries} retries."}
+
 
 # ============================================
 # Modern Delete (Metadata Based)
@@ -147,6 +177,7 @@ def delete_doc(filename: str = Query(..., description="Exact filename to delete 
         log_ingest(f"❌ Error deleting {filename}: {e}")
         return {"status": "error", "message": str(e)}
 
+
 # ============================================
 # List Documents
 # ============================================
@@ -175,6 +206,7 @@ def list_docs():
         log_ingest(f"❌ Failed to fetch document list: {e}")
         return {"status": "error", "message": str(e)}
 
+
 # ============================================
 # Upload & Ingest
 # ============================================
@@ -201,6 +233,17 @@ async def upload_doc(file: UploadFile = File(...)):
         log_ingest(f"❌ Upload failed for {file.filename}: {e}")
         return {"status": "error", "message": str(e)}
 
+
+@app.post("/ingest_sharepoint")
+def ingest_sharepoint(site_id: str, folder_path: str):
+    ingest_from_sharepoint(site_id, folder_path)
+
+    return {
+        "status": "success",
+        "message": "SharePoint files ingested successfully"
+    }
+
+
 def start():
     """
     Start the FastAPI server programmatically
@@ -211,6 +254,7 @@ def start():
         port=int(os.getenv("PORT", 8000)),
         reload=False
     )
+
 
 if __name__ == "__main__":
     start()
