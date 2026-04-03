@@ -56,7 +56,9 @@ class SiteRequest(BaseModel):
 def get_site_id(data: SiteRequest):
     token = get_access_token()
 
-    url = f"https://graph.microsoft.com/v1.0/sites/{data.hostname}:/sites/{data.site_name}"
+    hostname = "ragpoc.sharepoint.com"
+
+    url = f"https://graph.microsoft.com/v1.0/sites/{hostname}:/sites/{data.site_name}"
 
     headers = {"Authorization": f"Bearer {token}"}
 
@@ -236,7 +238,7 @@ async def upload_doc(file: UploadFile = File(...)):
 
 @app.post("/ingest_sharepoint")
 def ingest_sharepoint(site_id: str, folder_path: str):
-    ingest_from_sharepoint(site_id, folder_path)
+    ingest_from_sharepoint(site_id, "Shared Documents")
 
     return {
         "status": "success",
