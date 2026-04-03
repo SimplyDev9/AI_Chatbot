@@ -9,7 +9,7 @@ def retrieve_documents(query: str, k: int = 5):
     try:
         print(f"🔍 Retrieving documents for: {query}")
 
-        docs = kb.search(query, k=8)
+        docs = kb.search(query, k=2)
 
         if not docs:
             print("⚠️ No documents found")

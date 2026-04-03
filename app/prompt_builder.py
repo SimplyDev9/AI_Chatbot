@@ -5,7 +5,7 @@ def build_prompt(query: str, documents):
         context = "\n\n".join([doc["text"] for doc in documents])
 
         prompt = f"""
-You are a highly accurate AI assistant. You MUST answer the user's question ONLY using the provided context below.
+You are a highly accurate AI assistant. You MUST ONLY answer if the information is EXPLICITLY present in the context below.
 
 ==============================
 CONTEXT:
@@ -26,10 +26,11 @@ INSTRUCTIONS:
   - STOP after greeting.
 
 2. OTHERWISE (RAG MODE):
+- Do NOT infer or assume.
 - Use ONLY the information from the context.
 - Do NOT use any external knowledge.
 - If the answer is clearly present, provide a precise and complete answer.
-- If the answer is NOT present in the context, respond exactly with:
+- If answer is not found, respond exactly with:
   "I don't have enough information in the knowledge base to answer this."
 - Do NOT guess or hallucinate.
 

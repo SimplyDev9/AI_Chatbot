@@ -36,17 +36,41 @@ class KnowledgeBase:
 
             docs = []
 
+            # 🔥 Collect ALL results (NO threshold filtering)
             for doc, score in results:
+                print(f"🔎 Score: {score} | Text preview: {doc.page_content[:50]}")
+
                 docs.append({
                     "text": doc.page_content,
                     "score": score,
-                    "metadata": doc.metadata
+                    "metadata": doc.metadata,
+                    "source": doc.metadata.get("source", "Unknown"), # ✅ for citations
+                    "source_type": doc.metadata.get("source_type", "unknown"),
+                    "source_url": doc.metadata.get("source_url")
                 })
 
-            print(f"📄 Found {len(docs)} documents")
+            if not docs:
+                print("⚠️ No documents retrieved")
+                return []
+
+            # 🔥 Sort by best score (lower = better)
+            docs = sorted(docs, key=lambda x: x["score"])
+
+            # 🔥 Take top-k (you can tune this later)
+            docs = docs[:3]
+
+            print(f"✅ Selected docs count: {len(docs)}")
 
             return docs
 
         except Exception as e:
             print(f"❌ KB Search Error: {str(e)}")
             return []
+
+    def file_exists_in_db(vectordb, filename):
+        try:
+            results = vectordb.get(where={"filename": filename})
+            return len(results.get("ids", [])) > 0
+        except Exception as e:
+            print(f"❌ DB check error: {str(e)}")
+            return False
