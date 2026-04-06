@@ -3,6 +3,7 @@
 import os
 from dotenv import load_dotenv
 from langchain_aws import ChatBedrock
+from app.logger import logger
 
 load_dotenv()
 
@@ -19,10 +20,10 @@ try:
             "top_p": 1
         }
     )
-    print("✅ LLM initialized successfully")
+    logger.info("LLM initialized successfully")
 
 except Exception as e:
-    print(f"❌ LLM Initialization Error: {str(e)}")
+    logger.exception("LLM Initialization Error")
     llm = None
 
 
@@ -34,18 +35,18 @@ def call_bedrock_llm(prompt: str) -> str:
         if not llm:
             raise Exception("LLM not initialized")
 
-        print("🤖 Calling Bedrock LLM...")
+        logger.debug("Calling Bedrock LLM...")
 
         response = llm.invoke(prompt)
 
         output = getattr(response, "content", str(response))
 
-        print("✅ LLM response received")
+        logger.debug("LLM response received")
 
         return output
 
-    except Exception as e:
-        print(f"❌ LLM Error: {str(e)}")
+    except Exception:
+        logger.exception("LLM Error during call")
         return "Error generating response from model."
 
 
@@ -59,6 +60,6 @@ def call_llm(user_query: str, context: str = None) -> str:
 
         return call_bedrock_llm(prompt)
 
-    except Exception as e:
-        print(f"❌ call_llm Error: {str(e)}")
+    except Exception:
+        logger.exception("call_llm Error")
         return ""

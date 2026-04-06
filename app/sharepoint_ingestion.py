@@ -3,6 +3,7 @@ from app.ingest_corpus import ingest_single_file
 from app.sharepoint_loader import list_files_in_folder, download_file
 from app.sharepoint_tracker import is_file_updated, update_tracker
 from app.knowledge_base import KnowledgeBase
+from app.logger import logger, log_ingest
 
 kb = KnowledgeBase()
 
@@ -33,22 +34,22 @@ def ingest_from_sharepoint(site_id, folder_path):
             download_url = file["@microsoft.graph.downloadUrl"]
             web_url = file.get("webUrl")
 
-            print(f"🧠 File ID: {file_id} | Last Modified: {last_modified}")
+            logger.debug("File ID: %s | Last Modified: %s", file_id, last_modified)
 
             # 🔥 NEW LOGIC (CRITICAL FIX)
             exists_in_db = file_exists_in_db(filename)
             updated = is_file_updated(file_id, last_modified)
 
             if not updated and exists_in_db:
-                print(f"⏩ Skipping unchanged file: {filename}")
+                log_ingest(message="skip_unchanged_sharepoint", action="ingest", filename=filename, file_id=file_id)
                 continue
 
-            print(f"♻️ Re-ingesting file: {filename}")
+            log_ingest(message="reingest_sharepoint", action="ingest", filename=filename, file_id=file_id)
 
             local_path = temp_dir / filename
 
             # ✅ DOWNLOAD
-            print(f"⬇️ Downloading {filename}")
+            log_ingest(message="download_start", action="download", filename=filename, file_id=file_id)
             download_file(download_url, local_path)
 
             # ✅ METADATA
@@ -62,19 +63,19 @@ def ingest_from_sharepoint(site_id, folder_path):
             # delete old chunks before re-ingest
             try:
                 kb.vectordb.delete(where={"filename": filename})
-                print(f"🧹 Deleted old chunks for {filename}")
-            except Exception as e:
-                print(f"⚠️ Delete warning: {str(e)}")
+                log_ingest(message="deleted_old_chunks", action="cleanup", filename=filename)
+            except Exception:
+                logger.exception("Delete warning for filename: %s", filename)
 
             # ✅ INGEST
-            print(f"📥 Ingesting {filename}")
+            log_ingest(message="ingest_start", action="ingest", filename=filename, source="sharepoint")
             ingest_single_file(local_path, metadata=metadata)
 
             # ✅ UPDATE TRACKER
             update_tracker(file_id, last_modified)
 
-        except Exception as e:
-            print(f"❌ Failed file {file.get('name')}: {str(e)}")
+        except Exception:
+            logger.exception("Failed file processing for: %s", file.get('name'))
             continue
 
-    print("✅ SharePoint ingestion completed")
+    log_ingest(message="sharepoint_ingestion_completed", action="ingest", source="sharepoint")

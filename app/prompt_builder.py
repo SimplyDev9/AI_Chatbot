@@ -1,5 +1,8 @@
 # app/prompt_builder.py
 
+from app.logger import logger
+
+
 def build_prompt(query: str, documents):
     try:
         context = "\n\n".join([doc["text"] for doc in documents])
@@ -41,6 +44,6 @@ ANSWER:
 
         return prompt
 
-    except Exception as e:
-        print(f"❌ Prompt Builder Error: {str(e)}")
+    except Exception:
+        logger.exception("Prompt Builder Error")
         return query
