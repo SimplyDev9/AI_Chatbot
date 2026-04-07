@@ -1,0 +1,114 @@
+2026-04-03 11:57:20,007 - INFO - 📂 Uploaded file saved: corpus\Leaves policy V_1.1.pdf
+2026-04-03 11:57:44,067 - INFO - 📂 Fetching list of documents from Chroma DB...
+2026-04-03 11:57:44,077 - INFO - ✅ Found 4 documents in DB.
+2026-04-03 11:57:45,993 - INFO - 📂 Fetching list of documents from Chroma DB...
+2026-04-03 11:57:45,999 - INFO - ✅ Found 4 documents in DB.
+2026-04-03 11:58:06,840 - INFO - Agent: None
+Query: how many leaves as contractor am i eliglible for ?
+Response: As a contractor, you are eligible for 1 Sick/Casual Leave in a month according to the given context.
+Context: RAG
+
+2026-04-03 11:58:24,503 - INFO - 📂 Fetching list of documents from Chroma DB...
+2026-04-03 11:58:24,510 - INFO - ✅ Found 4 documents in DB.
+2026-04-03 11:58:24,982 - INFO - 📂 Fetching list of documents from Chroma DB...
+2026-04-03 11:58:24,987 - INFO - ✅ Found 4 documents in DB.
+2026-04-03 22:14:51,864 - INFO - Agent: None
+Query: What are the normal working hours mentioned in the policy?
+Response: I don't have enough information in the knowledge base to answer this.
+Context: NO_CONTEXT
+
+2026-04-03 22:16:59,819 - INFO - Agent: None
+Query: What are the normal working hours mentioned in the policy?
+Response: I don't have enough information in the knowledge base to answer this.
+Context: NO_CONTEXT
+
+2026-04-03 22:17:55,628 - INFO - Agent: None
+Query: weekend allowance
+Response: I don't have enough information in the knowledge base to answer this.
+Context: NO_CONTEXT
+
+2026-04-03 22:19:22,294 - INFO - Agent: None
+Query: weekend allowance
+Response: For the customer billed effort in the project, instead of compensatory off employees will be eligible for weekend allowance of Rs. 1500/- and a food reimbursement of Rs. 250/-.
+Context: RAG
+
+2026-04-03 22:20:00,963 - INFO - Agent: None
+Query: What are the normal working hours mentioned in the policy?
+Response: The normal working hours mentioned in the policy are from 10:00 AM to 7:30 PM, with the work week extended from Monday to Friday.
+Context: RAG
+
+2026-04-03 22:20:03,070 - INFO - Agent: None
+Query: What benefits does holiday working provide for billable vs non-billable work?
+Response: For billable work (customer billed effort in the project), employees are eligible for a weekend allowance of Rs. 1500/- and a food reimbursement of Rs. 250/-. For non-billable work, employees are eligible for a Compensatory off and a food reimbursement of Rs. 250/-.
+Context: RAG
+
+2026-04-03 22:26:15,343 - INFO - Agent: None
+Query: What are the normal working hours mentioned in the policy?
+Response: The normal working hours mentioned in the policy are from 10:00 AM to 7:30 PM, with the work week extended from Monday to Friday.
+Context: RAG
+
+2026-04-03 22:26:17,387 - INFO - Agent: None
+Query: What benefits does holiday working provide for billable vs non-billable work?
+Response: For billable work (customer billed effort in the project), employees are eligible for a weekend allowance of Rs. 1500/- and a food reimbursement of Rs. 250/-. For non-billable work, employees are eligible for a Compensatory off and a food reimbursement of Rs. 250/-.
+Context: RAG
+
+2026-04-03 22:35:12,838 - INFO - Agent: None
+Query: What are the normal working hours mentioned in the policy?
+Response: The normal working hours mentioned in the policy are from 10:00 AM to 7:30 PM, with the work week extended from Monday to Friday.
+Context: RAG
+
+2026-04-03 22:37:27,751 - INFO - 📂 Uploaded file saved: corpus\Leaves policy V_1.1.pdf
+2026-04-03 22:38:36,557 - INFO - 📂 Uploaded file saved: corpus\VM_Allowance Policy_V 1.5.pdf
+2026-04-03 22:39:41,958 - INFO - Agent: None
+Query: What are the normal working hours mentioned in the policy?
+Response: I don't have enough information in the knowledge base to answer this.
+Context: RAG
+
+2026-04-03 22:39:43,633 - INFO - Agent: None
+Query: What benefits does holiday working provide for billable vs non-billable work?
+Response: I don't have enough information in the knowledge base to answer this.
+Context: RAG
+
+2026-04-03 22:57:17,813 - INFO - Agent: None
+Query: What are the normal working hours mentioned in the policy?
+Response: I don't have enough information in the knowledge base to answer this.
+Context: RAG
+
+2026-04-03 22:57:18,889 - INFO - Agent: None
+Query: What benefits does holiday working provide for billable vs non-billable work?
+Response: I don't have enough information in the knowledge base to answer this.
+Context: RAG
+
+2026-04-03 22:58:44,501 - INFO - 📂 Uploaded file saved: corpus\VM_Allowance Policy_V 1.5.pdf
+2026-04-03 22:59:23,801 - INFO - Agent: None
+Query: What are the normal working hours mentioned in the policy?
+Response: The normal working hours mentioned in the policy are from 10:00 AM to 7:30 PM, with the work week extended from Monday to Friday.
+Context: RAG
+
+2026-04-03 22:59:25,854 - INFO - Agent: None
+Query: What benefits does holiday working provide for billable vs non-billable work?
+Response: For billable work (customer billed effort in the project), employees are eligible for a weekend allowance of Rs. 1500/- and a food reimbursement of Rs. 250/-. For non-billable work, employees are eligible for a Compensatory off and a food reimbursement of Rs. 250/-.
+Context: RAG
+
+2026-04-03 23:07:43,590 - INFO - 📂 Uploaded file saved: corpus\VM_Allowance Policy_V 1.5.pdf
+2026-04-03 23:09:08,885 - INFO - Agent: None
+Query: What are the normal working hours mentioned in the policy?
+Response: The normal working hours mentioned in the policy are from 10:00 AM to 7:30 PM, with the work week extended from Monday to Friday.
+Context: RAG
+
+2026-04-03 23:09:12,826 - INFO - Agent: None
+Query: What benefits does holiday working provide for billable vs non-billable work?
+Response: For the customer billed effort in the project, employees will be eligible for a weekend allowance of Rs. 1500/- and a food reimbursement of Rs. 250/-. For non-billable work, if the employee works full days on the weekend, they will be eligible for Rs. 250/- food reimbursement and a Compensatory off.
+Context: RAG
+
+2026-04-03 23:17:23,994 - INFO - 📂 Uploaded file saved: corpus\VM_Allowance Policy_V 1.5.pdf
+2026-04-03 23:20:07,827 - INFO - Agent: None
+Query: What are the normal working hours mentioned in the policy?
+Response: The normal working hours mentioned in the policy are from 10:00 AM to 7:30 PM, with the work week extended from Monday to Friday.
+Context: RAG
+
+2026-04-03 23:20:09,048 - INFO - Agent: None
+Query: What benefits does holiday working provide for billable vs non-billable work?
+Response: I don't have enough information in the knowledge base to answer this.
+Context: RAG
+

@@ -1,0 +1,132 @@
+2026-04-02 12:28:27,525 - INFO - 📂 Fetching list of documents from Chroma DB...
+2026-04-02 12:28:27,707 - INFO - ✅ Found 3 documents in DB.
+2026-04-02 12:29:01,323 - INFO - Agent: None
+Query: What are the allowances for shift B?
+Response: Error generating response from model.
+Context: RAG
+
+2026-04-02 12:37:25,822 - INFO - Agent: None
+Query: What are the normal working hours mentioned in the policy?
+Response: Error generating response from model.
+Context: RAG
+
+2026-04-02 12:37:26,621 - INFO - Agent: None
+Query: What benefits does holiday working provide for billable vs non-billable work?
+Response: Error generating response from model.
+Context: RAG
+
+2026-04-02 12:38:17,920 - INFO - Agent: None
+Query: What are the normal working hours mentioned in the policy?
+Response: Error generating response from model.
+Context: RAG
+
+2026-04-02 12:38:27,502 - INFO - Agent: None
+Query: What benefits does holiday working provide for billable vs non-billable work?
+Response: Error generating response from model.
+Context: RAG
+
+2026-04-02 12:38:59,407 - INFO - Agent: None
+Query: What are the normal working hours mentioned in the policy?
+Response: Error generating response from model.
+Context: RAG
+
+2026-04-02 12:39:00,147 - INFO - Agent: None
+Query: What benefits does holiday working provide for billable vs non-billable work?
+Response: Error generating response from model.
+Context: RAG
+
+2026-04-02 12:41:15,681 - INFO - Agent: None
+Query: What are the normal working hours mentioned in the policy?
+Response: Error generating response from model.
+Context: RAG
+
+2026-04-02 12:41:16,440 - INFO - Agent: None
+Query: What benefits does holiday working provide for billable vs non-billable work?
+Response: Error generating response from model.
+Context: RAG
+
+2026-04-02 12:42:56,445 - INFO - Agent: None
+Query: What are the normal working hours mentioned in the policy?
+Response: Error generating response from model.
+Context: RAG
+
+2026-04-02 12:42:57,193 - INFO - Agent: None
+Query: What benefits does holiday working provide for billable vs non-billable work?
+Response: Error generating response from model.
+Context: RAG
+
+2026-04-02 12:44:05,905 - INFO - Agent: None
+Query: What are the normal working hours mentioned in the policy?
+Response: Error generating response from model.
+Context: RAG
+
+2026-04-02 12:44:06,655 - INFO - Agent: None
+Query: What benefits does holiday working provide for billable vs non-billable work?
+Response: Error generating response from model.
+Context: RAG
+
+2026-04-02 12:46:01,135 - INFO - Agent: None
+Query: What are the normal working hours mentioned in the policy?
+Response: Error generating response from model.
+Context: RAG
+
+2026-04-02 12:46:01,930 - INFO - Agent: None
+Query: What benefits does holiday working provide for billable vs non-billable work?
+Response: Error generating response from model.
+Context: RAG
+
+2026-04-02 12:47:00,656 - INFO - Agent: None
+Query: What are the normal working hours mentioned in the policy?
+Response: Error generating response from model.
+Context: RAG
+
+2026-04-02 12:49:00,994 - INFO - Agent: None
+Query: What are the normal working hours mentioned in the policy?
+Response: The normal working hours mentioned in the policy are from 10:00 AM to 7:30 PM, with the work week extended from Monday to Friday.
+Context: RAG
+
+2026-04-02 12:49:03,074 - INFO - Agent: None
+Query: What benefits does holiday working provide for billable vs non-billable work?
+Response: For billable work (customer billed effort in the project), employees are eligible for a weekend allowance of Rs. 1500/- and a food reimbursement of Rs. 250/-. For non-billable work, employees are eligible for a compensatory off and a food reimbursement of Rs. 250/-.
+Context: RAG
+
+2026-04-02 13:09:23,657 - INFO - Agent: None
+Query: What benefits does holiday working provide for billable vs non-billable work?
+Response: For billable work (customer billed effort in the project), employees are eligible for a weekend allowance of Rs. 1500/- and a food reimbursement of Rs. 250/-. For non-billable work, employees are eligible for a Compensatory off and a food reimbursement of Rs. 250/-.
+Context: RAG
+
+2026-04-02 13:27:41,998 - INFO - Agent: None
+Query: What benefits does holiday working provide for billable vs non-billable work?
+Response: For billable work on holidays, employees are eligible for a weekend allowance of Rs. 1500/- and a food reimbursement of Rs. 250/-. For non-billable holiday work, employees are eligible for a compensatory off and a food reimbursement of Rs. 250/-.
+Context: RAG
+
+2026-04-02 13:30:59,163 - INFO - Agent: None
+Query: What are the normal working hours mentioned in the policy?
+Response: The normal working hours mentioned in the policy are from 10:00 AM to 7:30 PM, with the work week extended from Monday to Friday.
+Context: RAG
+
+2026-04-02 13:31:01,492 - INFO - Agent: None
+Query: What benefits does holiday working provide for billable vs non-billable work?
+Response: For billable work on holidays, employees are eligible for a weekend allowance of Rs. 1500/- and a food reimbursement of Rs. 250/-. For non-billable holiday work, employees are eligible for a compensatory off and a food reimbursement of Rs. 250/-.
+Context: RAG
+
+2026-04-02 13:32:37,998 - INFO - Agent: None
+Query: What are the normal working hours mentioned in the policy?
+Response: The normal working hours mentioned in the policy are from 10:00 AM to 7:30 PM, with the work week extended from Monday to Friday.
+Context: RAG
+
+2026-04-02 13:32:40,160 - INFO - Agent: None
+Query: What benefits does holiday working provide for billable vs non-billable work?
+Response: For billable work (customer billed effort in the project), employees are eligible for a weekend allowance of Rs. 1500/- and a food reimbursement of Rs. 250/-. For non-billable work, employees are eligible for a compensatory off and a food reimbursement of Rs. 250/-.
+Context: RAG
+
+2026-04-02 13:38:23,991 - INFO - Agent: None
+Query: What are the normal working hours mentioned in the policy?
+Response: The daily Normal Working Hours are from 10:00 AM to 7:30 PM, with the work week extended from Monday to Friday.
+Context: RAG
+
+2026-04-02 13:38:26,540 - INFO - Agent: None
+Query: What benefits does holiday working provide for billable vs non-billable work?
+Response: For the customer billed effort in the project, instead of compensatory off employees will be eligible for weekend allowance of Rs. 1500/- and a food reimbursement of Rs. 250/-. If the employee works for full days on the weekend, they will be eligible for Rs. 250/- food reimbursement and a Compensatory off.
+Context: RAG
+

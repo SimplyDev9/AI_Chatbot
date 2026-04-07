@@ -1,0 +1,11 @@
+Title: Solar Energy Basics
+
+Solar energy is the energy obtained from the sun's radiation. It is one of the most abundant and renewable energy sources available on Earth. Solar panels, also known as photovoltaic (PV) panels, convert sunlight into electricity.
+
+There are two main types of solar energy systems: photovoltaic systems and solar thermal systems. Photovoltaic systems directly convert sunlight into electricity using solar cells. Solar thermal systems use sunlight to generate heat, which can then be used for heating water or producing steam for electricity generation.
+
+One major advantage of solar energy is that it is environmentally friendly and produces no greenhouse gas emissions during operation. Additionally, solar energy can reduce electricity bills and dependence on fossil fuels.
+
+However, solar energy also has some limitations. It depends on sunlight availability, meaning it is less effective during cloudy days or at night. Initial installation costs for solar panels can also be high, although prices have been decreasing over time.
+
+In recent years, advancements in technology have improved the efficiency of solar panels and reduced costs, making solar energy more accessible worldwide.

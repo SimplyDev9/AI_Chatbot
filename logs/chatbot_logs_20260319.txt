@@ -1,0 +1,208 @@
+2026-03-19 19:44:09,434 - INFO - Agent: None
+Query: how many leaves am i eligible in a claender year?
+Response: The number of leaves you are eligible for in a calendar year depends on various factors, such as:
+
+1. Employment status: Are you a full-time employee, part-time employee, or a contractor/freelancer? The leave entitlement may differ based on your employment status.
+
+2. Company/organizational policies: The number of leaves provided can vary from one organization to another. Some companies have more generous leave policies than others.
+
+3. Applicable labor laws and regulations: Depending on the country, state, or region you are located in, the labor laws may mandate a minimum number of leaves that employers must provide.
+
+4. Years of service: Some organizations offer more leaves as an employee's tenure increases.
+
+5. Type of leaves: The leaves may be categorized as sick leave, vacation leave, personal leave, etc., and the number of days allotted for each type may vary.
+
+Without knowing the specifics of your employment situation and the applicable policies/laws, it's difficult to provide an exact number of leaves you are eligible for in a calendar year. It's best to consult your employee handbook, HR department, or local labor laws to determine the leave entitlement in your particular case.
+Context: FM
+
+2026-03-19 19:48:25,398 - INFO - Agent: None
+Query: how many leaves am i eligible in a claender year?
+Response: The number of leaves you are eligible for in a calendar year can vary depending on your employment contract, company policies, and the applicable labor laws. However, in general, the following are some common guidelines for leaves in a calendar year:
+
+1. Annual Leave (Vacation Leave):
+   - Typically, employees are entitled to 10-30 days of paid annual leave per calendar year, depending on their years of service and the company's policy.
+
+2. Sick Leave:
+   - Most companies provide 10-15 days of paid sick leave per calendar year for employees to take time off due to illness or medical appointments.
+
+3. Maternity/Paternity Leave:
+   - Maternity leave is usually 12-26 weeks of paid leave for the mother, and paternity leave is typically 1-4 weeks of paid leave for the father, as per the applicable labor laws.
+
+4. Public Holidays:
+   - Employees are generally entitled to paid leave on national or public holidays, which can range from 10-15 days per year, depending on the country or region.
+
+5. Other Leaves:
+   - Depending on the company's policies, employees may also be eligible for additional leaves, such as bereavement leave, personal leave, or leave for specific events or emergencies.
+
+It's important to note that the actual number of leaves you are eligible for can vary based on your employment contract, company policies, and the labor laws in your jurisdiction. It's best to check with your HR department or review your employment contract to understand the specific leave entitlements applicable to your case.
+Context: FM
+
+2026-03-19 19:48:50,539 - INFO - Agent: None
+Query: hHi
+Response: Hi there! How can I assist you today?
+Context: FM
+
+2026-03-19 19:49:16,377 - INFO - Agent: None
+Query: who is the president of INDIA
+Response: The current President of India is Droupadi Murmu.
+
+Some key details about the President of India:
+
+- Droupadi Murmu assumed office as the 15th President of India on July 25, 2022.
+
+- She is the first tribal woman to hold the office of the President of India.
+
+- Prior to becoming the President, she served as the Governor of Jharkhand from 2015 to 2021.
+
+- The President of India is the head of state and the Supreme Commander of the Indian Armed Forces.
+
+- The President is elected indirectly by an electoral college for a term of 5 years.
+
+- The President's role is primarily ceremonial, but they also have some important constitutional powers and responsibilities.
+
+So in summary, Droupadi Murmu is the incumbent and 15th President of the Republic of India, having assumed office in July 2022.
+Context: FM
+
+2026-03-19 19:50:48,307 - INFO - Agent: None
+Query: wassup
+Response: Not much, just hanging out and waiting for my next interaction. How can I assist you today?
+Context: FM
+
+2026-03-19 19:51:33,382 - INFO - 📂 Fetching list of documents from Chroma DB...
+2026-03-19 19:51:33,406 - INFO - ✅ Found 0 documents in DB.
+2026-03-19 19:52:18,179 - INFO - 📂 Uploaded file saved: corpus\Group Medical Insurance Policy 2025-26.pdf
+2026-03-19 19:58:04,322 - INFO - Agent: None
+Query: wassup
+Response: The provided context does not contain any information about the meaning or usage of the term "wassup". I don't have enough information to accurately answer your question. The context is focused on providing details about a group medical insurance policy, and does not cover the usage of slang expressions like "wassup".
+Context: RAG
+
+2026-03-19 20:00:19,508 - INFO - Agent: None
+Query: hi
+Response: Based on the provided context, I can answer the following question:
+
+When will the e-cards get generated/received?
+
+According to the context, the e-cards will be sent to employees' official email IDs by MediAssist within 45 days from the date of joining and can be accessed from the Medibuddy Mobile app.
+Context: RAG
+
+2026-03-19 20:00:35,947 - INFO - Agent: None
+Query: wassup
+Response: Unfortunately, the provided context does not contain information to answer the question "wassup". The context appears to be about a group medical insurance policy, and does not discuss the meaning or usage of the term "wassup". I don't have enough information in the given context to provide a meaningful answer to your question.
+Context: RAG
+
+2026-03-19 20:01:42,267 - INFO - 📂 Fetching list of documents from Chroma DB...
+2026-03-19 20:01:42,326 - INFO - ✅ Found 1 documents in DB.
+2026-03-19 20:01:44,387 - INFO - 📂 Fetching list of documents from Chroma DB...
+2026-03-19 20:01:44,389 - INFO - ✅ Found 1 documents in DB.
+2026-03-19 20:02:07,421 - INFO - Agent: None
+Query: who is the president of INDIA
+Response: The given context does not contain any information about the president of India. I do not have enough information to answer the question "who is the president of INDIA".
+Context: RAG
+
+2026-03-19 20:02:14,302 - INFO - 📂 Fetching list of documents from Chroma DB...
+2026-03-19 20:02:14,319 - INFO - ✅ Found 1 documents in DB.
+2026-03-19 20:02:14,619 - INFO - 📂 Fetching list of documents from Chroma DB...
+2026-03-19 20:02:14,624 - INFO - ✅ Found 1 documents in DB.
+2026-03-19 20:02:21,684 - INFO - 📂 Fetching list of documents from Chroma DB...
+2026-03-19 20:02:21,686 - INFO - ✅ Found 1 documents in DB.
+2026-03-19 20:02:33,206 - INFO - 📂 Uploaded file saved: corpus\Webster Online.pptx
+2026-03-19 20:02:47,281 - INFO - 📂 Fetching list of documents from Chroma DB...
+2026-03-19 20:02:47,284 - INFO - ✅ Found 2 documents in DB.
+2026-03-19 20:02:47,568 - INFO - 📂 Fetching list of documents from Chroma DB...
+2026-03-19 20:02:47,570 - INFO - ✅ Found 2 documents in DB.
+2026-03-19 20:02:56,617 - INFO - 📂 Uploaded file saved: corpus\Leaves policy V_1.1.pdf
+2026-03-19 20:03:14,950 - INFO - 📂 Fetching list of documents from Chroma DB...
+2026-03-19 20:03:14,952 - INFO - ✅ Found 3 documents in DB.
+2026-03-19 20:03:15,219 - INFO - 📂 Fetching list of documents from Chroma DB...
+2026-03-19 20:03:15,222 - INFO - ✅ Found 3 documents in DB.
+2026-03-19 21:05:52,549 - INFO - Agent: None
+Query: hi
+Response: Based on the provided context, I can answer the following:
+
+The e-cards will be sent to employees' official email IDs by MediAssist within 45 days from the date of joining and can be accessed from the Medibuddy Mobile app.
+
+If the context does not contain the information to answer a specific question, I will say "I don't know".
+Context: RAG
+
+2026-03-19 21:11:10,222 - INFO - Agent: None
+Query: hi
+Response: Based on the provided context, I can answer the following question:
+
+When will the e-cards get generated/received?
+
+The context states:
+
+"The e-cards will be sent at employees' official email ID by MediAssist within 45 days from the date of joining and can be accessed from Medibuddy Mobile app."
+
+So according to the information given, the e-cards will be generated and received by the employees within 45 days from the date of joining the company.
+Context: RAG
+
+2026-03-19 21:14:15,187 - INFO - Agent: None
+Query: hi
+Response: Based on the provided context, I can answer the following:
+
+The e-cards will be sent to employees' official email IDs by MediAssist within 45 days from the date of joining and can be accessed from the Medibuddy Mobile app (as per section 12).
+
+If the context does not contain the information to answer your specific question, I will say that I don't know.
+Context: RAG
+
+2026-03-19 21:18:19,967 - INFO - Agent: None
+Query: hi
+Response: Okay, let's see if I can find the answer to your question in the provided context.
+
+The context contains information about the installation and setup of the Medibuddy Mobile App, the features of the app, exceptions handling, and some frequently asked questions.
+
+However, the context does not contain any information about when an employee can nominate their dependents under the Group Medical Insurance Policy. 
+
+Since the provided context does not contain the answer to your question, I don't know when an employee can nominate their dependents under the Group Medical Insurance Policy.
+Context: RAG
+
+2026-03-19 21:22:49,261 - INFO - Agent: None
+Query: hi
+Response: Based on the provided context, here is the answer to your question:
+
+The context does not contain information about when an employee can nominate their dependents under the Group Medical Insurance Policy. The context only mentions that "Direct dependents include employee's spouse and 2 children (refer clause 4.2 for details)." However, it does not specify when the employee can nominate their dependents. So, I don't know the answer to your question.
+Context: RAG
+
+2026-03-19 21:23:59,505 - INFO - Agent: None
+Query: hi
+Response: Based on the provided context, I can answer the following question:
+
+When will the e-cards get generated/received?
+
+According to the context, the e-cards will be sent to employees' official email IDs by MediAssist within 45 days from the date of joining, and can be accessed from the Medibuddy Mobile app.
+
+The context does not provide information to answer any other questions, so I don't know the answers to those.
+Context: RAG
+
+2026-03-19 21:27:23,934 - INFO - Agent: None
+Query: hi
+Response: Based on the provided context, the answer to your question is:
+
+The e-cards will be sent at employees' official email ID by MediAssist within 45 days from the date of joining and can be accessed from Medibuddy Mobile app.
+
+If the context does not contain the answer to your question, I will say "I don't know".
+Context: RAG
+
+2026-03-19 21:39:05,932 - INFO - Agent: None
+Query: hi
+Response: Based on the provided context, I can answer the following question:
+
+When will the e-cards get generated/received?
+
+According to the context, the e-cards will be sent to employees' official email IDs by MediAssist within 45 days from the date of joining and can be accessed from the Medibuddy Mobile app.
+
+The context does not contain information to answer any other specific questions. If you have a different question, please provide it, and I'll let you know if the context has the necessary information to answer it.
+Context: RAG
+
+2026-03-19 22:16:31,635 - INFO - Agent: None
+Query: hi
+Response: Based on the context provided, I can answer the following question:
+
+When will the e-cards get generated/received?
+
+According to the context, the e-cards will be sent to employees' official email ID by MediAssist within 45 days from the date of joining and can be accessed from the Medibuddy Mobile app.
+
+The context does not contain information to answer any other questions. If you have a different question, please provide it, and I will let you know if the context contains the answer or if I don't know.
+Context: RAG
+

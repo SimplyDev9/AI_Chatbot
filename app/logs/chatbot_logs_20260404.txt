@@ -1,0 +1,23 @@
+2026-04-04 21:22:32,167 - INFO - chatbot_logger - LLM initialized successfully
+2026-04-04 21:22:34,271 - INFO - chatbot_logger - KnowledgeBase initialized
+2026-04-04 21:22:37,828 - INFO - chatbot_logger - KnowledgeBase initialized
+2026-04-04 21:22:37,831 - INFO - chatbot_logger - main.py loaded successfully
+2026-04-04 21:22:38,109 - INFO - chatbot_logger - main.py loaded successfully
+2026-04-04 21:22:57,592 - INFO - chatbot_logger - Vector DB initialized
+2026-04-04 21:22:57,592 - INFO - chatbot_logger - INGEST: {"message": "list_docs", "action": "list_docs", "status": "started"}
+2026-04-04 21:22:57,747 - INFO - chatbot_logger - INGEST: {"message": "list_docs_success", "action": "list_docs", "count": 1}
+2026-04-04 21:24:42,424 - INFO - chatbot_logger - INGEST: {"message": "reingest_sharepoint", "action": "ingest", "filename": "knowledge_base.txt", "file_id": "01IISTENDG6PUM4MCVZVH3UP7ITUAF5DOB"}
+2026-04-04 21:24:42,425 - INFO - chatbot_logger - INGEST: {"message": "download_start", "action": "download", "filename": "knowledge_base.txt", "file_id": "01IISTENDG6PUM4MCVZVH3UP7ITUAF5DOB"}
+2026-04-04 21:24:45,178 - INFO - chatbot_logger - INGEST: {"message": "deleted_old_chunks", "action": "cleanup", "filename": "knowledge_base.txt"}
+2026-04-04 21:24:45,178 - INFO - chatbot_logger - INGEST: {"message": "ingest_start", "action": "ingest", "filename": "knowledge_base.txt", "source": "sharepoint"}
+2026-04-04 21:24:49,861 - INFO - chatbot_logger - INGEST: {"message": "file_ingested_metadata", "action": "ingest_single_file", "filename": "knowledge_base.txt", "metadata": {"filename": "knowledge_base.txt", "source_type": "sharepoint", "source_url": "https://ragpoc.sharepoint.com/sites/AIProject/Shared%20Documents/knowledge_base.txt"}}
+2026-04-04 21:24:49,870 - INFO - chatbot_logger - INGEST: {"message": "reingest_sharepoint", "action": "ingest", "filename": "Team Size.txt", "file_id": "01IISTENGJ5MPHFAE44BFYMT2S2LIR4RYJ"}
+2026-04-04 21:24:49,871 - INFO - chatbot_logger - INGEST: {"message": "download_start", "action": "download", "filename": "Team Size.txt", "file_id": "01IISTENGJ5MPHFAE44BFYMT2S2LIR4RYJ"}
+2026-04-04 21:24:50,870 - INFO - chatbot_logger - INGEST: {"message": "deleted_old_chunks", "action": "cleanup", "filename": "Team Size.txt"}
+2026-04-04 21:24:50,870 - INFO - chatbot_logger - INGEST: {"message": "ingest_start", "action": "ingest", "filename": "Team Size.txt", "source": "sharepoint"}
+2026-04-04 21:24:53,528 - INFO - chatbot_logger - INGEST: {"message": "file_ingested_metadata", "action": "ingest_single_file", "filename": "Team Size.txt", "metadata": {"filename": "Team Size.txt", "source_type": "sharepoint", "source_url": "https://ragpoc.sharepoint.com/sites/AIProject/Shared%20Documents/Team%20Size.txt"}}
+2026-04-04 21:24:53,541 - INFO - chatbot_logger - INGEST: {"message": "skip_unchanged_sharepoint", "action": "ingest", "filename": "VM_Allowance Policy_V 1.5.pdf", "file_id": "01IISTENGEG52TP2CBRFFYOJXZZFYJKSCI"}
+2026-04-04 21:24:53,542 - INFO - chatbot_logger - INGEST: {"message": "sharepoint_ingestion_completed", "action": "ingest", "source": "sharepoint"}
+2026-04-04 21:25:10,185 - INFO - chatbot_logger - Vector DB initialized
+2026-04-04 21:25:10,185 - INFO - chatbot_logger - INGEST: {"message": "list_docs", "action": "list_docs", "status": "started"}
+2026-04-04 21:25:10,205 - INFO - chatbot_logger - INGEST: {"message": "list_docs_success", "action": "list_docs", "count": 3}

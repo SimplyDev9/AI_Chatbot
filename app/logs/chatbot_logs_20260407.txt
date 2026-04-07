@@ -1,0 +1,100 @@
+2026-04-07 12:27:51,697 - INFO - chatbot_logger - LLM initialized successfully
+2026-04-07 12:29:12,073 - INFO - chatbot_logger - BM25 index built successfully with 43 docs
+2026-04-07 12:29:12,074 - INFO - chatbot_logger - KnowledgeBase initialized
+2026-04-07 12:29:12,077 - INFO - chatbot_logger - main.py loaded successfully
+2026-04-07 12:29:12,354 - INFO - chatbot_logger - main.py loaded successfully
+2026-04-07 12:32:55,560 - INFO - chatbot_logger - BM25 index built successfully with 43 docs
+2026-04-07 12:32:55,566 - INFO - chatbot_logger - KnowledgeBase initialized
+2026-04-07 12:33:01,111 - INFO - chatbot_logger - Score: 144.37806701660156 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-07 12:33:01,112 - INFO - chatbot_logger - Score: 164.79351806640625 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-07 12:33:01,203 - INFO - chatbot_logger - Score: 172.34298706054688 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-07 12:33:01,204 - INFO - chatbot_logger - Score: 178.31126403808594 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-07 12:33:01,205 - INFO - chatbot_logger - Score: 184.29368591308594 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-07 12:33:01,205 - INFO - chatbot_logger - Score: 189.42630004882812 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-07 12:33:01,206 - INFO - chatbot_logger - Score: 191.23580932617188 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-07 12:33:01,206 - INFO - chatbot_logger - Score: 194.97181701660156 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-07 12:33:01,206 - INFO - chatbot_logger - Score: 195.88955688476562 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-07 12:33:01,207 - INFO - chatbot_logger - Score: 196.14134216308594 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-07 12:33:02,968 - INFO - chatbot_logger - After reranking:
+2026-04-07 12:33:02,968 - INFO - chatbot_logger - Rerank Score: 2.248075008392334 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-07 12:33:02,969 - INFO - chatbot_logger - Rerank Score: -0.645169734954834 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-07 12:33:02,969 - INFO - chatbot_logger - Rerank Score: -0.8416190147399902 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-07 12:33:02,969 - INFO - chatbot_logger - Rerank Score: -4.189082145690918 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-07 12:33:02,969 - INFO - chatbot_logger - Rerank Score: -4.295703887939453 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-07 12:33:02,970 - INFO - chatbot_logger - Confidence Check → Best: 2.248075008392334 | Second: -0.645169734954834 | Gap: 2.893244743347168
+2026-04-07 12:33:05,168 - INFO - chatbot_logger - Agent: None
+Query: What are the normal working hours mentioned in the policy?
+Response: The normal working hours mentioned in the policy are from 10:00 AM to 7:30 PM, with the work week extended from Monday to Friday.
+Context: RAG
+
+2026-04-07 12:33:05,403 - INFO - chatbot_logger - BM25 index built successfully with 43 docs
+2026-04-07 12:33:05,403 - INFO - chatbot_logger - KnowledgeBase initialized
+2026-04-07 12:33:07,117 - INFO - chatbot_logger - Score: 186.668212890625 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-07 12:33:07,118 - INFO - chatbot_logger - Score: 206.97850036621094 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-07 12:33:07,118 - INFO - chatbot_logger - Score: 221.3409881591797 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-07 12:33:07,118 - INFO - chatbot_logger - Score: 222.6083221435547 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-07 12:33:07,119 - INFO - chatbot_logger - Score: 235.53268432617188 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-07 12:33:07,119 - INFO - chatbot_logger - Score: 238.65240478515625 | File: Leaves policy V_1.1.pdf
+2026-04-07 12:33:07,119 - INFO - chatbot_logger - Score: 239.3573455810547 | File: Leaves policy V_1.1.pdf
+2026-04-07 12:33:07,119 - INFO - chatbot_logger - Score: 251.6191864013672 | File: Leaves policy V_1.1.pdf
+2026-04-07 12:33:07,119 - INFO - chatbot_logger - Score: 260.3038024902344 | File: Leaves policy V_1.1.pdf
+2026-04-07 12:33:07,119 - INFO - chatbot_logger - Score: 265.4615478515625 | File: Leaves policy V_1.1.pdf
+2026-04-07 12:33:09,861 - INFO - chatbot_logger - After reranking:
+2026-04-07 12:33:09,861 - INFO - chatbot_logger - Rerank Score: -1.0620379447937012 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-07 12:33:09,861 - INFO - chatbot_logger - Rerank Score: -2.3206913471221924 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-07 12:33:09,862 - INFO - chatbot_logger - Rerank Score: -3.808197498321533 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-07 12:33:09,862 - INFO - chatbot_logger - Rerank Score: -4.164084434509277 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-07 12:33:09,862 - INFO - chatbot_logger - Rerank Score: -5.3785014152526855 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-07 12:33:09,863 - INFO - chatbot_logger - Confidence Check → Best: -1.0620379447937012 | Second: -2.3206913471221924 | Gap: 1.2586534023284912
+2026-04-07 12:33:11,435 - INFO - chatbot_logger - Agent: None
+Query: What benefits does holiday working provide for billable vs non-billable work?
+Response: For billable work on holidays, employees are eligible for a weekend allowance of Rs. 1500/- and a food reimbursement of Rs. 250/-. For non-billable work on holidays, employees are eligible for a compensatory off and a food reimbursement of Rs. 250/-.
+Context: RAG
+
+2026-04-07 12:33:33,282 - INFO - chatbot_logger - --- DeepEval RAG Evaluation ---
+2026-04-07 12:33:33,283 - INFO - chatbot_logger - Test Case 1 | Query: What are the normal working hours mentioned in the policy?
+2026-04-07 12:33:33,284 - INFO - chatbot_logger - Contextual Precision : 1.0 : PASS : The score is 1.00 because the first node in the retrieval contexts directly quotes the relevant information about the normal working hours mentioned in the policy: 'The daily Normal Working Hours are from 10:00 AM to 7:30 PM, with the work week extended from Monday to Friday'. The other nodes are correctly ranked lower as they do not contain this key information. Well done!
+2026-04-07 12:33:33,284 - INFO - chatbot_logger - Faithfulness : 1.0 : PASS : The score is 1.00 because there are no contradictions listed, indicating that the actual output aligns perfectly with the retrieval context. This is an excellent result, well done!
+2026-04-07 12:33:33,284 - INFO - chatbot_logger - Answer Relevancy : 1.0 : PASS : The score is 1.00 because there are no irrelevant statements in the output. The response directly addresses the question about normal working hours mentioned in the policy, which is great!
+2026-04-07 12:33:33,285 - INFO - chatbot_logger - Hallucination : 0.0 : PASS : The score is 0.00 because the actual output aligns with all the provided factual contexts and does not contradict any of them. There are no contradictions listed, indicating that the output is fully grounded in the given information without any hallucinated or unsupported details.
+2026-04-07 12:33:33,285 - INFO - chatbot_logger - Test Case 2 | Query: What benefits does holiday working provide for billable vs non-billable work?
+2026-04-07 12:33:33,285 - INFO - chatbot_logger - Contextual Precision : 0.5 : PASS : The score is 0.50 because the first node in the retrieval contexts is irrelevant, providing details on 'food reimbursement and cab allowances for normal working hours beyond 11 PM' which does not address holiday working or billable vs non-billable work. The second node is highly relevant, directly answering the question by stating 'For the customer billed effort in the project, instead of compensatory off employees will be eligible for weekend allowance of Rs. 1500/- and a food reimbursement of Rs. 250/-.' However, the third node in the retrieval contexts is again irrelevant, only providing 'additional details on the process of availing compensatory offs for holiday working' without adding new information on benefits for billable vs non-billable work.
+2026-04-07 12:33:33,286 - INFO - chatbot_logger - Faithfulness : 1.0 : PASS : The score is 1.00 because there are no contradictions listed, indicating that the actual output aligns perfectly with the retrieval context. This is an excellent result, well done!
+2026-04-07 12:33:33,286 - INFO - chatbot_logger - Answer Relevancy : 1.0 : PASS : The score is 1.00 because there are no irrelevant statements in the output. Great job providing a clear and focused response!
+2026-04-07 12:33:33,288 - INFO - chatbot_logger - Hallucination : 0.0 : PASS : The score is 0.00 because the actual output is fully aligned with the provided context, and there are no contradictions between the output and the context. The output accurately reflects the details mentioned in the context regarding holiday work policies, allowances, and reimbursements for both billable and non-billable work.
+2026-04-07 15:15:43,512 - INFO - chatbot_logger - LLM initialized successfully
+2026-04-07 15:16:12,454 - INFO - chatbot_logger - BM25 index built successfully with 43 docs
+2026-04-07 15:16:12,456 - INFO - chatbot_logger - KnowledgeBase initialized
+2026-04-07 15:16:12,459 - INFO - chatbot_logger - main.py loaded successfully
+2026-04-07 15:16:12,841 - INFO - chatbot_logger - main.py loaded successfully
+2026-04-07 15:17:26,069 - INFO - chatbot_logger - INGEST: {"message": "skip_unchanged_sharepoint", "action": "ingest", "filename": "knowledge_base.txt", "file_id": "01IISTENDG6PUM4MCVZVH3UP7ITUAF5DOB"}
+2026-04-07 15:17:26,072 - INFO - chatbot_logger - INGEST: {"message": "skip_unchanged_sharepoint", "action": "ingest", "filename": "Team Size.txt", "file_id": "01IISTENGJ5MPHFAE44BFYMT2S2LIR4RYJ"}
+2026-04-07 15:17:26,074 - INFO - chatbot_logger - INGEST: {"message": "skip_unchanged_sharepoint", "action": "ingest", "filename": "VM_Allowance Policy_V 1.5.pdf", "file_id": "01IISTENGEG52TP2CBRFFYOJXZZFYJKSCI"}
+2026-04-07 15:17:26,074 - INFO - chatbot_logger - INGEST: {"message": "sharepoint_ingestion_completed", "action": "ingest", "source": "sharepoint"}
+2026-04-07 15:18:00,006 - INFO - chatbot_logger - BM25 index built successfully with 43 docs
+2026-04-07 15:18:00,007 - INFO - chatbot_logger - KnowledgeBase initialized
+2026-04-07 15:18:02,163 - INFO - chatbot_logger - Score: 371.9222106933594 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-07 15:18:02,163 - INFO - chatbot_logger - Score: 393.4624938964844 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-07 15:18:02,165 - INFO - chatbot_logger - Score: 396.99945068359375 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-07 15:18:02,166 - INFO - chatbot_logger - Score: 403.3155212402344 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-07 15:18:02,166 - INFO - chatbot_logger - Score: 410.2333068847656 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-07 15:18:02,166 - INFO - chatbot_logger - Score: 416.1506042480469 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-07 15:18:02,167 - INFO - chatbot_logger - Score: 423.580322265625 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-07 15:18:02,167 - INFO - chatbot_logger - Score: 428.8573913574219 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-07 15:18:02,168 - INFO - chatbot_logger - Score: 437.79425048828125 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-07 15:18:02,168 - INFO - chatbot_logger - Score: 439.1398620605469 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-07 15:18:05,129 - INFO - chatbot_logger - After reranking:
+2026-04-07 15:18:05,130 - INFO - chatbot_logger - Rerank Score: 2.6790518760681152 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-07 15:18:05,131 - INFO - chatbot_logger - Rerank Score: 2.118401050567627 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-07 15:18:05,132 - INFO - chatbot_logger - Rerank Score: 0.522074818611145 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-07 15:18:05,133 - INFO - chatbot_logger - Rerank Score: 0.3266810178756714 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-07 15:18:05,133 - INFO - chatbot_logger - Rerank Score: -0.9026445746421814 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-07 15:18:05,134 - INFO - chatbot_logger - Confidence Check → Best: 2.6790518760681152 | Second: 2.118401050567627 | Gap: 0.5606508255004883
+2026-04-07 15:18:08,018 - INFO - chatbot_logger - Agent: None
+Query: shift B and Shift C timings?
+Response: According to the context provided:
+
+Shift B: Afternoon Shift (Ranges between 2 PM to 12 AM)
+Shift C: Night Shift (Ranges between 10 PM – 8 AM)
+Context: RAG
+

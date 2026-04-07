@@ -1,0 +1,456 @@
+2026-03-30 12:11:23,879 - INFO - 📂 Fetching list of documents from Chroma DB...
+2026-03-30 12:11:24,050 - INFO - ✅ Found 3 documents in DB.
+2026-03-30 12:23:00,659 - INFO - Agent: None
+Query: What is leave policy?
+Response: I don't have enough information in the knowledge base to answer this.
+Context: NO_CONTEXT
+
+2026-03-30 12:23:18,789 - INFO - Agent: None
+Query: What is ML leave policy?
+Response: I don't have enough information in the knowledge base to answer this.
+Context: NO_CONTEXT
+
+2026-03-30 12:24:29,011 - INFO - Agent: None
+Query: how many CL/SL will a permanent employee receive in a year?
+Response: I don't have enough information in the knowledge base to answer this.
+Context: NO_CONTEXT
+
+2026-03-30 12:30:11,517 - INFO - Agent: None
+Query: how many CL/SL will a permanent employee receive in a year?
+Response: A permanent employee will receive 12 CL/SL at the beginning of the year according to the context provided.
+Context: RAG
+
+2026-03-30 13:11:11,237 - INFO - Agent: None
+Query: how many CL/SL will a permanent employee receive in a year?
+Response: Based on the information provided, a permanent employee receives 12 Casual Leaves (CL) / Sick Leaves (SL) in a year. The context states:
+
+"➢ Un-availed casual leave and sick leave balance will automatically lapse at the end of the year and cannot be en -cashed."
+
+"➢ Casual/ Sick Leave can be availed for half day and can also be clubbed with EL's."
+
+So a permanent employee gets 12 CL/SL per year that cannot be carried forward to the next year.
+Context: RAG
+
+2026-03-30 13:12:46,289 - INFO - Agent: None
+Query: how many CL/SL will a permanent employee receive in a year?
+Response: A permanent employee is eligible for 12 Casual Leaves (CL)/Sick Leaves (SL) in a year, as stated in the context: "Un-availed casual leave and sick leave balance will automatically lapse at the end of the year and cannot be en-cashed."
+Context: RAG
+
+2026-03-30 14:15:11,139 - INFO - Agent: None
+Query: how many CL/SL will a permanent employee receive in a year?
+Response: According to the context provided, a permanent employee is eligible for 12 Casual Leaves (CL) and 12 Sick Leaves (SL) in a year.
+Context: RAG
+
+2026-03-30 14:15:27,895 - INFO - Agent: None
+Query: how many CL/SL will a permanent employee receive in a year?
+Response: A permanent employee is eligible for 12 Casual Leaves (CL) and 12 Sick Leaves (SL) in a year according to the given context.
+Context: RAG
+
+2026-03-30 14:16:01,910 - INFO - Agent: None
+Query: how many CL/SL will a permanent employee receive in a year?
+Response: I don't have enough information in the knowledge base to answer this.
+Context: RAG
+
+2026-03-30 14:16:56,883 - INFO - Agent: None
+Query: how many CL/SL will a permanent employee receive in a year?
+Response: I don't have enough information in the knowledge base to answer this.
+Context: RAG
+
+2026-03-30 14:20:00,204 - INFO - Agent: None
+Query: hi
+Response: I don't have enough information in the knowledge base to answer this.
+Context: NO_CONTEXT
+
+2026-03-30 14:21:51,753 - INFO - Agent: None
+Query: hi
+Response: I don't have enough information in the knowledge base to answer this.
+Context: NO_CONTEXT
+
+2026-03-30 14:22:08,316 - INFO - Agent: None
+Query: how many CL/SL will a permanent employee receive in a year?
+Response: According to the context provided, a permanent employee is eligible for 12 Casual Leaves (CL) and 12 Sick Leaves (SL) in a year. The context states: "Casual/ Sick Leave can be availed for half day and can also be clubbed with EL's. Un-availed casual leave and sick leave balance will automatically lapse at the end of the year and cannot be en -cashed."
+Context: RAG
+
+2026-03-30 14:23:50,267 - INFO - Agent: None
+Query: how many CL/SL will a permanent employee receive in a year?
+Response: I don't have enough information in the knowledge base to answer this.
+Context: RAG
+
+2026-03-30 14:24:02,805 - INFO - Agent: None
+Query: how many CL/SL will a permanent employee receive in a year?
+Response: A permanent employee is eligible for 12 Casual Leaves (CL) and 12 Sick Leaves (SL) in a year, according to the context provided:
+
+"➢ Casual/ Sick Leave can be availed for half day and can also be clubbed with EL's. 
+➢ Un-availed casual leave and sick leave balance will automatically lapse at the end of the year and cannot be en -cashed."
+Context: RAG
+
+2026-03-30 14:41:24,104 - INFO - Agent: None
+Query: how many CL/SL will a permanent employee receive in a year?
+Response: A permanent employee is eligible for 12 Casual Leaves (CL) and 12 Sick Leaves (SL) in a year, as stated in the context: "All employees are eligible for 12 EL's in a year , each of these EL's are credited on monthly basis."
+Context: RAG
+
+2026-03-30 14:41:38,165 - INFO - Agent: None
+Query: how many CL/SL will a permanent employee receive in a year?
+Response: I don't have enough information in the knowledge base to answer this.
+Context: RAG
+
+2026-03-30 14:49:29,747 - INFO - Agent: None
+Query: how many CL/SL will a permanent employee receive in a year?
+Response: According to the context provided, a permanent employee is eligible for 12 Casual Leaves (CL) and 12 Sick Leaves (SL) in a year.
+Context: RAG
+
+2026-03-30 14:49:40,420 - INFO - Agent: None
+Query: hi
+Response: Hello!
+Context: RAG
+
+2026-03-30 14:50:13,053 - INFO - Agent: None
+Query: hi
+Response: Hello!
+Context: RAG
+
+2026-03-30 14:50:33,810 - INFO - Agent: None
+Query: what are green house gases
+Response: I don't have enough information in the knowledge base to answer this.
+Context: RAG
+
+2026-03-30 16:09:42,901 - INFO - 📂 Fetching list of documents from Chroma DB...
+2026-03-30 16:09:43,080 - INFO - ✅ Found 3 documents in DB.
+2026-03-30 16:10:13,504 - INFO - 🗑️ Delete request received for: rag_chatbot_flow_architecture.pptx
+2026-03-30 16:10:14,338 - INFO - ✅ Successfully deleted embeddings for rag_chatbot_flow_architecture.pptx
+2026-03-30 16:10:23,365 - INFO - 🗑️ Delete request received for: Webster Online.pptx
+2026-03-30 16:10:23,821 - INFO - ✅ Successfully deleted embeddings for Webster Online.pptx
+2026-03-30 16:10:30,281 - INFO - 🗑️ Delete request received for: Leaves policy V_1.1.pdf
+2026-03-30 16:10:30,816 - INFO - ✅ Successfully deleted embeddings for Leaves policy V_1.1.pdf
+2026-03-30 16:10:43,840 - INFO - 📂 Fetching list of documents from Chroma DB...
+2026-03-30 16:10:43,843 - INFO - ✅ Found 0 documents in DB.
+2026-03-30 16:11:08,587 - INFO - 📂 Fetching list of documents from Chroma DB...
+2026-03-30 16:11:08,590 - INFO - ✅ Found 0 documents in DB.
+2026-03-30 16:18:34,629 - INFO - Agent: None
+Query: how many CL/SL will a permanent employee receive in a year?
+Response: According to the context provided, a permanent employee is eligible for 12 Casual Leaves (CL) and 12 Sick Leaves (SL) in a year.
+Context: RAG
+
+2026-03-30 16:18:42,933 - INFO - Agent: None
+Query: how many CL/SL will a permanent employee receive in a year?
+Response: According to the context provided, a permanent employee is eligible for 12 Casual Leaves (CL) and 12 Sick Leaves (SL) in a year.
+Context: RAG
+
+2026-03-30 16:23:09,713 - INFO - Agent: None
+Query: how many CL/SL will a permanent employee receive in a year?
+Response: According to the context provided, a permanent employee is eligible for 12 Casual Leaves (CL) and 12 Sick Leaves (SL) in a year.
+Context: RAG
+
+2026-03-30 16:25:58,266 - INFO - Agent: None
+Query: how many CL/SL will a permanent employee receive in a year?
+Response: According to the context provided, a permanent employee is eligible for 12 Casual Leaves (CL) and 12 Sick Leaves (SL) in a year.
+Context: RAG
+
+2026-03-30 16:33:54,518 - INFO - Agent: None
+Query: how many CL/SL will a permanent employee receive in a year?
+Response: According to the context provided, a permanent employee is eligible for 12 Casual Leaves (CL) and 12 Sick Leaves (SL) in a year.
+Context: RAG
+
+2026-03-30 16:52:50,256 - INFO - Agent: None
+Query: how many CL/SL will a permanent employee receive in a year?
+Response: According to the context provided, a permanent employee is eligible for 12 Casual Leaves (CL) and 12 Sick Leaves (SL) in a year.
+Context: RAG
+
+2026-03-30 20:46:22,616 - INFO - Agent: None
+Query: how many CL/SL will a permanent employee receive in a year?
+Response: According to the context provided, a permanent employee is eligible for 12 Casual Leaves (CL) and 12 Sick Leaves (SL) in a year.
+Context: RAG
+
+2026-03-30 22:12:45,244 - INFO - Agent: None
+Query: will casual leaves carry forward to next year?
+Response: According to the context provided, "Un-availed casual leave and sick leave balance will automatically lapse at the end of the year and cannot be en-cashed." This indicates that casual leaves do not carry forward to the next year.
+Context: RAG
+
+2026-03-30 22:13:17,487 - INFO - Agent: None
+Query: ow many total leaves does employee eligible of?
+Response: According to the context provided, a permanent employee is eligible for the following leaves in a calendar year:
+
+- 12 Casual Leaves (CL) / Sick Leaves (SL)
+- 12 Earned Leaves (EL) credited monthly
+
+Additionally, the context mentions other types of leaves like Maternity Leave, Paternity Leave, etc. but does not explicitly state the total number of leaves an employee is eligible for.
+Context: RAG
+
+2026-03-30 22:13:30,427 - INFO - 📂 Fetching list of documents from Chroma DB...
+2026-03-30 22:13:30,436 - INFO - ✅ Found 3 documents in DB.
+2026-03-30 22:13:33,227 - INFO - 📂 Fetching list of documents from Chroma DB...
+2026-03-30 22:13:33,231 - INFO - ✅ Found 3 documents in DB.
+2026-03-30 22:14:02,747 - INFO - Agent: None
+Query: how many hrs does it take to run regresasion
+Response: I don't have enough information in the knowledge base to answer this.
+Context: RAG
+
+2026-03-30 22:14:18,326 - INFO - 📂 Fetching list of documents from Chroma DB...
+2026-03-30 22:14:18,329 - INFO - ✅ Found 3 documents in DB.
+2026-03-30 22:14:18,637 - INFO - 📂 Fetching list of documents from Chroma DB...
+2026-03-30 22:14:18,638 - INFO - ✅ Found 3 documents in DB.
+2026-03-30 22:14:44,220 - INFO - Agent: None
+Query: how many hrs does it take to run regression in dcc?
+Response: I don't have enough information in the knowledge base to answer how many hours it takes to run regression in DCC.
+Context: RAG
+
+2026-03-30 22:22:47,975 - INFO - Agent: None
+Query: how many CL/SL will a permanent employee receive in a year?
+Response: According to the context provided, a permanent employee is eligible for 12 Casual Leaves (CL) and 12 Sick Leaves (SL) in a year.
+Context: RAG
+
+2026-03-30 22:24:58,610 - INFO - Agent: None
+Query: how many CL/SL will a permanent employee receive in a year?
+Response: According to the context provided, a permanent employee is eligible for 12 Casual Leaves (CL) and 12 Sick Leaves (SL) in a year.
+Context: RAG
+
+2026-03-30 22:25:00,265 - INFO - Agent: None
+Query: can employees carry forward CL/SL?
+Response: No, an employee cannot carry forward his/her unused CL/SL to the next year. Any unused CL/SL balance will lapse at the end of the year.
+Context: RAG
+
+2026-03-30 22:25:01,790 - INFO - Agent: None
+Query: how many earned leaves can be accumulated?
+Response: An employee can accumulate up to 30 Earned Leaves.
+Context: RAG
+
+2026-03-30 22:26:09,549 - INFO - Agent: None
+Query: how many CL/SL will a permanent employee receive in a year?
+Response: According to the context provided, a permanent employee is eligible for 12 Casual Leaves (CL) and 12 Sick Leaves (SL) in a year.
+Context: RAG
+
+2026-03-30 22:26:11,430 - INFO - Agent: None
+Query: can employees carry forward CL/SL?
+Response: No, an employee cannot carry forward his/her unused CL/SL to the next year. Any unused CL/SL balance will lapse at the end of the year.
+Context: RAG
+
+2026-03-30 22:26:13,072 - INFO - Agent: None
+Query: how many earned leaves can be accumulated?
+Response: An employee can accumulate up to 30 Earned Leaves.
+Context: RAG
+
+2026-03-30 22:30:21,553 - INFO - Agent: None
+Query: how many CL/SL will a permanent employee receive in a year?
+Response: Error generating response from model.
+Context: RAG
+
+2026-03-30 22:30:22,339 - INFO - Agent: None
+Query: can employees carry forward CL/SL?
+Response: Error generating response from model.
+Context: RAG
+
+2026-03-30 22:30:23,108 - INFO - Agent: None
+Query: how many earned leaves can be accumulated?
+Response: Error generating response from model.
+Context: RAG
+
+2026-03-30 22:32:38,283 - INFO - Agent: None
+Query: how many CL/SL will a permanent employee receive in a year?
+Response: Error generating response from model.
+Context: RAG
+
+2026-03-30 22:32:39,223 - INFO - Agent: None
+Query: can employees carry forward CL/SL?
+Response: Error generating response from model.
+Context: RAG
+
+2026-03-30 22:32:40,124 - INFO - Agent: None
+Query: how many earned leaves can be accumulated?
+Response: Error generating response from model.
+Context: RAG
+
+2026-03-30 22:35:41,913 - INFO - Agent: None
+Query: how many CL/SL will a permanent employee receive in a year?
+Response: Error generating response from model.
+Context: RAG
+
+2026-03-30 22:35:42,726 - INFO - Agent: None
+Query: can employees carry forward CL/SL?
+Response: Error generating response from model.
+Context: RAG
+
+2026-03-30 22:35:43,649 - INFO - Agent: None
+Query: how many earned leaves can be accumulated?
+Response: Error generating response from model.
+Context: RAG
+
+2026-03-30 22:38:14,588 - INFO - Agent: None
+Query: how many CL/SL will a permanent employee receive in a year?
+Response: I don't have enough information in the knowledge base to answer this.
+Context: RAG
+
+2026-03-30 22:38:15,864 - INFO - Agent: None
+Query: can employees carry forward CL/SL?
+Response: No, an employee cannot carry forward his/her unused CL/ SL to the next year. Any unused CL/SL balance will lapse at the end of the year.
+Context: RAG
+
+2026-03-30 22:38:17,042 - INFO - Agent: None
+Query: how many earned leaves can be accumulated?
+Response: According to the context, an employee can accumulate up to 30 Earned Leaves.
+Context: RAG
+
+2026-03-30 22:56:12,361 - INFO - Agent: None
+Query: how many CL/SL will a permanent employee receive in a year?
+Response: I don't have enough information in the knowledge base to answer this.
+Context: RAG
+
+2026-03-30 22:56:13,503 - INFO - Agent: None
+Query: can employees carry forward CL/SL?
+Response: No, an employee cannot carry forward his/her unused CL/ SL to the next year. Any unused CL/SL balance will lapse at the end of the year.
+Context: RAG
+
+2026-03-30 22:56:14,608 - INFO - Agent: None
+Query: how many earned leaves can be accumulated?
+Response: According to the context, an employee can accumulate up to 30 Earned Leaves.
+Context: RAG
+
+2026-03-30 22:58:23,561 - INFO - Agent: None
+Query: how many CL/SL will a permanent employee receive in a year?
+Response: Error generating response from model.
+Context: RAG
+
+2026-03-30 22:58:24,346 - INFO - Agent: None
+Query: can employees carry forward CL/SL?
+Response: Error generating response from model.
+Context: RAG
+
+2026-03-30 22:58:25,143 - INFO - Agent: None
+Query: how many earned leaves can be accumulated?
+Response: Error generating response from model.
+Context: RAG
+
+2026-03-30 23:03:35,711 - INFO - Agent: None
+Query: how many CL/SL will a permanent employee receive in a year?
+Response: Error generating response from model.
+Context: RAG
+
+2026-03-30 23:03:36,477 - INFO - Agent: None
+Query: can employees carry forward CL/SL?
+Response: Error generating response from model.
+Context: RAG
+
+2026-03-30 23:03:37,235 - INFO - Agent: None
+Query: how many earned leaves can be accumulated?
+Response: Error generating response from model.
+Context: RAG
+
+2026-03-30 23:05:34,116 - INFO - Agent: None
+Query: how many CL/SL will a permanent employee receive in a year?
+Response: Error generating response from model.
+Context: RAG
+
+2026-03-30 23:05:35,031 - INFO - Agent: None
+Query: can employees carry forward CL/SL?
+Response: Error generating response from model.
+Context: RAG
+
+2026-03-30 23:05:35,842 - INFO - Agent: None
+Query: how many earned leaves can be accumulated?
+Response: Error generating response from model.
+Context: RAG
+
+2026-03-30 23:09:21,774 - INFO - Agent: None
+Query: how many CL/SL will a permanent employee receive in a year?
+Response: Error generating response from model.
+Context: RAG
+
+2026-03-30 23:09:22,587 - INFO - Agent: None
+Query: can employees carry forward CL/SL?
+Response: Error generating response from model.
+Context: RAG
+
+2026-03-30 23:09:23,403 - INFO - Agent: None
+Query: how many earned leaves can be accumulated?
+Response: Error generating response from model.
+Context: RAG
+
+2026-03-30 23:12:36,525 - INFO - Agent: None
+Query: how many CL/SL will a permanent employee receive in a year?
+Response: Error generating response from model.
+Context: RAG
+
+2026-03-30 23:12:37,262 - INFO - Agent: None
+Query: can employees carry forward CL/SL?
+Response: Error generating response from model.
+Context: RAG
+
+2026-03-30 23:12:37,989 - INFO - Agent: None
+Query: how many earned leaves can be accumulated?
+Response: Error generating response from model.
+Context: RAG
+
+2026-03-30 23:15:51,062 - INFO - Agent: None
+Query: how many CL/SL will a permanent employee receive in a year?
+Response: Error generating response from model.
+Context: RAG
+
+2026-03-30 23:15:51,878 - INFO - Agent: None
+Query: can employees carry forward CL/SL?
+Response: Error generating response from model.
+Context: RAG
+
+2026-03-30 23:15:52,684 - INFO - Agent: None
+Query: how many earned leaves can be accumulated?
+Response: Error generating response from model.
+Context: RAG
+
+2026-03-30 23:31:04,137 - INFO - Agent: None
+Query: how many CL/SL will a permanent employee receive in a year?
+Response: Error generating response from model.
+Context: RAG
+
+2026-03-30 23:31:04,577 - INFO - Agent: None
+Query: can employees carry forward CL/SL?
+Response: Error generating response from model.
+Context: RAG
+
+2026-03-30 23:31:05,024 - INFO - Agent: None
+Query: how many earned leaves can be accumulated?
+Response: Error generating response from model.
+Context: RAG
+
+2026-03-30 23:40:58,030 - INFO - Agent: None
+Query: how many CL/SL will a permanent employee receive in a year?
+Response: I don't have enough information in the knowledge base to answer this.
+Context: RAG
+
+2026-03-30 23:40:59,333 - INFO - Agent: None
+Query: can employees carry forward CL/SL?
+Response: No, an employee cannot carry forward his/her unused CL/ SL to the next year. Any unused CL/SL balance will lapse at the end of the year.
+Context: RAG
+
+2026-03-30 23:41:00,790 - INFO - Agent: None
+Query: how many earned leaves can be accumulated?
+Response: According to the context, an employee can accumulate up to 30 Earned Leaves.
+Context: RAG
+
+2026-03-30 23:50:01,782 - INFO - Agent: None
+Query: how many CL/SL will a permanent employee receive in a year?
+Response: Error generating response from model.
+Context: RAG
+
+2026-03-30 23:50:02,188 - INFO - Agent: None
+Query: can employees carry forward CL/SL?
+Response: Error generating response from model.
+Context: RAG
+
+2026-03-30 23:50:02,650 - INFO - Agent: None
+Query: how many earned leaves can be accumulated?
+Response: Error generating response from model.
+Context: RAG
+
+2026-03-30 23:53:04,450 - INFO - Agent: None
+Query: how many CL/SL will a permanent employee receive in a year?
+Response: Error generating response from model.
+Context: RAG
+
+2026-03-30 23:53:04,836 - INFO - Agent: None
+Query: can employees carry forward CL/SL?
+Response: Error generating response from model.
+Context: RAG
+
+2026-03-30 23:53:05,249 - INFO - Agent: None
+Query: how many earned leaves can be accumulated?
+Response: Error generating response from model.
+Context: RAG
+

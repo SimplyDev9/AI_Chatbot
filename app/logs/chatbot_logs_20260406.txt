@@ -1,0 +1,469 @@
+2026-04-06 11:17:36,050 - INFO - chatbot_logger - LLM initialized successfully
+2026-04-06 11:18:02,317 - INFO - chatbot_logger - BM25 index built successfully with 43 docs
+2026-04-06 11:18:02,318 - INFO - chatbot_logger - KnowledgeBase initialized
+2026-04-06 11:18:02,320 - INFO - chatbot_logger - main.py loaded successfully
+2026-04-06 11:18:02,554 - INFO - chatbot_logger - main.py loaded successfully
+2026-04-06 11:18:53,501 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:19:49,468 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:20:23,951 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:20:23,955 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:20:49,472 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:20:53,646 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:22:01,703 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:22:03,595 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:22:04,339 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:22:25,322 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:22:50,094 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:22:54,586 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:23:08,789 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:23:18,589 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:23:55,497 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:24:43,999 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:24:50,747 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:26:50,525 - INFO - chatbot_logger - BM25 index built successfully with 43 docs
+2026-04-06 11:26:50,527 - INFO - chatbot_logger - KnowledgeBase initialized
+2026-04-06 11:26:50,837 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:26:50,848 - INFO - chatbot_logger - BM25 index built successfully with 43 docs
+2026-04-06 11:26:50,849 - INFO - chatbot_logger - KnowledgeBase initialized
+2026-04-06 11:26:50,857 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:26:50,858 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:26:50,880 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:26:50,880 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:26:50,902 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:26:50,916 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:26:52,843 - INFO - chatbot_logger - Score: 297.60858154296875 | File: Team Size.txt
+2026-04-06 11:26:52,844 - INFO - chatbot_logger - Score: 285.52435302734375 | File: Team Size.txt
+2026-04-06 11:26:52,845 - INFO - chatbot_logger - Score: 401.33013916015625 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:26:52,845 - INFO - chatbot_logger - Score: 398.5648498535156 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:26:52,845 - INFO - chatbot_logger - Score: 415.80316162109375 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:26:52,845 - INFO - chatbot_logger - Score: 412.33544921875 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:26:52,845 - INFO - chatbot_logger - Score: 431.605224609375 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:26:52,846 - INFO - chatbot_logger - Score: 425.473388671875 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:26:52,846 - INFO - chatbot_logger - Score: 432.31158447265625 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:26:52,846 - INFO - chatbot_logger - Score: 426.4267883300781 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:26:52,846 - INFO - chatbot_logger - Score: 432.5660400390625 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:26:52,848 - INFO - chatbot_logger - Score: 430.48590087890625 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:26:52,848 - INFO - chatbot_logger - Score: 434.1179504394531 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:26:52,848 - INFO - chatbot_logger - Score: 430.92706298828125 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:26:52,848 - INFO - chatbot_logger - Score: 435.5328369140625 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:26:52,849 - INFO - chatbot_logger - Score: 431.054443359375 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:26:52,849 - INFO - chatbot_logger - Score: 442.393310546875 | File: Leaves policy V_1.1.pdf
+2026-04-06 11:26:52,849 - INFO - chatbot_logger - Score: 441.663330078125 | File: Leaves policy V_1.1.pdf
+2026-04-06 11:26:52,850 - INFO - chatbot_logger - Score: 443.8359680175781 | File: Leaves policy V_1.1.pdf
+2026-04-06 11:26:52,850 - INFO - chatbot_logger - Score: 442.6289978027344 | File: Leaves policy V_1.1.pdf
+2026-04-06 11:26:55,857 - INFO - chatbot_logger - After reranking:
+2026-04-06 11:26:55,859 - INFO - chatbot_logger - After reranking:
+2026-04-06 11:26:55,859 - INFO - chatbot_logger - Rerank Score: -7.129547119140625 | File: Team Size.txt
+2026-04-06 11:26:55,860 - INFO - chatbot_logger - Rerank Score: -7.129547119140625 | File: Team Size.txt
+2026-04-06 11:26:55,860 - INFO - chatbot_logger - Rerank Score: -9.791284561157227 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:26:55,860 - INFO - chatbot_logger - Rerank Score: -9.791284561157227 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:26:55,861 - INFO - chatbot_logger - Rerank Score: -11.176791191101074 | File: Leaves policy V_1.1.pdf
+2026-04-06 11:26:55,861 - INFO - chatbot_logger - Rerank Score: -11.176791191101074 | File: Leaves policy V_1.1.pdf
+2026-04-06 11:26:55,861 - INFO - chatbot_logger - Rerank Score: -11.195167541503906 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:26:55,861 - INFO - chatbot_logger - Rerank Score: -11.195167541503906 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:26:55,862 - INFO - chatbot_logger - Rerank Score: -11.21915054321289 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:26:55,862 - INFO - chatbot_logger - Rerank Score: -11.21915054321289 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:26:55,862 - INFO - chatbot_logger - Confidence Check → Best: -7.129547119140625 | Second: -9.791284561157227 | Gap: 2.6617374420166016
+2026-04-06 11:26:55,863 - INFO - chatbot_logger - Confidence Check → Best: -7.129547119140625 | Second: -9.791284561157227 | Gap: 2.6617374420166016
+2026-04-06 11:26:58,207 - INFO - chatbot_logger - Agent: None
+Query: what is Team A size?
+Response: Team A has 20 resources, with 13 in dev and 7 in QA.
+Context: RAG
+
+2026-04-06 11:26:58,293 - INFO - chatbot_logger - Agent: None
+Query: what is team A size?
+Response: According to the context provided, team A has 20 resources, with 13 in dev and 7 in QA.
+Context: RAG
+
+2026-04-06 11:31:40,201 - INFO - chatbot_logger - LLM initialized successfully
+2026-04-06 11:32:01,273 - INFO - chatbot_logger - BM25 index built successfully with 43 docs
+2026-04-06 11:32:01,275 - INFO - chatbot_logger - KnowledgeBase initialized
+2026-04-06 11:32:01,277 - INFO - chatbot_logger - main.py loaded successfully
+2026-04-06 11:32:01,464 - INFO - chatbot_logger - main.py loaded successfully
+2026-04-06 11:32:36,149 - INFO - chatbot_logger - BM25 index built successfully with 43 docs
+2026-04-06 11:32:36,150 - INFO - chatbot_logger - KnowledgeBase initialized
+2026-04-06 11:32:38,014 - INFO - chatbot_logger - Score: 144.37806701660156 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:32:38,014 - INFO - chatbot_logger - Score: 164.79351806640625 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:32:38,015 - INFO - chatbot_logger - Score: 172.34298706054688 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:32:38,015 - INFO - chatbot_logger - Score: 178.31126403808594 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:32:38,015 - INFO - chatbot_logger - Score: 184.29368591308594 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:32:38,016 - INFO - chatbot_logger - Score: 189.42630004882812 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:32:38,016 - INFO - chatbot_logger - Score: 191.23580932617188 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:32:38,016 - INFO - chatbot_logger - Score: 194.97181701660156 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:32:38,017 - INFO - chatbot_logger - Score: 195.88955688476562 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:32:38,017 - INFO - chatbot_logger - Score: 196.14134216308594 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:32:40,685 - INFO - chatbot_logger - After reranking:
+2026-04-06 11:32:40,685 - INFO - chatbot_logger - Rerank Score: 2.248075008392334 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:32:40,686 - INFO - chatbot_logger - Rerank Score: -0.645169734954834 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:32:40,686 - INFO - chatbot_logger - Rerank Score: -0.8416190147399902 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:32:40,688 - INFO - chatbot_logger - Rerank Score: -4.189082145690918 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:32:40,688 - INFO - chatbot_logger - Rerank Score: -4.295703887939453 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:32:40,689 - INFO - chatbot_logger - Confidence Check → Best: 2.248075008392334 | Second: -0.645169734954834 | Gap: 2.893244743347168
+2026-04-06 11:32:43,140 - INFO - chatbot_logger - Agent: None
+Query: What are the normal working hours mentioned in the policy?
+Response: The normal working hours mentioned in the policy are from 10:00 AM to 7:30 PM, with the work week extended from Monday to Friday.
+Context: RAG
+
+2026-04-06 11:32:43,422 - INFO - chatbot_logger - BM25 index built successfully with 43 docs
+2026-04-06 11:32:43,422 - INFO - chatbot_logger - KnowledgeBase initialized
+2026-04-06 11:32:45,257 - INFO - chatbot_logger - Score: 186.668212890625 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:32:45,258 - INFO - chatbot_logger - Score: 206.97850036621094 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:32:45,260 - INFO - chatbot_logger - Score: 221.3409881591797 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:32:45,260 - INFO - chatbot_logger - Score: 222.6083221435547 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:32:45,260 - INFO - chatbot_logger - Score: 235.53268432617188 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:32:45,261 - INFO - chatbot_logger - Score: 238.65240478515625 | File: Leaves policy V_1.1.pdf
+2026-04-06 11:32:45,261 - INFO - chatbot_logger - Score: 239.3573455810547 | File: Leaves policy V_1.1.pdf
+2026-04-06 11:32:45,262 - INFO - chatbot_logger - Score: 251.6191864013672 | File: Leaves policy V_1.1.pdf
+2026-04-06 11:32:45,262 - INFO - chatbot_logger - Score: 260.3038024902344 | File: Leaves policy V_1.1.pdf
+2026-04-06 11:32:45,263 - INFO - chatbot_logger - Score: 265.4615478515625 | File: Leaves policy V_1.1.pdf
+2026-04-06 11:32:46,159 - INFO - chatbot_logger - After reranking:
+2026-04-06 11:32:46,159 - INFO - chatbot_logger - Rerank Score: -1.0620379447937012 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:32:46,160 - INFO - chatbot_logger - Rerank Score: -2.3206913471221924 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:32:46,161 - INFO - chatbot_logger - Rerank Score: -3.808197498321533 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:32:46,161 - INFO - chatbot_logger - Rerank Score: -4.164084434509277 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:32:46,162 - INFO - chatbot_logger - Rerank Score: -5.3785014152526855 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:32:46,162 - INFO - chatbot_logger - Confidence Check → Best: -1.0620379447937012 | Second: -2.3206913471221924 | Gap: 1.2586534023284912
+2026-04-06 11:32:47,940 - INFO - chatbot_logger - Agent: None
+Query: What benefits does holiday working provide for billable vs non-billable work?
+Response: For billable work on holidays, employees are eligible for a weekend allowance of Rs. 1500/- and a food reimbursement of Rs. 250/-. For non-billable work on holidays, employees are eligible for a compensatory off and a food reimbursement of Rs. 250/-.
+Context: RAG
+
+2026-04-06 11:33:14,094 - INFO - chatbot_logger - --- DeepEval RAG Evaluation ---
+2026-04-06 11:33:14,095 - INFO - chatbot_logger - Test Case 1 | Query: What are the normal working hours mentioned in the policy?
+2026-04-06 11:33:14,096 - INFO - chatbot_logger - Contextual Precision : 1.0 : PASS : The score is 1.00 because the first node in the retrieval contexts directly quotes the relevant information about the normal working hours mentioned in the policy: 'The daily Normal Working Hours are from 10:00 AM to 7:30 PM, with the work week extended from Monday to Friday'. The other nodes are correctly ranked lower as they do not contain this key information. Well done!
+2026-04-06 11:33:14,096 - INFO - chatbot_logger - Faithfulness : 1.0 : PASS : The score is 1.00 because there are no contradictions listed, indicating that the actual output is completely faithful and aligned with the retrieval context. Well done! Keep up the great work.
+2026-04-06 11:33:14,097 - INFO - chatbot_logger - Contextual Relevancy : 0.23076923076923078 : FAIL : The score is 0.23 because while the retrieval context mentions 'normal working hours' a few times, it does not directly state what the normal working hours are according to the reasons for irrelevancy: 'The statement 'The purpose of the policy is to provide employees with basic facilities and hardship allowance for the varying shifts working other than "Normal working Hours"' does not directly state the normal working hours mentioned in the policy.'
+2026-04-06 11:33:14,099 - INFO - chatbot_logger - Answer Relevancy : 1.0 : PASS : The score is 1.00 because there are no irrelevant statements in the output. The response directly addresses the question about normal working hours mentioned in the policy, which is great!
+2026-04-06 11:33:14,099 - INFO - chatbot_logger - Hallucination : 0.0 : PASS : The score is 0.00 because the actual output aligns with all the provided factual contexts and does not contradict any of them. There are no contradictions listed, indicating that the output is fully grounded in the given information without any hallucinated or unsupported details.
+2026-04-06 11:33:14,100 - INFO - chatbot_logger - Test Case 2 | Query: What benefits does holiday working provide for billable vs non-billable work?
+2026-04-06 11:33:14,100 - INFO - chatbot_logger - Contextual Precision : 0.5 : PASS : The score is 0.50 because the first node in the retrieval contexts is irrelevant, providing details on 'food reimbursement and cab allowances for normal working hours beyond 11 PM' which does not address holiday working or billable vs non-billable work. The second node is highly relevant, directly answering the question by stating 'For the customer billed effort in the project, instead of compensatory off employees will be eligible for weekend allowance of Rs. 1500/- and a food reimbursement of Rs. 250/-.' However, the third node in the retrieval contexts is again irrelevant, only providing 'additional details on the process of availing compensatory offs for holiday working' without adding new information on benefits for billable vs non-billable work.
+2026-04-06 11:33:14,101 - INFO - chatbot_logger - Faithfulness : 1.0 : PASS : The score is 1.00 because there are no contradictions listed, indicating that the actual output is completely faithful and aligned with the retrieval context. Well done! Keep up the great work.
+2026-04-06 11:33:14,101 - INFO - chatbot_logger - Contextual Relevancy : 0.3076923076923077 : FAIL : The score is 0.31 because while the relevant statements mention some benefits of holiday working like compensatory offs, food reimbursements, and weekend allowances, they do not clearly differentiate the benefits for billable vs non-billable work as asked in the question. The reasons for irrelevancy highlight that 'This statement is about normal working hours and compensation, which is not relevant to the question "What benefits does holiday working provide for billable vs non-billable work?"' and other statements are not directly relevant to the specific question asked.
+2026-04-06 11:33:14,102 - INFO - chatbot_logger - Answer Relevancy : 1.0 : PASS : The score is 1.00 because there are no irrelevant statements in the output. Great job providing a clear and focused response!
+2026-04-06 11:33:14,102 - INFO - chatbot_logger - Hallucination : 0.0 : PASS : The score is 0.00 because the actual output is fully aligned with the provided context, which mentions the details about holiday working and the associated allowances and reimbursements, without any contradictions.
+2026-04-06 11:33:14,103 - ERROR - chatbot_logger - ===== RAG EVALUATION FAILURES =====
+2026-04-06 11:33:14,103 - ERROR - chatbot_logger - TestCase 1 | Contextual Relevancy FAILED | Score=0.23076923076923078 | Reason=The score is 0.23 because while the retrieval context mentions 'normal working hours' a few times, it does not directly state what the normal working hours are according to the reasons for irrelevancy: 'The statement 'The purpose of the policy is to provide employees with basic facilities and hardship allowance for the varying shifts working other than "Normal working Hours"' does not directly state the normal working hours mentioned in the policy.'
+2026-04-06 11:33:14,104 - ERROR - chatbot_logger - TestCase 2 | Contextual Relevancy FAILED | Score=0.3076923076923077 | Reason=The score is 0.31 because while the relevant statements mention some benefits of holiday working like compensatory offs, food reimbursements, and weekend allowances, they do not clearly differentiate the benefits for billable vs non-billable work as asked in the question. The reasons for irrelevancy highlight that 'This statement is about normal working hours and compensation, which is not relevant to the question "What benefits does holiday working provide for billable vs non-billable work?"' and other statements are not directly relevant to the specific question asked.
+2026-04-06 11:34:52,405 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:34:52,426 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:34:52,432 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:34:52,435 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:35:16,896 - INFO - chatbot_logger - BM25 index built successfully with 43 docs
+2026-04-06 11:35:16,897 - INFO - chatbot_logger - KnowledgeBase initialized
+2026-04-06 11:35:27,688 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:35:28,741 - INFO - chatbot_logger - Score: 291.2555236816406 | File: Team Size.txt
+2026-04-06 11:35:28,746 - INFO - chatbot_logger - Score: 439.18585205078125 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:35:28,746 - INFO - chatbot_logger - Score: 450.5650939941406 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:35:28,748 - INFO - chatbot_logger - Score: 453.170654296875 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:35:28,748 - INFO - chatbot_logger - Score: 457.9419250488281 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:35:28,748 - INFO - chatbot_logger - Score: 462.4267272949219 | File: Leaves policy V_1.1.pdf
+2026-04-06 11:35:28,749 - INFO - chatbot_logger - Score: 463.5843811035156 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:35:28,749 - INFO - chatbot_logger - Score: 471.5892333984375 | File: Leaves policy V_1.1.pdf
+2026-04-06 11:35:28,749 - INFO - chatbot_logger - Score: 471.91217041015625 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:35:28,750 - INFO - chatbot_logger - Score: 473.90093994140625 | File: Leaves policy V_1.1.pdf
+2026-04-06 11:35:34,974 - INFO - chatbot_logger - After reranking:
+2026-04-06 11:35:34,975 - INFO - chatbot_logger - Rerank Score: -4.417634010314941 | File: Team Size.txt
+2026-04-06 11:35:34,976 - INFO - chatbot_logger - Rerank Score: -8.581134796142578 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:35:34,977 - INFO - chatbot_logger - Rerank Score: -11.006471633911133 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:35:34,978 - INFO - chatbot_logger - Rerank Score: -11.104724884033203 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:35:34,978 - INFO - chatbot_logger - Rerank Score: -11.111715316772461 | File: Leaves policy V_1.1.pdf
+2026-04-06 11:35:34,980 - INFO - chatbot_logger - Confidence Check → Best: -4.417634010314941 | Second: -8.581134796142578 | Gap: 4.163500785827637
+2026-04-06 11:35:36,314 - INFO - chatbot_logger - Agent: None
+Query: team A size?
+Response: The context states that team A has 20 resources, with 13 in dev and 7 in QA.
+Context: RAG
+
+2026-04-06 11:35:57,590 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:36:22,394 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:36:27,592 - INFO - chatbot_logger - BM25 index built successfully with 43 docs
+2026-04-06 11:36:27,592 - INFO - chatbot_logger - KnowledgeBase initialized
+2026-04-06 11:36:31,039 - INFO - chatbot_logger - Score: 321.19305419921875 | File: Team Size.txt
+2026-04-06 11:36:31,042 - INFO - chatbot_logger - Score: 339.88433837890625 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:36:31,042 - INFO - chatbot_logger - Score: 341.17608642578125 | File: Leaves policy V_1.1.pdf
+2026-04-06 11:36:31,044 - INFO - chatbot_logger - Score: 344.8497314453125 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:36:31,044 - INFO - chatbot_logger - Score: 345.36895751953125 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:36:31,044 - INFO - chatbot_logger - Score: 351.10504150390625 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:36:31,044 - INFO - chatbot_logger - Score: 353.22235107421875 | File: Leaves policy V_1.1.pdf
+2026-04-06 11:36:31,044 - INFO - chatbot_logger - Score: 354.0313720703125 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:36:31,044 - INFO - chatbot_logger - Score: 358.6968688964844 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:36:31,044 - INFO - chatbot_logger - Score: 359.33740234375 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:36:37,149 - INFO - chatbot_logger - After reranking:
+2026-04-06 11:36:37,150 - INFO - chatbot_logger - Rerank Score: -6.374931335449219 | File: Team Size.txt
+2026-04-06 11:36:37,150 - INFO - chatbot_logger - Rerank Score: -9.855361938476562 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:36:37,151 - INFO - chatbot_logger - Rerank Score: -10.4017333984375 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:36:37,151 - INFO - chatbot_logger - Rerank Score: -10.95970344543457 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:36:37,151 - INFO - chatbot_logger - Rerank Score: -11.23789119720459 | File: Leaves policy V_1.1.pdf
+2026-04-06 11:36:37,151 - INFO - chatbot_logger - Confidence Check → Best: -6.374931335449219 | Second: -9.855361938476562 | Gap: 3.4804306030273438
+2026-04-06 11:36:38,132 - INFO - chatbot_logger - Agent: None
+Query: what is the team B Seize?
+Response: I don't have enough information in the knowledge base to answer this.
+Context: NO_CONTEXT
+
+2026-04-06 11:36:56,290 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:36:56,628 - INFO - chatbot_logger - BM25 index built successfully with 43 docs
+2026-04-06 11:36:56,629 - INFO - chatbot_logger - KnowledgeBase initialized
+2026-04-06 11:37:00,848 - INFO - chatbot_logger - Score: 378.5868225097656 | File: Team Size.txt
+2026-04-06 11:37:00,849 - INFO - chatbot_logger - Score: 498.7665100097656 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:37:00,850 - INFO - chatbot_logger - Score: 511.79241943359375 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:37:00,851 - INFO - chatbot_logger - Score: 518.19921875 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:37:00,852 - INFO - chatbot_logger - Score: 521.0418701171875 | File: Leaves policy V_1.1.pdf
+2026-04-06 11:37:00,853 - INFO - chatbot_logger - Score: 524.2890625 | File: Leaves policy V_1.1.pdf
+2026-04-06 11:37:00,854 - INFO - chatbot_logger - Score: 526.5289306640625 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:37:00,856 - INFO - chatbot_logger - Score: 527.8015747070312 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:37:00,857 - INFO - chatbot_logger - Score: 527.8431396484375 | File: Leaves policy V_1.1.pdf
+2026-04-06 11:37:00,858 - INFO - chatbot_logger - Score: 531.7617797851562 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:37:02,133 - INFO - chatbot_logger - After reranking:
+2026-04-06 11:37:02,134 - INFO - chatbot_logger - Rerank Score: -1.5138976573944092 | File: Team Size.txt
+2026-04-06 11:37:02,135 - INFO - chatbot_logger - Rerank Score: -10.343196868896484 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:37:02,136 - INFO - chatbot_logger - Rerank Score: -10.617008209228516 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:37:02,137 - INFO - chatbot_logger - Rerank Score: -10.983796119689941 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:37:02,137 - INFO - chatbot_logger - Rerank Score: -11.251283645629883 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:37:02,138 - INFO - chatbot_logger - Confidence Check → Best: -1.5138976573944092 | Second: -10.343196868896484 | Gap: 8.829299211502075
+2026-04-06 11:37:03,047 - INFO - chatbot_logger - Agent: None
+Query: team b size?
+Response: I don't have enough information in the knowledge base to answer this.
+Context: NO_CONTEXT
+
+2026-04-06 11:37:17,518 - INFO - chatbot_logger - BM25 index built successfully with 43 docs
+2026-04-06 11:37:17,520 - INFO - chatbot_logger - KnowledgeBase initialized
+2026-04-06 11:37:19,581 - INFO - chatbot_logger - Score: 331.360107421875 | File: Team Size.txt
+2026-04-06 11:37:19,581 - INFO - chatbot_logger - Score: 467.400634765625 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:37:19,588 - INFO - chatbot_logger - Score: 483.6102294921875 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:37:19,588 - INFO - chatbot_logger - Score: 488.5299377441406 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:37:19,591 - INFO - chatbot_logger - Score: 492.5540466308594 | File: Leaves policy V_1.1.pdf
+2026-04-06 11:37:19,591 - INFO - chatbot_logger - Score: 493.1399841308594 | File: Leaves policy V_1.1.pdf
+2026-04-06 11:37:19,591 - INFO - chatbot_logger - Score: 496.566162109375 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:37:19,591 - INFO - chatbot_logger - Score: 496.9691467285156 | File: Leaves policy V_1.1.pdf
+2026-04-06 11:37:19,591 - INFO - chatbot_logger - Score: 497.58709716796875 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:37:19,591 - INFO - chatbot_logger - Score: 500.817626953125 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:37:20,678 - INFO - chatbot_logger - After reranking:
+2026-04-06 11:37:20,735 - INFO - chatbot_logger - Rerank Score: -1.5138976573944092 | File: Team Size.txt
+2026-04-06 11:37:20,735 - INFO - chatbot_logger - Rerank Score: -10.343196868896484 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:37:20,735 - INFO - chatbot_logger - Rerank Score: -10.617008209228516 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:37:20,741 - INFO - chatbot_logger - Rerank Score: -10.983796119689941 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:37:20,741 - INFO - chatbot_logger - Rerank Score: -11.251283645629883 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:37:20,741 - INFO - chatbot_logger - Confidence Check → Best: -1.5138976573944092 | Second: -10.343196868896484 | Gap: 8.829299211502075
+2026-04-06 11:37:21,657 - INFO - chatbot_logger - Agent: None
+Query: team B size?
+Response: I don't have enough information in the knowledge base to answer this.
+Context: NO_CONTEXT
+
+2026-04-06 11:37:22,684 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:37:52,380 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:37:54,701 - INFO - chatbot_logger - BM25 index built successfully with 43 docs
+2026-04-06 11:37:54,703 - INFO - chatbot_logger - KnowledgeBase initialized
+2026-04-06 11:37:56,235 - INFO - chatbot_logger - Score: 359.72021484375 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:37:56,235 - INFO - chatbot_logger - Score: 367.0016174316406 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:37:56,236 - INFO - chatbot_logger - Score: 368.08795166015625 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:37:56,236 - INFO - chatbot_logger - Score: 369.9429626464844 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:37:56,236 - INFO - chatbot_logger - Score: 374.7956237792969 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:37:56,237 - INFO - chatbot_logger - Score: 383.6818542480469 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:37:56,237 - INFO - chatbot_logger - Score: 388.46307373046875 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:37:56,237 - INFO - chatbot_logger - Score: 396.52655029296875 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:37:56,237 - INFO - chatbot_logger - Score: 398.4872741699219 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:37:56,238 - INFO - chatbot_logger - Score: 407.0992736816406 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:37:57,723 - INFO - chatbot_logger - After reranking:
+2026-04-06 11:37:57,723 - INFO - chatbot_logger - Rerank Score: 1.4720791578292847 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:37:57,723 - INFO - chatbot_logger - Rerank Score: 0.39282312989234924 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:37:57,724 - INFO - chatbot_logger - Rerank Score: -2.2438058853149414 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:37:57,724 - INFO - chatbot_logger - Rerank Score: -2.6684114933013916 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:37:57,724 - INFO - chatbot_logger - Rerank Score: -3.7501370906829834 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:37:57,724 - INFO - chatbot_logger - Confidence Check → Best: 1.4720791578292847 | Second: 0.39282312989234924 | Gap: 1.0792560279369354
+2026-04-06 11:37:58,883 - INFO - chatbot_logger - Agent: None
+Query: what are the normal working hours?
+Response: The normal working hours are from 10:00 AM to 7:30 PM, with the work week extended from Monday to Friday.
+Context: RAG
+
+2026-04-06 11:38:23,160 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:38:52,068 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:39:01,292 - INFO - chatbot_logger - BM25 index built successfully with 43 docs
+2026-04-06 11:39:01,293 - INFO - chatbot_logger - KnowledgeBase initialized
+2026-04-06 11:39:03,132 - INFO - chatbot_logger - Score: 199.07342529296875 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:39:03,132 - INFO - chatbot_logger - Score: 216.11471557617188 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:39:03,133 - INFO - chatbot_logger - Score: 216.857421875 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:39:03,133 - INFO - chatbot_logger - Score: 219.74288940429688 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:39:03,133 - INFO - chatbot_logger - Score: 220.59881591796875 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:39:03,134 - INFO - chatbot_logger - Score: 225.83628845214844 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:39:03,134 - INFO - chatbot_logger - Score: 227.63661193847656 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:39:03,134 - INFO - chatbot_logger - Score: 228.8641357421875 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:39:03,135 - INFO - chatbot_logger - Score: 229.34268188476562 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:39:03,135 - INFO - chatbot_logger - Score: 231.35348510742188 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:39:05,315 - INFO - chatbot_logger - After reranking:
+2026-04-06 11:39:05,315 - INFO - chatbot_logger - Rerank Score: 3.741563320159912 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:39:05,316 - INFO - chatbot_logger - Rerank Score: 3.5045480728149414 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:39:05,316 - INFO - chatbot_logger - Rerank Score: 3.106597900390625 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:39:05,318 - INFO - chatbot_logger - Rerank Score: 1.5145678520202637 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:39:05,318 - INFO - chatbot_logger - Rerank Score: 1.1248793601989746 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:39:05,319 - INFO - chatbot_logger - Confidence Check → Best: 3.741563320159912 | Second: 3.5045480728149414 | Gap: 0.2370152473449707
+2026-04-06 11:39:05,319 - WARNING - chatbot_logger - Rejected: Low confidence gap
+2026-04-06 11:39:05,323 - INFO - chatbot_logger - Agent: None
+Query: what are the food allowance for working beyond normal working hours?
+Response: I don't have enough information in the knowledge base to answer this.
+Context: NO_CONTEXT
+
+2026-04-06 11:39:22,934 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:39:52,376 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:39:56,495 - INFO - chatbot_logger - BM25 index built successfully with 43 docs
+2026-04-06 11:39:56,495 - INFO - chatbot_logger - KnowledgeBase initialized
+2026-04-06 11:39:58,402 - INFO - chatbot_logger - Score: 256.8402099609375 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:39:58,404 - INFO - chatbot_logger - Score: 326.2774353027344 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:39:58,404 - INFO - chatbot_logger - Score: 328.1414794921875 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:39:58,404 - INFO - chatbot_logger - Score: 338.38446044921875 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:39:58,405 - INFO - chatbot_logger - Score: 340.4342956542969 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:39:58,405 - INFO - chatbot_logger - Score: 343.3531494140625 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:39:58,405 - INFO - chatbot_logger - Score: 343.7637634277344 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:39:58,406 - INFO - chatbot_logger - Score: 347.24114990234375 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:39:58,406 - INFO - chatbot_logger - Score: 352.4416809082031 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:39:58,406 - INFO - chatbot_logger - Score: 356.63055419921875 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:40:00,049 - INFO - chatbot_logger - After reranking:
+2026-04-06 11:40:00,049 - INFO - chatbot_logger - Rerank Score: 7.073611259460449 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:40:00,050 - INFO - chatbot_logger - Rerank Score: 5.266139984130859 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:40:00,051 - INFO - chatbot_logger - Rerank Score: 5.043697357177734 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:40:00,051 - INFO - chatbot_logger - Rerank Score: 4.247309684753418 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:40:00,052 - INFO - chatbot_logger - Rerank Score: 3.2179932594299316 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:40:00,054 - INFO - chatbot_logger - Confidence Check → Best: 7.073611259460449 | Second: 5.266139984130859 | Gap: 1.8074712753295898
+2026-04-06 11:40:01,779 - INFO - chatbot_logger - Agent: None
+Query: production support shift allowance?
+Response: Production Support projects that are operating 24*7 or 24*5 or 16*5 or 16*7 with a roster will be eligible for shift allowance. Below Fixed allowances are applicable for all the production support projects operating in EB US and EB APAC as well as in V8.
+Context: RAG
+
+2026-04-06 11:40:22,842 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:40:53,159 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:41:05,648 - INFO - chatbot_logger - BM25 index built successfully with 43 docs
+2026-04-06 11:41:05,649 - INFO - chatbot_logger - KnowledgeBase initialized
+2026-04-06 11:41:07,699 - INFO - chatbot_logger - Score: 186.66864013671875 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:41:07,699 - INFO - chatbot_logger - Score: 242.94479370117188 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:41:07,700 - INFO - chatbot_logger - Score: 252.6002197265625 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:41:07,700 - INFO - chatbot_logger - Score: 254.9535369873047 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:41:07,700 - INFO - chatbot_logger - Score: 263.6352233886719 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:41:07,701 - INFO - chatbot_logger - Score: 267.4158935546875 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:41:07,701 - INFO - chatbot_logger - Score: 270.6081848144531 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:41:07,701 - INFO - chatbot_logger - Score: 279.7197265625 | File: Leaves policy V_1.1.pdf
+2026-04-06 11:41:07,701 - INFO - chatbot_logger - Score: 284.4839782714844 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:41:07,701 - INFO - chatbot_logger - Score: 286.8055114746094 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:41:08,512 - INFO - chatbot_logger - After reranking:
+2026-04-06 11:41:08,512 - INFO - chatbot_logger - Rerank Score: 5.71539831161499 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:41:08,513 - INFO - chatbot_logger - Rerank Score: 1.0687272548675537 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:41:08,515 - INFO - chatbot_logger - Rerank Score: 0.4960634112358093 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:41:08,516 - INFO - chatbot_logger - Rerank Score: -2.6037988662719727 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:41:08,516 - INFO - chatbot_logger - Rerank Score: -2.682589530944824 | File: VM_Allowance Policy_V 1.5.pdf
+2026-04-06 11:41:08,517 - INFO - chatbot_logger - Confidence Check → Best: 5.71539831161499 | Second: 1.0687272548675537 | Gap: 4.6466710567474365
+2026-04-06 11:41:11,420 - INFO - chatbot_logger - Agent: None
+Query: what are the late working allowances?
+Response: The late working allowances mentioned in the context are:
+
+- Food reimbursement of up to Rs. 250/- if working beyond 9 PM and having spent more than 11 hours in the office.
+
+- One way cab allowance subject to prescribed limits if working beyond 11 PM IST. For women employees, one way cab allowance is applicable if working beyond 9 PM IST. The cab allowance limits based on distance are:
+Up to 10 kms - Rs. 300
+Up to 20 kms - Rs. 500  
+Up to 30 kms - Rs. 800
+Context: RAG
+
+2026-04-06 11:41:22,396 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:41:52,074 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:42:22,381 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:42:52,075 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:43:22,364 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:43:52,064 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:44:22,371 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:44:52,063 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:45:22,371 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:45:52,062 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:46:22,371 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:46:52,064 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:47:22,367 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:47:52,065 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:48:22,378 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:48:52,069 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:49:22,384 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:49:52,074 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:50:23,152 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:50:52,855 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:51:47,880 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:52:46,105 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:53:46,228 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:54:45,852 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:55:46,173 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:56:46,924 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:57:45,849 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:58:46,170 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 11:59:45,848 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 12:00:48,725 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 12:01:45,850 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 12:02:46,157 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 12:03:45,857 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 12:04:46,175 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 12:50:47,652 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 12:51:45,549 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 12:52:46,168 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 12:53:45,858 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 12:54:46,165 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 12:55:46,145 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 12:56:46,170 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 12:57:45,858 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 12:58:46,167 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 12:59:45,858 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 13:00:46,196 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 13:01:45,843 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 13:02:46,171 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 13:03:45,858 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 13:04:46,165 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 13:05:46,162 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 13:06:45,846 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 13:07:46,166 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 13:08:45,854 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 13:09:46,176 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 13:10:45,857 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 13:11:46,169 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 13:12:45,873 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 13:13:48,484 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 13:14:45,868 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 13:15:46,159 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 13:16:45,851 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 13:17:46,163 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 13:18:45,850 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 13:19:46,163 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 13:20:46,154 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 13:21:45,861 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 13:22:46,394 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 13:23:45,847 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 13:24:46,160 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 13:25:45,846 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 13:26:46,160 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 13:27:45,853 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 13:28:46,198 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 13:29:45,851 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 13:30:46,154 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 13:31:45,858 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 13:32:46,160 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 13:33:45,853 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 13:34:46,169 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 13:35:45,851 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 13:36:46,190 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 13:37:45,857 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 13:38:46,170 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 13:39:45,855 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 13:40:46,165 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 13:41:45,859 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 13:42:46,201 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 13:43:45,858 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 13:44:48,657 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 13:45:45,850 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 13:46:46,169 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 13:47:46,047 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 13:48:46,161 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 13:49:46,161 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 13:50:46,155 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 13:51:45,857 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 13:52:46,368 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 13:53:45,851 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 13:54:46,180 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 13:55:45,844 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 13:56:46,169 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 13:57:46,171 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 13:58:46,181 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 14:15:38,747 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 14:16:37,105 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 14:17:38,179 - INFO - chatbot_logger - /health endpoint hit
+2026-04-06 14:17:57,706 - INFO - chatbot_logger - /health endpoint hit

@@ -1,0 +1,9 @@
+team A
+resources - 20 
+dev - 13
+QA- 7
+
+team B
+resources - 20
+DEV - 10
+QA - 10

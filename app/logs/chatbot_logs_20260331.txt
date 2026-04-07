@@ -1,0 +1,495 @@
+2026-03-31 00:14:33,116 - INFO - Agent: None
+Query: how many CL/SL will a permanent employee receive in a year?
+Response: Error generating response from model.
+Context: RAG
+
+2026-03-31 00:14:33,531 - INFO - Agent: None
+Query: can employees carry forward CL/SL?
+Response: Error generating response from model.
+Context: RAG
+
+2026-03-31 00:14:33,971 - INFO - Agent: None
+Query: how many earned leaves can be accumulated?
+Response: Error generating response from model.
+Context: RAG
+
+2026-03-31 00:15:53,691 - INFO - Agent: None
+Query: how many CL/SL will a permanent employee receive in a year?
+Response: Error generating response from model.
+Context: RAG
+
+2026-03-31 00:15:54,462 - INFO - Agent: None
+Query: can employees carry forward CL/SL?
+Response: Error generating response from model.
+Context: RAG
+
+2026-03-31 00:15:55,216 - INFO - Agent: None
+Query: how many earned leaves can be accumulated?
+Response: Error generating response from model.
+Context: RAG
+
+2026-03-31 00:18:08,000 - INFO - Agent: None
+Query: how many CL/SL will a permanent employee receive in a year?
+Response: According to the context provided, a permanent employee is eligible for 12 Casual Leaves (CL) and 12 Sick Leaves (SL) in a year.
+Context: RAG
+
+2026-03-31 00:18:09,526 - INFO - Agent: None
+Query: can employees carry forward CL/SL?
+Response: No, an employee cannot carry forward his/her unused CL/SL to the next year. Any unused CL/SL balance will lapse at the end of the year.
+Context: RAG
+
+2026-03-31 00:18:10,899 - INFO - Agent: None
+Query: how many earned leaves can be accumulated?
+Response: An employee can accumulate up to 30 Earned Leaves.
+Context: RAG
+
+2026-03-31 00:20:03,775 - INFO - Agent: None
+Query: how many CL/SL will a permanent employee receive in a year?
+Response: According to the context provided, a permanent employee is eligible for 12 Casual Leaves (CL) and 12 Sick Leaves (SL) in a year.
+Context: RAG
+
+2026-03-31 00:20:05,294 - INFO - Agent: None
+Query: can employees carry forward CL/SL?
+Response: No, an employee cannot carry forward his/her unused CL/SL to the next year. Any unused CL/SL balance will lapse at the end of the year.
+Context: RAG
+
+2026-03-31 00:20:06,836 - INFO - Agent: None
+Query: how many earned leaves can be accumulated?
+Response: An employee can accumulate up to 30 Earned Leaves.
+Context: RAG
+
+2026-03-31 00:20:59,123 - INFO - Agent: None
+Query: how many CL/SL will a permanent employee receive in a year?
+Response: According to the context provided, a permanent employee is eligible for 12 Casual Leaves (CL) and 12 Sick Leaves (SL) in a year.
+Context: RAG
+
+2026-03-31 00:21:00,758 - INFO - Agent: None
+Query: can employees carry forward CL/SL?
+Response: No, an employee cannot carry forward his/her unused CL/SL to the next year. Any unused CL/SL balance will lapse at the end of the year.
+Context: RAG
+
+2026-03-31 00:21:02,193 - INFO - Agent: None
+Query: how many earned leaves can be accumulated?
+Response: An employee can accumulate up to 30 Earned Leaves.
+Context: RAG
+
+2026-03-31 00:23:51,463 - INFO - Agent: None
+Query: how many CL/SL will a permanent employee receive in a year?
+Response: I don't have enough information in the knowledge base to answer this.
+Context: RAG
+
+2026-03-31 00:23:52,855 - INFO - Agent: None
+Query: can employees carry forward CL/SL?
+Response: No, an employee cannot carry forward his/her unused CL/SL to the next year. Any unused CL/SL balance will lapse at the end of the year.
+Context: RAG
+
+2026-03-31 00:23:54,124 - INFO - Agent: None
+Query: how many earned leaves can be accumulated?
+Response: I don't have enough information in the knowledge base to answer this.
+Context: RAG
+
+2026-03-31 11:20:47,566 - INFO - Agent: None
+Query: how many CL/SL will a permanent employee receive in a year?
+Response: Error generating response from model.
+Context: RAG
+
+2026-03-31 11:20:48,354 - INFO - Agent: None
+Query: can employees carry forward CL/SL?
+Response: Error generating response from model.
+Context: RAG
+
+2026-03-31 11:20:49,221 - INFO - Agent: None
+Query: how many earned leaves can be accumulated?
+Response: Error generating response from model.
+Context: RAG
+
+2026-03-31 11:24:12,482 - INFO - Agent: None
+Query: how many CL/SL will a permanent employee receive in a year?
+Response: Error generating response from model.
+Context: RAG
+
+2026-03-31 11:24:13,197 - INFO - Agent: None
+Query: can employees carry forward CL/SL?
+Response: Error generating response from model.
+Context: RAG
+
+2026-03-31 11:24:13,914 - INFO - Agent: None
+Query: how many earned leaves can be accumulated?
+Response: Error generating response from model.
+Context: RAG
+
+2026-03-31 11:28:33,943 - INFO - Agent: None
+Query: how many CL/SL will a permanent employee receive in a year?
+Response: Error generating response from model.
+Context: RAG
+
+2026-03-31 11:28:34,671 - INFO - Agent: None
+Query: can employees carry forward CL/SL?
+Response: Error generating response from model.
+Context: RAG
+
+2026-03-31 11:28:35,384 - INFO - Agent: None
+Query: how many earned leaves can be accumulated?
+Response: Error generating response from model.
+Context: RAG
+
+2026-03-31 11:30:29,821 - INFO - Agent: None
+Query: how many CL/SL will a permanent employee receive in a year?
+Response: I don't have enough information in the knowledge base to answer this.
+Context: RAG
+
+2026-03-31 11:30:31,301 - INFO - Agent: None
+Query: can employees carry forward CL/SL?
+Response: No, an employee cannot carry forward his/her unused CL/ SL to the next year. Any unused CL/SL balance will lapse at the end of the year.
+Context: RAG
+
+2026-03-31 11:30:32,459 - INFO - Agent: None
+Query: how many earned leaves can be accumulated?
+Response: According to the context, any unused earned leave balance will be carried forward to the next year, which can be accumulated.
+Context: RAG
+
+2026-03-31 11:33:46,998 - INFO - Agent: None
+Query: how many CL/SL will a permanent employee receive in a year?
+Response: Error generating response from model.
+Context: RAG
+
+2026-03-31 11:33:47,754 - INFO - Agent: None
+Query: can employees carry forward CL/SL?
+Response: Error generating response from model.
+Context: RAG
+
+2026-03-31 11:33:48,504 - INFO - Agent: None
+Query: how many earned leaves can be accumulated?
+Response: Error generating response from model.
+Context: RAG
+
+2026-03-31 11:37:41,692 - INFO - Agent: None
+Query: how many CL/SL will a permanent employee receive in a year?
+Response: I don't have enough information in the knowledge base to answer this.
+Context: RAG
+
+2026-03-31 11:37:43,232 - INFO - Agent: None
+Query: can employees carry forward CL/SL?
+Response: No, an employee cannot carry forward his/her unused CL/SL to the next year. Any unused CL/SL balance will lapse at the end of the year.
+Context: RAG
+
+2026-03-31 11:37:44,488 - INFO - Agent: None
+Query: how many earned leaves can be accumulated?
+Response: I don't have enough information in the knowledge base to answer this.
+Context: RAG
+
+2026-03-31 11:51:29,293 - INFO - 🧹 Attempting to clear Chroma DB...
+2026-03-31 11:51:29,294 - INFO - ⚠️ DB file locked (attempt 1/5): [WinError 32] The process cannot access the file because it is being used by another process: 'Python_Project/chroma_db\\chroma.sqlite3'
+2026-03-31 11:51:30,295 - INFO - ⚠️ DB file locked (attempt 2/5): [WinError 32] The process cannot access the file because it is being used by another process: 'Python_Project/chroma_db\\chroma.sqlite3'
+2026-03-31 11:51:31,297 - INFO - ⚠️ DB file locked (attempt 3/5): [WinError 32] The process cannot access the file because it is being used by another process: 'Python_Project/chroma_db\\chroma.sqlite3'
+2026-03-31 11:51:32,297 - INFO - ⚠️ DB file locked (attempt 4/5): [WinError 32] The process cannot access the file because it is being used by another process: 'Python_Project/chroma_db\\chroma.sqlite3'
+2026-03-31 11:51:33,299 - INFO - ⚠️ DB file locked (attempt 5/5): [WinError 32] The process cannot access the file because it is being used by another process: 'Python_Project/chroma_db\\chroma.sqlite3'
+2026-03-31 11:53:50,443 - INFO - Agent: None
+Query: how many CL/SL will a permanent employee receive in a year?
+Response: I don't have enough information in the knowledge base to answer this.
+Context: RAG
+
+2026-03-31 11:53:51,960 - INFO - Agent: None
+Query: can employees carry forward CL/SL?
+Response: No, an employee cannot carry forward his/her unused CL/SL to the next year. Any unused CL/SL balance will lapse at the end of the year.
+Context: RAG
+
+2026-03-31 11:53:53,207 - INFO - Agent: None
+Query: how many earned leaves can be accumulated?
+Response: I don't have enough information in the knowledge base to answer this.
+Context: RAG
+
+2026-03-31 11:58:26,358 - INFO - Agent: None
+Query: how many CL/SL will a permanent employee receive in a year?
+Response: According to the context provided, it states "Contractors/ Interns are eligible for 1 CL/SL in a month." However, there is no explicit information given about how many CL/SL a permanent employee receives in a year.
+Context: RAG
+
+2026-03-31 11:58:27,794 - INFO - Agent: None
+Query: can employees carry forward CL/SL?
+Response: No, an employee cannot carry forward his/her unused CL/SL to the next year. Any unused CL/SL balance will lapse at the end of the year.
+Context: RAG
+
+2026-03-31 11:58:29,249 - INFO - Agent: None
+Query: how many earned leaves can be accumulated?
+Response: There is no explicit information provided in the given context about how many earned leaves can be accumulated.
+Context: RAG
+
+2026-03-31 12:00:58,949 - INFO - Agent: None
+Query: how many CL/SL will a permanent employee receive in a year?
+Response: I don't have enough information in the knowledge base to answer this.
+Context: RAG
+
+2026-03-31 12:01:00,432 - INFO - Agent: None
+Query: can employees carry forward CL/SL?
+Response: No, an employee cannot carry forward his/her unused CL/SL to the next year. Any unused CL/SL balance will lapse at the end of the year.
+Context: RAG
+
+2026-03-31 12:01:02,038 - INFO - Agent: None
+Query: how many earned leaves can be accumulated?
+Response: There is no explicit information in the given context about how many earned leaves can be accumulated or carried forward to the next year.
+Context: RAG
+
+2026-03-31 12:06:39,453 - INFO - Agent: None
+Query: how many CL/SL will a permanent employee receive in a year?
+Response: According to the context provided, a permanent employee is eligible for 12 Casual Leaves (CL) and 12 Sick Leaves (SL) in a year.
+Context: RAG
+
+2026-03-31 12:06:43,199 - INFO - Agent: None
+Query: can employees carry forward CL/SL?
+Response: No, an employee cannot carry forward his/her unused CL/SL to the next year. Any unused CL/SL balance will lapse at the end of the year.
+Context: RAG
+
+2026-03-31 12:06:46,830 - INFO - Agent: None
+Query: how many earned leaves can be accumulated?
+Response: An employee can accumulate up to 30 Earned Leaves.
+Context: RAG
+
+2026-03-31 12:09:46,573 - INFO - Agent: None
+Query: how many CL/SL will a permanent employee receive in a year?
+Response: I don't have enough information in the knowledge base to answer this.
+Context: RAG
+
+2026-03-31 12:09:48,081 - INFO - Agent: None
+Query: can employees carry forward CL/SL?
+Response: No, an employee cannot carry forward his/her unused CL/SL to the next year. Any unused CL/SL balance will lapse at the end of the year.
+Context: RAG
+
+2026-03-31 12:09:49,698 - INFO - Agent: None
+Query: how many earned leaves can be accumulated?
+Response: There is no explicit information in the given context about how many earned leaves can be accumulated or carried forward to the next year.
+Context: RAG
+
+2026-03-31 12:14:15,880 - INFO - Agent: None
+Query: how many CL/SL will a permanent employee receive in a year?
+Response: I don't have enough information in the knowledge base to answer this.
+Context: NO_CONTEXT
+
+2026-03-31 12:43:27,127 - INFO - Agent: None
+Query: What are the normal working hours mentioned in the policy?
+Response: The normal working hours mentioned in the policy are from 10:00 AM to 7:30 PM, with the work week extended from Monday to Friday.
+Context: RAG
+
+2026-03-31 12:44:23,381 - INFO - Agent: None
+Query: What is the food reimbursement limit for late working?
+Response: The food reimbursement limit for late working is Rs. 250/-.
+Context: RAG
+
+2026-03-31 12:44:46,568 - INFO - Agent: None
+Query: How many developers are there in Team A?
+Response: The context states that Team A has 13 developers ("dev - 13").
+Context: RAG
+
+2026-03-31 12:45:14,027 - INFO - Agent: None
+Query: What allowances are provided for employees working beyond 11 PM?
+Response: According to the context provided, for employees working beyond 11 PM, the following allowances are applicable:
+
+- Food reimbursement of up to Rs. 250/-
+- One way Cab allowance subject to prescribed limits based on distance:
+    - Up to 10 kms: Rs. 300
+    - Up to 20 kms: Rs. 500  
+    - Up to 30 kms: Rs. 800
+
+For women employees, one way cab allowance is applicable if they work beyond 9 PM.
+Context: RAG
+
+2026-03-31 12:46:03,738 - INFO - Agent: None
+Query: What are the differences between Shift B and Shift C allowances?
+Response: According to the context provided, the differences between Shift B and Shift C allowances are:
+
+Shift B:
+- Hardship Allowance of Rs. 400/-
+- Food Allowance of Rs. 150/-
+
+Shift C: 
+- Hardship Allowance of Rs. 600/-
+- Food Allowance of Rs. 150/-
+
+So the Hardship Allowance for Shift C (Rs. 600/-) is higher than for Shift B (Rs. 400/-), while the Food Allowance (Rs. 150/-) is the same for both shifts.
+Context: RAG
+
+2026-03-31 12:46:43,010 - INFO - Agent: None
+Query: What are the advantages and limitations of solar energy?
+Response: The advantages of solar energy mentioned in the context are:
+
+1. It is environmentally friendly and produces no greenhouse gas emissions during operation.
+2. It can reduce electricity bills and dependence on fossil fuels.
+
+The limitations mentioned are:
+
+1. It depends on sunlight availability, meaning it is less effective during cloudy days or at night.
+2. Initial installation costs for solar panels can be high, although prices have been decreasing over time.
+Context: RAG
+
+2026-03-31 12:47:22,402 - INFO - Agent: None
+Query: What benefits does holiday working provide for billable vs non-billable work?
+Response: For billable work (customer billed effort in the project), employees are eligible for a weekend allowance of Rs. 1500/- and a food reimbursement of Rs. 250/-. For non-billable work, employees are eligible for a Compensatory off and a food reimbursement of Rs. 250/-.
+Context: RAG
+
+2026-03-31 12:48:27,503 - INFO - Agent: None
+Query: If an employee works 12 hours and logs out at 10 PM, what benefits apply?
+Response: Based on the information provided in the context, the employee would be eligible for the "Late Working" allowance if they worked until 10 PM, which is beyond the normal working hours of 10 AM to 7:30 PM.
+Context: RAG
+
+2026-03-31 12:49:04,766 - INFO - Agent: None
+Query: Which team has a higher QA ratio, Team A or Team B?
+Response: Team B has a higher QA ratio compared to Team A. The context states that Team A has 7 QA resources out of 20 total resources, while Team B has 10 QA resources out of 20 total resources.
+Context: RAG
+
+2026-03-31 12:50:07,321 - INFO - Agent: None
+Query: What are the normal working hours mentioned in the policy?
+Response: The normal working hours mentioned in the policy are from 10:00 AM to 7:30 PM, with the work week extended from Monday to Friday.
+Context: RAG
+
+2026-03-31 12:50:09,402 - INFO - Agent: None
+Query: What benefits does holiday working provide for billable vs non-billable work?
+Response: For billable work (customer billed effort in the project), employees are eligible for a weekend allowance of Rs. 1500/- and a food reimbursement of Rs. 250/-. For non-billable work, employees are eligible for a Compensatory off and a food reimbursement of Rs. 250/-.
+Context: RAG
+
+2026-03-31 12:50:11,332 - INFO - Agent: None
+Query: Which team has a higher QA ratio, Team A or Team B
+Response: Team B has a higher QA ratio compared to Team A. The context states that Team A has 7 QA resources out of 20 total resources, while Team B has 10 QA resources out of 20 total resources.
+Context: RAG
+
+2026-03-31 12:54:30,681 - INFO - Agent: None
+Query: Which team has a higher QA ratio, Team A or Team B?
+Response: Team B has a higher QA ratio compared to Team A. The context states that Team A has 7 QA resources out of 20 total resources, while Team B has 10 QA resources out of 20 total resources.
+Context: RAG
+
+2026-03-31 12:55:10,156 - INFO - Agent: None
+Query: Which team has a higher QA ratio, Team A or Team B?
+Response: Team B has a higher QA ratio compared to Team A. The context states that Team A has 7 QA resources out of 20 total resources, while Team B has 10 QA resources out of 20 total resources.
+Context: RAG
+
+2026-03-31 12:55:30,580 - INFO - Agent: None
+Query: Which team has a higher QA ratio, Team A or Team B?
+Response: Team B has a higher QA ratio compared to Team A. The context states that Team A has 7 QA resources out of 20 total resources, while Team B has 10 QA resources out of 20 total resources.
+Context: RAG
+
+2026-03-31 12:57:53,507 - INFO - Agent: None
+Query: What are the normal working hours mentioned in the policy?
+Response: The normal working hours mentioned in the policy are from 10:00 AM to 7:30 PM, with the work week extended from Monday to Friday.
+Context: RAG
+
+2026-03-31 12:57:55,491 - INFO - Agent: None
+Query: What benefits does holiday working provide for billable vs non-billable work?
+Response: For billable work (customer billed effort in the project), employees are eligible for a weekend allowance of Rs. 1500/- and a food reimbursement of Rs. 250/-. For non-billable work, employees are eligible for a Compensatory off and a food reimbursement of Rs. 250/-.
+Context: RAG
+
+2026-03-31 13:04:14,770 - INFO - Agent: None
+Query: Which team has a higher QA ratio, Team A or Team B?
+Response: Team B has a higher QA ratio (10 QA resources out of 20 total) compared to Team A (7 QA resources out of 20 total).
+Context: RAG
+
+2026-03-31 13:04:31,426 - INFO - Agent: None
+Query: Which team has a higher QA ratio, Team A or Team B?
+Response: Team B has a higher QA ratio compared to Team A. The context states that Team A has 7 QA resources out of 20 total resources, while Team B has 10 QA resources out of 20 total resources.
+Context: RAG
+
+2026-03-31 13:15:01,731 - INFO - Agent: None
+Query: What are the normal working hours mentioned in the policy?
+Response: The normal working hours mentioned in the policy are from 10:00 AM to 7:30 PM, with the work week extended from Monday to Friday.
+Context: RAG
+
+2026-03-31 13:16:12,017 - INFO - Agent: None
+Query: How many developers are there in Team A?
+Response: The context states that Team A has 13 developers ("dev - 13").
+Context: RAG
+
+2026-03-31 13:22:02,427 - INFO - Agent: None
+Query: How many developers are there in Team A?
+Response: The context states that Team A has 13 developers ("dev - 13").
+Context: RAG
+
+2026-03-31 13:22:33,624 - INFO - Agent: None
+Query: What are the normal working hours mentioned in the policy?
+Response: The normal working hours mentioned in the policy are from 10:00 AM to 7:30 PM, with the work week extended from Monday to Friday.
+Context: RAG
+
+2026-03-31 13:45:35,406 - INFO - Agent: None
+Query: how many dev in team A?
+Response: The context states that team A has 13 dev resources.
+Context: RAG
+
+2026-03-31 13:50:13,584 - INFO - Agent: None
+Query: what are the timings for b shift?
+Response: According to the context, Shift B: Afternoon Shift (Ranges between 2 PM to 12 AM).
+Context: RAG
+
+2026-03-31 13:50:44,010 - INFO - Agent: None
+Query: what are the timings for b shift?
+Response: According to the context, Shift B: Afternoon Shift (Ranges between 2 PM to 12 AM).
+Context: RAG
+
+2026-03-31 13:51:06,050 - INFO - Agent: None
+Query: what are teh late night allowances
+Response: According to the context provided:
+
+- Late working allowance includes food reimbursement of up to Rs. 250/- and one way cab allowance subject to prescribed limits if employees work beyond 11 p.m. IST.
+
+- For women employees, one way cab allowance is applicable if they work beyond 9 P.M. IST. The cab allowance limits based on distance are:
+Up to 10 kms - Rs. 300
+Up to 20 kms - Rs. 500  
+Up to 30 kms - Rs. 800
+Context: RAG
+
+2026-03-31 13:52:29,215 - INFO - Agent: None
+Query: what allownaces will i get for late shift
+Response: According to the context provided, for late working beyond 9 PM and spending more than 11 hours in the office, the following allowances are applicable:
+
+- Food reimbursement of up to Rs. 250/-
+- One way cab allowance subject to prescribed limits based on distance:
+    - Up to 10 kms: Rs. 300
+    - Up to 20 kms: Rs. 500  
+    - Up to 30 kms: Rs. 800
+
+For women employees, one way cab allowance is applicable if they work beyond 9 PM.
+Context: RAG
+
+2026-03-31 13:52:43,742 - INFO - Agent: None
+Query: what allownaces will i get for late shift
+Response: According to the context provided, for late working beyond 9 PM and spending more than 11 hours in the office, the following allowances are applicable:
+
+- Food reimbursement of up to Rs. 250/-
+- One way cab allowance subject to prescribed limits based on distance:
+    - Up to 10 kms: Rs. 300
+    - Up to 20 kms: Rs. 500  
+    - Up to 30 kms: Rs. 800
+
+For women employees, one way cab allowance is applicable if they work beyond 9 PM.
+Context: RAG
+
+2026-03-31 13:53:01,307 - INFO - Agent: None
+Query: how many memebres total in team a?
+Response: The context states that team A has 20 resources, with 13 in dev and 7 in QA. So the total number of members in team A is 20.
+Context: RAG
+
+2026-03-31 19:45:49,272 - INFO - Agent: None
+Query: What is the petrol allowance for remote employees?
+Response: Food Reimbursement, Cab facilities, Petrol/Travel allowance are not available when working remote.
+Context: RAG
+
+2026-03-31 19:46:16,890 - INFO - Agent: None
+Query: How many teams are defined in the allowance policy?
+Response: I don't have enough information in the knowledge base to answer this.
+Context: RAG
+
+2026-03-31 19:47:07,568 - INFO - Agent: None
+Query: Which has more resources: Team A or employees eligible under M2 grade?
+Response: I don't have enough information in the knowledge base to answer this.
+Context: RAG
+
+2026-03-31 19:47:22,091 - INFO - Agent: None
+Query: What is the cab reimbursement for 20 km?
+Response: The cab reimbursement limit for up to 20 kms is 500 INR.
+Context: RAG
+
+2026-03-31 19:47:45,486 - INFO - Agent: None
+Query: What is the process to claim food reimbursement?
+Response: Food reimbursements should be claimed through the reimbursement process by employees. Employees shall submit the request for food reimbursement to the finance team with approval from managers.
+Context: RAG
+
+2026-03-31 19:48:43,676 - INFO - Agent: None
+Query: Summarize all types of allowances in one line.
+Response: The types of allowances mentioned in the context are Shifts Allowance, Cab Allowance, Food Allowance, and Hardship Allowance.
+Context: RAG
+
