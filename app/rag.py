@@ -4,6 +4,7 @@ import os
 from langchain_aws import BedrockEmbeddings
 from langchain_chroma import Chroma
 from app.config import CHROMA_DIR
+from app.logger import logger
 
 
 def get_vectordb():
@@ -23,10 +24,10 @@ def get_vectordb():
             embedding_function=embeddings
         )
 
-        print("✅ Vector DB initialized")
+        logger.info("Vector DB initialized")
 
         return vectordb
 
-    except Exception as e:
-        print(f"❌ Vector DB Error: {str(e)}")
+    except Exception:
+        logger.exception("Vector DB initialization error")
         raise

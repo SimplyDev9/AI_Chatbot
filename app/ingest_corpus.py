@@ -23,23 +23,23 @@ load_dotenv()
 def safe_clear_chroma_db():
     """Safely clears the Chroma DB directory (handles Windows file locks)."""
     if not os.path.exists(CHROMA_DIR):
-        log_ingest("⚠️ No existing Chroma DB found, skipping clear.")
+        log_ingest(message="no_chroma_db", action="safe_clear", status="skipped", dir=str(CHROMA_DIR))
         return
 
-    log_ingest(f"🧹 Attempting to clear old Chroma DB at {CHROMA_DIR}...")
+    log_ingest(message="attempt_clear_old_chroma", action="safe_clear", status="started", dir=str(CHROMA_DIR))
     max_retries = 5
     for attempt in range(max_retries):
         try:
             shutil.rmtree(CHROMA_DIR)
-            log_ingest(f"✅ Successfully cleared old Chroma DB at {CHROMA_DIR}")
+            log_ingest(message="cleared_old_chroma", action="safe_clear", status="success", dir=str(CHROMA_DIR))
             return
         except PermissionError as e:
-            log_ingest(f"⚠️ Chroma DB locked (attempt {attempt + 1}/{max_retries}): {e}")
+            log_ingest(message="chroma_locked", action="safe_clear", status="locked", attempt=attempt + 1, error=str(e))
             time.sleep(1)
         except Exception as e:
-            log_ingest(f"❌ Failed to clear Chroma DB: {e}")
+            log_ingest(message="clear_chroma_failed", action="safe_clear", status="failed", error=str(e))
             break
-    log_ingest(f"🚫 Could not delete Chroma DB after {max_retries} retries.")
+    log_ingest(message="clear_chroma_retry_failed", action="safe_clear", status="failed", attempts=max_retries)
 
 
 def extract_text(fp: Path) -> str:
@@ -77,7 +77,7 @@ def extract_text(fp: Path) -> str:
             text = "\n".join(slides_text)
 
     except Exception as e:
-        log_ingest(f"⚠️ Failed to read {fp.name}: {e}")
+        log_ingest(message="failed_read", action="extract_text", filename=fp.name, error=str(e))
 
     return text.strip()
 
@@ -89,7 +89,7 @@ def ingest(corpus_dir=None, clear=False):
         corpus_dir = Path(corpus_dir).resolve()
 
     if not corpus_dir.exists():
-        log_ingest(f"❌ Corpus folder not found: {corpus_dir}")
+        log_ingest(message="corpus_not_found", action="ingest", dir=str(corpus_dir))
         return
 
     # ✅ Use the safe clear function
@@ -128,11 +128,11 @@ def ingest(corpus_dir=None, clear=False):
             existing_hash = existing["metadatas"][0].get("file_hash")
 
             if existing_hash == file_hash:
-                log_ingest(f"⏭️ Skipping unchanged file: {fpath.name}")
+                log_ingest(message="skip_unchanged", action="ingest", filename=fpath.name, status="skipped")
                 continue
 
             else:
-                log_ingest(f"♻️ File changed. Updating: {fpath.name}")
+                log_ingest(message="file_changed", action="ingest", filename=fpath.name, status="updating")
                 vectordb.delete(where={"filename": fpath.name})
 
         text = load_document(str(fpath))
@@ -156,7 +156,7 @@ def ingest(corpus_dir=None, clear=False):
                 }]
             )
 
-        log_ingest(f"✅ {fpath.name} ingested with {len(chunks)} chunks")
+        log_ingest(message="file_ingested", action="ingest", filename=fpath.name, chunks=len(chunks))
 
 
 def calculate_file_hash(file_path: Path):
@@ -218,8 +218,7 @@ def ingest_single_file(file_path: Path, metadata=None):
                 }]
             )
 
-        print(f"✅ Ingested {file_path.name} with metadata:", final_metadata)
-        print("🔥 METADATA SAVED:", final_metadata)
+        log_ingest(message="file_ingested_metadata", action="ingest_single_file", filename=file_path.name, metadata=final_metadata)
 
     except Exception as e:
-        print(f"❌ Error ingesting file: {str(e)}")
+        log_ingest(message="error_ingesting_file", action="ingest_single_file", filename=file_path.name, error=str(e))

@@ -4,11 +4,13 @@ import os
 from langchain_aws import BedrockEmbeddings
 from langchain_chroma import Chroma
 from app.config import CHROMA_DIR
+from app.logger import logger
 
 
 class KnowledgeBase:
 
     def __init__(self):
+        """Initialize embeddings and Chroma vector DB."""
         try:
             self.embeddings = BedrockEmbeddings(
                 model_id="amazon.titan-embed-text-v1",
@@ -22,49 +24,47 @@ class KnowledgeBase:
                 embedding_function=self.embeddings
             )
 
-            print("✅ KnowledgeBase initialized")
+            logger.info("KnowledgeBase initialized")
 
-        except Exception as e:
-            print(f"❌ KB Init Error: {str(e)}")
+        except Exception:
+            logger.exception("KB Init Error")
             raise
 
     def search(self, query: str, k: int = 10):
         try:
-            print(f"🔍 Searching KB: {query}")
+            logger.debug("Searching KB: %s", query)
 
             results = self.vectordb.similarity_search_with_score(query, k=k)
 
             docs = []
 
-            # 🔥 Collect ALL results (NO threshold filtering)
             for doc, score in results:
-                print(f"🔎 Score: {score} | Text preview: {doc.page_content[:50]}")
+                logger.info(
+                    "Score: %s | File: %s",
+                    score,
+                    doc.metadata.get("filename")
+                )
 
                 docs.append({
                     "text": doc.page_content,
-                    "score": score,
+                    "score": float(score),  # ✅ ensure numeric
                     "metadata": doc.metadata,
-                    "source": doc.metadata.get("source", "Unknown"), # ✅ for citations
+                    "source": doc.metadata.get("source", "Unknown"),
                     "source_type": doc.metadata.get("source_type", "unknown"),
                     "source_url": doc.metadata.get("source_url")
                 })
 
             if not docs:
-                print("⚠️ No documents retrieved")
+                logger.warning("No documents retrieved for query: %s", query)
                 return []
 
-            # 🔥 Sort by best score (lower = better)
-            docs = sorted(docs, key=lambda x: x["score"])
-
-            # 🔥 Take top-k (you can tune this later)
-            docs = docs[:3]
-
-            print(f"✅ Selected docs count: {len(docs)}")
+            # ✅ IMPORTANT: DO NOT SORT HERE
+            # Let retriever handle ranking
 
             return docs
 
-        except Exception as e:
-            print(f"❌ KB Search Error: {str(e)}")
+        except Exception:
+            logger.exception("KB Search Error for query: %s", query)
             return []
 
     def file_exists_in_db(vectordb, filename):

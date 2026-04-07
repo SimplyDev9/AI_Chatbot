@@ -3,6 +3,7 @@ from msal import ConfidentialClientApplication
 import os
 from pathlib import Path
 from app.ingest_corpus import ingest_single_file
+from app.logger import logger, log_ingest
 
 TENANT_ID = os.getenv("TENANT_ID")
 CLIENT_ID = os.getenv("CLIENT_ID")
@@ -21,7 +22,7 @@ def get_access_token():
 
     token_response = app.acquire_token_for_client(scopes=SCOPE)
 
-    print("FULL TOKEN RESPONSE:", token_response)
+    logger.debug("FULL TOKEN RESPONSE: %s", token_response)
 
     return token_response.get("access_token")
 
@@ -37,7 +38,7 @@ def list_files_in_folder(site_id):
 
     data = response.json()
 
-    print("RAW SHAREPOINT RESPONSE:", data)
+    logger.debug("RAW SHAREPOINT RESPONSE: %s", data)
 
     return data.get("value", [])
 
@@ -65,7 +66,7 @@ def ingest_from_sharepoint(site_id, folder_path="Shared Documents"):
 
         local_path = temp_dir / filename
 
-        print(f"⬇️ Downloading {filename}")
+        log_ingest(message="file_download", action="download", filename=filename, url=download_url, dest=str(local_path))
         download_file(download_url, local_path)
 
         # ✅ NEW METADATA
@@ -75,7 +76,7 @@ def ingest_from_sharepoint(site_id, folder_path="Shared Documents"):
             "source_url": web_url
         }
 
-        print(f"📥 Ingesting {filename}")
+        log_ingest(message="file_ingest_start", action="ingest", filename=filename, source="sharepoint")
         ingest_single_file(local_path, metadata=metadata)
 
-    print("✅ SharePoint ingestion completed")
+    log_ingest(message="sharepoint_ingestion_completed", action="ingest", source="sharepoint")

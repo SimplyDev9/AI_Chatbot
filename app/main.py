@@ -6,7 +6,7 @@ from app.chatbot import answer_query
 from app.ingest_corpus import ingest
 from app.config import CHROMA_DIR
 from app.rag import get_vectordb
-from app.logger import log_ingest
+from app.logger import log_ingest, logger
 from pathlib import Path
 from app.ingest_corpus import ingest_single_file
 import uvicorn
@@ -17,25 +17,29 @@ from dotenv import load_dotenv
 from app.sharepoint_ingestion import ingest_from_sharepoint
 from app.sharepoint_loader import get_access_token
 import requests
+from typing import Any, cast
 
 load_dotenv()
 
-print("✅ main.py loaded successfully")
+logger.info("main.py loaded successfully")
 
 app = FastAPI(title="AI Chatbot API", version="1.0")
 # CORPUS_DIR = Path("Python_Project/corpus")
 CORPUS_DIR = Path(os.getenv("CORPUS_DIR", "corpus"))
 
+# Prepare middleware class in a way that satisfies type checkers
+middleware_cls: Any = CORSMiddleware
+
 # ============================================
 # CORS
 # ============================================
 app.add_middleware(
-    CORSMiddleware,
+    middleware_cls,  # type: ignore[arg-type]
     allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
-)
+)  # type: ignore
 
 # ============================================
 # Request Models
@@ -56,6 +60,7 @@ class SiteRequest(BaseModel):
 def get_site_id(data: SiteRequest):
     token = get_access_token()
 
+
     url = f"https://graph.microsoft.com/v1.0/sites/{data.hostname}:/sites/{data.site_name}"
 
     headers = {"Authorization": f"Bearer {token}"}
@@ -71,7 +76,7 @@ def get_site_id(data: SiteRequest):
 
 @app.get("/health")
 def health_check():
-    print("✅ /health endpoint hit")
+    logger.info("/health endpoint hit")
     return {"status": "ok", "message": "AI Chatbot API is running 🚀"}
 
 
@@ -115,19 +120,19 @@ def clear_db():
     if not os.path.exists(CHROMA_DIR):
         return {"status": "skipped", "message": "Chroma DB not found."}
 
-    log_ingest("🧹 Attempting to clear Chroma DB...")
+    log_ingest(message="attempt_clear_db", action="clear_db", status="started", dir=str(CHROMA_DIR))
 
     max_retries = 5
     for attempt in range(max_retries):
         try:
             shutil.rmtree(CHROMA_DIR)
-            log_ingest(f"✅ Chroma DB cleared successfully from {CHROMA_DIR}")
+            log_ingest(message="clear_db_success", action="clear_db", status="success", dir=str(CHROMA_DIR))
             return {"status": "success", "message": "Chroma DB cleared."}
         except PermissionError as e:
-            log_ingest(f"⚠️ DB file locked (attempt {attempt + 1}/{max_retries}): {e}")
+            log_ingest(message="clear_db_locked", action="clear_db", status="locked", attempt=attempt + 1, error=str(e))
             time.sleep(1)
         except Exception as e:
-            log_ingest(f"❌ Failed to clear DB: {e}")
+            log_ingest(message="clear_db_failed", action="clear_db", status="failed", error=str(e))
             return {"status": "error", "message": str(e)}
 
     return {"status": "error", "message": f"Could not clear {CHROMA_DIR} after {max_retries} retries."}
@@ -144,7 +149,7 @@ def delete_doc(filename: str = Query(..., description="Exact filename to delete 
     No rebuild. No folder deletion. No Windows lock issues.
     """
     try:
-        log_ingest(f"🗑️ Delete request received for: {filename}")
+        log_ingest(message="delete_request", action="delete_doc", filename=filename)
 
         vectordb = get_vectordb()
 
@@ -152,7 +157,7 @@ def delete_doc(filename: str = Query(..., description="Exact filename to delete 
         results = vectordb.get(where={"filename": filename})
 
         if not results or not results.get("ids"):
-            log_ingest(f"❌ {filename} not found in vector DB.")
+            log_ingest(message="not_found", action="delete_doc", filename=filename, status="not_found")
             raise HTTPException(
                 status_code=404,
                 detail=f"{filename} not found in vector DB."
@@ -164,7 +169,7 @@ def delete_doc(filename: str = Query(..., description="Exact filename to delete 
         # Release DB handle (important on Windows)
         vectordb = None
 
-        log_ingest(f"✅ Successfully deleted embeddings for {filename}")
+        log_ingest(message="delete_success", action="delete_doc", filename=filename, status="deleted")
 
         return {
             "status": "success",
@@ -186,7 +191,7 @@ def delete_doc(filename: str = Query(..., description="Exact filename to delete 
 def list_docs():
     try:
         vectordb = get_vectordb()
-        log_ingest("📂 Fetching list of documents from Chroma DB...")
+        log_ingest(message="list_docs", action="list_docs", status="started")
 
         data = vectordb.get(include=["metadatas"])
 
@@ -198,7 +203,7 @@ def list_docs():
 
         vectordb = None
 
-        log_ingest(f"✅ Found {len(filenames)} documents in DB.")
+        log_ingest(message="list_docs_success", action="list_docs", count=len(filenames))
 
         return {"count": len(filenames), "files": filenames}
 
@@ -221,7 +226,7 @@ async def upload_doc(file: UploadFile = File(...)):
         with open(file_path, "wb") as f:
             shutil.copyfileobj(file.file, f)
 
-        log_ingest(f"📂 Uploaded file saved: {file_path}")
+        log_ingest(message="file_uploaded", action="upload_doc", filename=str(file_path), status="saved")
 
         ingest_single_file(file_path)
         return {
@@ -230,7 +235,7 @@ async def upload_doc(file: UploadFile = File(...)):
         }
 
     except Exception as e:
-        log_ingest(f"❌ Upload failed for {file.filename}: {e}")
+        log_ingest(message="upload_failed", action="upload_doc", filename=file.filename, error=str(e))
         return {"status": "error", "message": str(e)}
 
 
