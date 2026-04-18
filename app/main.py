@@ -1,5 +1,5 @@
 # app/main.py
-from fastapi import FastAPI, Query, UploadFile, File, HTTPException
+from fastapi import FastAPI, Query, UploadFile, File, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from app.chatbot import answer_query
@@ -18,6 +18,18 @@ from app.sharepoint_ingestion import ingest_from_sharepoint
 from app.sharepoint_loader import get_access_token
 import requests
 from typing import Any, cast
+from app.db.database import test_connection
+from app.db.database import engine
+from app.db.base import Base
+from sqlalchemy.orm import Session
+from app.db.database import get_db
+from app.db.database import SessionLocal
+from app.db.seed import seed_roles_permissions
+from app.api.chat import router as chat_router
+from app.api.ingest import router as ingest_router
+from app.api.admin import router as admin_router
+from app.api.auth import router as auth_router
+
 
 load_dotenv()
 
@@ -69,6 +81,11 @@ def get_site_id(data: SiteRequest):
 
     return response.json()
 
+# ============================================
+# Auth
+# ============================================
+
+app.include_router(auth_router)
 
 # ============================================
 # Health
@@ -80,173 +97,37 @@ def health_check():
     return {"status": "ok", "message": "AI Chatbot API is running 🚀"}
 
 
+# ✅ Create tables
+Base.metadata.create_all(bind=engine)
+
+
 @app.get("/")
 def home():
     return {"message": "AI Chatbot API is running 🚀"}
 
 
+@app.get("/db-test")
+def db_test():
+    return {"status": test_connection()}
+
+# =========================================
+# DB Seeding
+# =========================================
+app.include_router(admin_router)
+
 # ============================================
 # Chat
 # ============================================
 
-@app.post("/chat")
-def chat(req: ChatRequest):
-    result = answer_query(req.query)
-
-    return {
-        "query": req.query,
-        "response": result["response"],
-        "sources": result["sources"],
-        "retrieved_context": result["retrieved_context"]
-    }
-
+app.include_router(chat_router)
 
 # ============================================
 # Ingest
 # ============================================
 
-@app.post("/ingest")
-def ingest_corpus(req: IngestRequest):
-    ingest(clear=req.clear)
-    return {"status": "success", "message": "Corpus ingested successfully."}
 
+app.include_router(ingest_router)
 
-# ============================================
-# Clear Entire DB
-# ============================================
-
-@app.delete("/clear_db")
-def clear_db():
-    if not os.path.exists(CHROMA_DIR):
-        return {"status": "skipped", "message": "Chroma DB not found."}
-
-    log_ingest(message="attempt_clear_db", action="clear_db", status="started", dir=str(CHROMA_DIR))
-
-    max_retries = 5
-    for attempt in range(max_retries):
-        try:
-            shutil.rmtree(CHROMA_DIR)
-            log_ingest(message="clear_db_success", action="clear_db", status="success", dir=str(CHROMA_DIR))
-            return {"status": "success", "message": "Chroma DB cleared."}
-        except PermissionError as e:
-            log_ingest(message="clear_db_locked", action="clear_db", status="locked", attempt=attempt + 1, error=str(e))
-            time.sleep(1)
-        except Exception as e:
-            log_ingest(message="clear_db_failed", action="clear_db", status="failed", error=str(e))
-            return {"status": "error", "message": str(e)}
-
-    return {"status": "error", "message": f"Could not clear {CHROMA_DIR} after {max_retries} retries."}
-
-
-# ============================================
-# Modern Delete (Metadata Based)
-# ============================================
-
-@app.delete("/delete_doc")
-def delete_doc(filename: str = Query(..., description="Exact filename to delete from Chroma DB")):
-    """
-    Deletes embeddings for a specific document using metadata filter.
-    No rebuild. No folder deletion. No Windows lock issues.
-    """
-    try:
-        log_ingest(message="delete_request", action="delete_doc", filename=filename)
-
-        vectordb = get_vectordb()
-
-        # Check existence
-        results = vectordb.get(where={"filename": filename})
-
-        if not results or not results.get("ids"):
-            log_ingest(message="not_found", action="delete_doc", filename=filename, status="not_found")
-            raise HTTPException(
-                status_code=404,
-                detail=f"{filename} not found in vector DB."
-            )
-
-        # Delete by metadata
-        vectordb.delete(where={"filename": filename})
-
-        # Release DB handle (important on Windows)
-        vectordb = None
-
-        log_ingest(message="delete_success", action="delete_doc", filename=filename, status="deleted")
-
-        return {
-            "status": "success",
-            "message": f"Deleted embeddings for {filename}"
-        }
-
-    except HTTPException:
-        raise
-    except Exception as e:
-        log_ingest(f"❌ Error deleting {filename}: {e}")
-        return {"status": "error", "message": str(e)}
-
-
-# ============================================
-# List Documents
-# ============================================
-
-@app.get("/list_docs")
-def list_docs():
-    try:
-        vectordb = get_vectordb()
-        log_ingest(message="list_docs", action="list_docs", status="started")
-
-        data = vectordb.get(include=["metadatas"])
-
-        filenames = list({
-            meta.get("filename")
-            for meta in data.get("metadatas", [])
-            if meta and "filename" in meta
-        })
-
-        vectordb = None
-
-        log_ingest(message="list_docs_success", action="list_docs", count=len(filenames))
-
-        return {"count": len(filenames), "files": filenames}
-
-    except Exception as e:
-        log_ingest(f"❌ Failed to fetch document list: {e}")
-        return {"status": "error", "message": str(e)}
-
-
-# ============================================
-# Upload & Ingest
-# ============================================
-
-@app.post("/upload_doc")
-async def upload_doc(file: UploadFile = File(...)):
-    try:
-        CORPUS_DIR.mkdir(parents=True, exist_ok=True)
-
-        file_path = CORPUS_DIR / file.filename
-
-        with open(file_path, "wb") as f:
-            shutil.copyfileobj(file.file, f)
-
-        log_ingest(message="file_uploaded", action="upload_doc", filename=str(file_path), status="saved")
-
-        ingest_single_file(file_path)
-        return {
-            "status": "success",
-            "message": f"File '{file.filename}' uploaded and ingested successfully."
-        }
-
-    except Exception as e:
-        log_ingest(message="upload_failed", action="upload_doc", filename=file.filename, error=str(e))
-        return {"status": "error", "message": str(e)}
-
-
-@app.post("/ingest_sharepoint")
-def ingest_sharepoint(site_id: str, folder_path: str):
-    ingest_from_sharepoint(site_id, folder_path)
-
-    return {
-        "status": "success",
-        "message": "SharePoint files ingested successfully"
-    }
 
 
 def start():
