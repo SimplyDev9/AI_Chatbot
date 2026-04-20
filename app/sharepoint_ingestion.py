@@ -17,7 +17,7 @@ def file_exists_in_db(filename):
         return False
 
 
-def ingest_from_sharepoint(site_id, folder_path):
+def ingest_from_sharepoint(site_id):
     files = list_files_in_folder(site_id)
 
     temp_dir = Path("temp_sharepoint")
@@ -31,7 +31,10 @@ def ingest_from_sharepoint(site_id, folder_path):
             filename = file["name"]
             file_id = file["id"]
             last_modified = file["lastModifiedDateTime"]
-            download_url = file["@microsoft.graph.downloadUrl"]
+            download_url = file.get("@microsoft.graph.downloadUrl")
+            if not download_url:
+                logger.warning("No download URL for file: %s", filename)
+                continue
             web_url = file.get("webUrl")
 
             logger.debug("File ID: %s | Last Modified: %s", file_id, last_modified)
