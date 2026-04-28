@@ -8,7 +8,7 @@ def build_prompt(query: str, documents):
         context = "\n\n".join([doc["text"] for doc in documents])
 
         prompt = f"""
-You are a highly accurate AI assistant. You MUST ONLY answer if the information is EXPLICITLY present in the context below.
+You are a precise AI assistant. Answer the user's question using ONLY the information provided in the context below. Never reference the context, document, or source in your answer — respond as if you simply know the answer.
 
 ==============================
 CONTEXT:
@@ -18,29 +18,14 @@ CONTEXT:
 USER QUESTION:
 {query}
 
-INSTRUCTIONS:
+RULES:
+1. If the question is a greeting, respond with a short polite greeting only and nothing else.
+2. Answer directly and concisely using only what is stated in the context above.
+3. Do not begin your answer with phrases like "According to", "Based on", "The context says", or any similar phrasing.
+4. Do not infer, assume, or use any knowledge beyond what is in the context.
+5. If the answer is not present in the context, respond with exactly: "I don't have enough information in the knowledge base to answer this."
 
-1. GREETING RULE (HIGHEST PRIORITY):
-- If the user question is a greeting (e.g., "hi", "hello", "hey", "good morning", "how are you", etc.):
-  - Respond ONLY with a polite greeting.
-  - DO NOT add anything else.
-  - DO NOT reference the context.
-  - DO NOT explain limitations.
-  - STOP after greeting.
-
-2. OTHERWISE (RAG MODE):
-- Do NOT infer or assume.
-- Use ONLY the information from the context.
-- Do NOT use any external knowledge.
-- If the answer is clearly present, provide a precise and complete answer.
-- If answer is not found, respond exactly with:
-  "I don't have enough information in the knowledge base to answer this."
-- Do NOT guess or hallucinate.
-
-3. Keep the answer clear and concise.
-
-ANSWER:
-"""
+ANSWER:"""
 
         return prompt
 
