@@ -19,6 +19,8 @@ import pandas as pd
 import pdfplumber
 import re
 from app.logger import logger
+import concurrent.futures
+import math
 
 load_dotenv()
 
@@ -232,7 +234,15 @@ def ingest_single_file(file_path: Path, metadata=None):
 
         splitter = RecursiveCharacterTextSplitter(
             chunk_size=chunk_size,
-            chunk_overlap=chunk_overlap
+            chunk_overlap=chunk_overlap,
+            separators=[
+                "\n\n",   # paragraph split
+                "\n",     # line split
+                "Q:",     # IMPORTANT for your PDF (Q&A format)
+                "A:",
+                ".",
+                " "
+            ]
         )
         chunks = splitter.split_text(text)
         logger.info("[INGEST] Created %d chunks for: %s", len(chunks), file_path.name)
@@ -252,12 +262,65 @@ def ingest_single_file(file_path: Path, metadata=None):
                 "source_type": final_metadata["source_type"],
                 "source_url": final_metadata.get("source_url") or "",
                 "file_type": file_path.suffix.lower(),
+
+                # ✅ NEW (safe additions)
+                "chunk_length": len(chunks[i]),
+                "ingested_at": datetime.now().isoformat()
             }
-            for i, _ in enumerate(chunks)
+            for i in range(len(chunks))
         ]
 
-        logger.info("[INGEST] Embedding and storing %d chunks into vector DB", len(chunks))
-        vectordb.add_texts(texts=chunks, metadatas=metadatas)
+        max_workers = int(os.getenv("INGEST_EMBED_WORKERS", "3"))
+        batch_size  = int(os.getenv("INGEST_BATCH_SIZE", "30"))
+
+        logger.info(
+            "[INGEST] Embedding %d chunks in parallel — workers=%d, batch_size=%d",
+            len(chunks), max_workers, batch_size
+        )
+
+        # Split into batches
+        batches = [
+            (chunks[i:i + batch_size], metadatas[i:i + batch_size])
+            for i in range(0, len(chunks), batch_size)
+        ]
+
+        max_retries = int(os.getenv("INGEST_EMBED_MAX_RETRIES", "5"))
+        retry_base_delay = float(os.getenv("INGEST_EMBED_RETRY_DELAY", "2.0"))
+
+        def embed_batch(batch_index, text_batch, meta_batch):
+            for attempt in range(1, max_retries + 1):
+                try:
+                    vectordb.add_texts(texts=text_batch, metadatas=meta_batch)
+                    logger.info(
+                        "[INGEST] Batch %d/%d done — %d chunks (attempt %d)",
+                        batch_index + 1, len(batches), len(text_batch), attempt
+                    )
+                    return
+                except Exception as e:
+                    is_throttle = "ThrottlingException" in str(e) or "Too many requests" in str(e)
+                    if is_throttle and attempt < max_retries:
+                        wait = retry_base_delay * (2 ** (attempt - 1))
+                        logger.warning(
+                            "[INGEST] Batch %d throttled (attempt %d/%d) — retrying in %.1fs",
+                            batch_index + 1, attempt, max_retries, wait
+                        )
+                        import time
+                        time.sleep(wait)
+                    else:
+                        logger.error(
+                            "[INGEST] Batch %d failed after %d attempts: %s",
+                            batch_index + 1, attempt, str(e)
+                        )
+                        raise
+
+        with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
+            futures = {
+                executor.submit(embed_batch, i, tb, mb): i
+                for i, (tb, mb) in enumerate(batches)
+            }
+            for future in concurrent.futures.as_completed(futures):
+                future.result()  # re-raises any exception from the batch
+
         logger.info("[INGEST] Successfully ingested %d chunks for: %s", len(chunks), file_path.name)
 
         log_ingest(message="file_ingested_metadata", action="ingest_single_file", filename=file_path.name, metadata=final_metadata)
@@ -265,3 +328,4 @@ def ingest_single_file(file_path: Path, metadata=None):
     except Exception as e:
         logger.error("[INGEST] Failed to ingest file: %s | Error: %s", file_path.name, str(e))
         log_ingest(message="error_ingesting_file", action="ingest_single_file", filename=file_path.name, error=str(e))
+

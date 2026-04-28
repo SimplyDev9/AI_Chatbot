@@ -55,14 +55,13 @@ def test_rag_full_evaluation_deepeval():
 
     TEST_DATA = [
         {
-            "query": "What happens to earned leaves if an employee accumulates more than 30 ELs?",
-            "expected": "If ELs are accumulated above 30 with no further utilisation, then the basic pay for "
-                        "the additional leaves earned month on month will be paid on quarterly basis "
-                        "in Jan, April, July, October."
+            "query": "Can an employee avail casual or sick leave for half a day?",
+            "expected": "Casual/Sick Leave can be availed for half day."
         },
         {
-            "query": "How many leaves are contractors and interns eligible for?",
-            "expected": "Contractors and Interns are eligible for 1 CL/SL in a month."
+            "query": "What if an employee joins after 15th of any given month?",
+            "expected": "Any employee who joins ValueMomentum after 15th of any given month then leaves will be "
+                        "prorated as per date of joining"
         }
     ]
 
