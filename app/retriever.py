@@ -104,6 +104,7 @@ from app.logger import logger
 
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 import torch
+import re
 
 # ✅ Load once (same model, lighter stack)
 tokenizer = AutoTokenizer.from_pretrained("cross-encoder/ms-marco-MiniLM-L-6-v2")
@@ -141,8 +142,8 @@ def retrieve_documents(query: str, k: int = None):
         # ============================================================
         # ✅ Step 1: Hybrid Retrieval
         # ============================================================
-        vector_results = kb.search(query, k=10)
-        bm25_results = kb.bm25_search(query, k=5)
+        vector_results = kb.search(query, k=15)
+        bm25_results = kb.bm25_search(query, k=10)
 
         combined_results = vector_results + bm25_results
 
@@ -214,7 +215,7 @@ def retrieve_documents(query: str, k: int = None):
         # ✅ Step 5: Relative Score Drop Filter + Top-K
         # ============================================================
         best_score = unique_docs[0]["rerank_score"]
-        max_score_drop = float(4.0)
+        max_score_drop = float(2.0)
         score_threshold = best_score - max_score_drop
 
         final_docs = [
@@ -227,7 +228,48 @@ def retrieve_documents(query: str, k: int = None):
             best_score, score_threshold, len(final_docs), len(unique_docs)
         )
 
-        return final_docs[:k]
+        # ============================================================
+        # ✅ Step 6: Context Cleaning (NEW — GENERIC FIX)
+        # ============================================================
+
+        def clean_chunk(text: str, query: str, max_sentences: int = 2):
+            sentences = re.split(r'(?<=[.!?])\s+', text)
+
+            if len(sentences) <= max_sentences:
+                return text
+
+            # Create (query, sentence) pairs
+            pairs = [(query, s) for s in sentences]
+
+            try:
+                scores = rerank_pairs(pairs)
+            except Exception:
+                # fallback (never break system)
+                return " ".join(sentences[:max_sentences])
+
+            # Rank sentences by semantic relevance
+            ranked = sorted(
+                zip(sentences, scores),
+                key=lambda x: x[1],
+                reverse=True
+            )
+
+            # Take top N sentences
+            top_sentences = [s for s, _ in ranked[:max_sentences]]
+
+            return " ".join(top_sentences)
+
+        cleaned_docs = []
+
+        for doc in final_docs[:k]:
+            cleaned_text = clean_chunk(doc["text"], query)
+
+            cleaned_docs.append({
+                **doc,
+                "text": cleaned_text
+            })
+
+        return cleaned_docs
 
     except Exception:
         logger.exception("Retriever error for query: %s", query)
