@@ -131,8 +131,9 @@ def rerank_pairs(pairs):
     return scores.tolist()
 
 
-def retrieve_documents(query: str, k: int = 3):
-
+def retrieve_documents(query: str, k: int = None):
+    if k is None:
+        k = int(3)
     try:
         kb = KnowledgeBase()
         logger.debug("Retrieving documents for: %s", query)
@@ -190,33 +191,43 @@ def retrieve_documents(query: str, k: int = 3):
             )
 
         # ============================================================
-        # ✅ Step 4: Confidence Filtering
+        # ✅ Step 4: Absolute Score Floor Filter
         # ============================================================
-        if len(unique_docs) < 1:
+        if not unique_docs:
             return []
 
+        min_rerank_threshold = float(-3.0)
+
+        unique_docs = [
+            doc for doc in unique_docs
+            if doc["rerank_score"] >= min_rerank_threshold
+        ]
+
+        if not unique_docs:
+            logger.warning(
+                "All documents rejected by absolute rerank threshold (%.2f) for query: %s",
+                min_rerank_threshold, query
+            )
+            return []
+
+        # ============================================================
+        # ✅ Step 5: Relative Score Drop Filter + Top-K
+        # ============================================================
         best_score = unique_docs[0]["rerank_score"]
-        second_score = (
-            unique_docs[1]["rerank_score"]
-            if len(unique_docs) > 1 else None
+        max_score_drop = float(4.0)
+        score_threshold = best_score - max_score_drop
+
+        final_docs = [
+            doc for doc in unique_docs
+            if doc["rerank_score"] >= score_threshold
+        ]
+
+        logger.info(
+            "Relative Filter → Best: %.2f | Threshold: %.2f | Kept: %d / %d docs",
+            best_score, score_threshold, len(final_docs), len(unique_docs)
         )
 
-        if second_score is not None:
-            score_gap = best_score - second_score
-
-            logger.info(
-                "Confidence Check → Best: %s | Second: %s | Gap: %s",
-                best_score, second_score, score_gap
-            )
-
-            if score_gap < 0.5:
-                logger.warning("Rejected: Low confidence gap")
-                return []
-
-        # ============================================================
-        # ✅ Step 5: Return Top-K
-        # ============================================================
-        return unique_docs[:k]
+        return final_docs[:k]
 
     except Exception:
         logger.exception("Retriever error for query: %s", query)

@@ -16,6 +16,9 @@ from app.document_loader import load_document
 from app.logger import log_ingest
 from pptx import Presentation
 import pandas as pd
+import pdfplumber
+import re
+from app.logger import logger
 
 load_dotenv()
 
@@ -54,11 +57,20 @@ def extract_text(fp: Path) -> str:
             text = docx2txt.process(str(fp))
 
         elif ext == ".pdf":
-            reader = PdfReader(str(fp))
-            text = "\n".join(page.extract_text() or "" for page in reader.pages)
+            pages_text = []
+            with pdfplumber.open(str(fp)) as pdf:
+                for page in pdf.pages:
+                    page_text = page.extract_text() or ""
+                    tables = page.extract_tables()
+                    for table in tables:
+                        for row in table:
+                            cleaned_row = [str(cell).strip() if cell is not None else "" for cell in row]
+                            page_text += "\n" + " | ".join(cleaned_row)
+                    pages_text.append(page_text)
+            text = ("\n".join(pages_text))
 
         elif ext == ".csv":
-            df = pd.read_csv(fp)
+            df = pd.read_csv(fp, encoding="utf-8", encoding_errors="ignore")
             text = df.to_string()
 
         elif ext in [".xls", ".xlsx"]:
@@ -68,19 +80,19 @@ def extract_text(fp: Path) -> str:
         elif ext == ".pptx":
             presentation = Presentation(str(fp))
             slides_text = []
-
             for slide in presentation.slides:
                 for shape in slide.shapes:
                     if hasattr(shape, "text"):
                         slides_text.append(shape.text)
-
             text = "\n".join(slides_text)
+
+        else:
+            log_ingest(message="unsupported_file_type", action="extract_text", filename=fp.name, error=f"No extractor for {ext}")
 
     except Exception as e:
         log_ingest(message="failed_read", action="extract_text", filename=fp.name, error=str(e))
 
     return text.strip()
-
 
 def ingest(corpus_dir=None, clear=False):
     if corpus_dir is None:
@@ -98,10 +110,14 @@ def ingest(corpus_dir=None, clear=False):
 
     # Initialize embeddings and Chroma DB
     embed_model = BedrockEmbeddings(
-        model_id="amazon.titan-embed-text-v1",
+        model_id="amazon.titan-embed-text-v2:0",
         region_name=os.getenv("AWS_DEFAULT_REGION"),
         aws_access_key_id=os.getenv("AWS_ACCESS_KEY_ID"),
-        aws_secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY")
+        aws_secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY"),
+        model_kwargs={
+            "dimensions": 512,
+            "normalize": True
+        }
     )
 
     vectordb = Chroma(
@@ -172,53 +188,80 @@ def calculate_file_hash(file_path: Path):
 
 def ingest_single_file(file_path: Path, metadata=None):
     try:
+        logger.info("[INGEST] Starting ingestion for file: %s", file_path.name)
+
+        logger.info("[INGEST] Initializing embedding model")
         embed_model = BedrockEmbeddings(
-            model_id="amazon.titan-embed-text-v1",
+            model_id="amazon.titan-embed-text-v2:0",
             region_name=os.getenv("AWS_DEFAULT_REGION"),
             aws_access_key_id=os.getenv("AWS_ACCESS_KEY_ID"),
-            aws_secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY")
+            aws_secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY"),
+            model_kwargs={
+                "dimensions": 512,
+                "normalize": True
+            }
         )
 
+        logger.info("[INGEST] Connecting to vector store at: %s", str(CHROMA_DIR))
         vectordb = Chroma(
             persist_directory=str(CHROMA_DIR),
             embedding_function=embed_model
         )
 
+        logger.info("[INGEST] Computing file hash for: %s", file_path.name)
         file_hash = calculate_file_hash(file_path)
+        logger.info("[INGEST] File hash: %s", file_hash)
 
         existing = vectordb.get(where={"filename": file_path.name})
-
         if existing and existing.get("metadatas"):
+            existing_hash = existing["metadatas"][0].get("file_hash")
+            if existing_hash == file_hash:
+                logger.info("[INGEST] File unchanged, skipping re-ingestion: %s", file_path.name)
+                log_ingest(message="file_unchanged_skipped", action="ingest_single_file", filename=file_path.name)
+                return
+            logger.info("[INGEST] File changed, deleting old chunks for: %s", file_path.name)
             vectordb.delete(where={"filename": file_path.name})
 
+        logger.info("[INGEST] Extracting text from: %s (type: %s)", file_path.name, file_path.suffix.lower())
         text = extract_text(file_path)
+        logger.info("[INGEST] Extracted %d characters from: %s", len(text), file_path.name)
 
-        splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=150)
+        chunk_size = int(os.getenv("CHUNK_SIZE", "300"))
+        chunk_overlap = int(os.getenv("CHUNK_OVERLAP", "100"))
+        logger.info("[INGEST] Splitting text — chunk_size=%d, chunk_overlap=%d", chunk_size, chunk_overlap)
 
+        splitter = RecursiveCharacterTextSplitter(
+            chunk_size=chunk_size,
+            chunk_overlap=chunk_overlap
+        )
         chunks = splitter.split_text(text)
+        logger.info("[INGEST] Created %d chunks for: %s", len(chunks), file_path.name)
 
         default_metadata = {
             "filename": file_path.name,
             "source_type": "upload",
             "source_url": None
         }
-
         final_metadata = {**default_metadata, **(metadata or {})}
 
-        for i, chunk in enumerate(chunks):
-            vectordb.add_texts(
-                texts=[chunk],
-                metadatas=[{
-                    "filename": final_metadata["filename"],
-                    "file_hash": file_hash,
-                    "chunk_index": i,
-                    "source_type": final_metadata["source_type"],   # ✅ CRITICAL
-                    "source_url": final_metadata["source_url"],     # ✅ CRITICAL
-                    "file_type": file_path.suffix.lower(),
-                }]
-            )
+        metadatas = [
+            {
+                "filename": final_metadata["filename"],
+                "file_hash": file_hash,
+                "chunk_index": i,
+                "source_type": final_metadata["source_type"],
+                "source_url": final_metadata.get("source_url") or "",
+                "file_type": file_path.suffix.lower(),
+            }
+            for i, _ in enumerate(chunks)
+        ]
+
+        logger.info("[INGEST] Embedding and storing %d chunks into vector DB", len(chunks))
+        vectordb.add_texts(texts=chunks, metadatas=metadatas)
+        logger.info("[INGEST] Successfully ingested %d chunks for: %s", len(chunks), file_path.name)
 
         log_ingest(message="file_ingested_metadata", action="ingest_single_file", filename=file_path.name, metadata=final_metadata)
 
     except Exception as e:
+        logger.error("[INGEST] Failed to ingest file: %s | Error: %s", file_path.name, str(e))
         log_ingest(message="error_ingesting_file", action="ingest_single_file", filename=file_path.name, error=str(e))
