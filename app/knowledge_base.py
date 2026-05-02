@@ -12,14 +12,14 @@ class KnowledgeBase:
         """Initialize embeddings and Chroma vector DB."""
         try:
             self.embeddings = BedrockEmbeddings(
-                model_id="amazon.titan-embed-text-v2:0",
+                model_id="cohere.embed-english-v3",
                 region_name=os.getenv("AWS_DEFAULT_REGION"),
                 aws_access_key_id=os.getenv("AWS_ACCESS_KEY_ID"),
                 aws_secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY"),
-                model_kwargs={
-                    "dimensions": 512,
-                    "normalize": True
-                }
+                # model_kwargs={
+                #     "dimensions": 512,
+                #     "normalize": True
+                # }
             )
 
             self.vectordb = Chroma(
