@@ -4,6 +4,7 @@ from pathlib import Path
 import os
 import shutil
 import time
+import threading  # ✅ NEW
 
 from app.ingest_corpus import ingest, ingest_single_file
 from app.config import CHROMA_DIR
@@ -72,10 +73,32 @@ def list_docs():
     return {"count": len(filenames), "files": filenames}
 
 
+# ✅ FIXED: NON-BLOCKING INGESTION - async
+# @router.post("/upload_doc")
+# async def upload_doc(
+#         file: UploadFile = File(...),
+#         user = Depends(require_permission("ingest"))
+# ):
+#     CORPUS_DIR.mkdir(parents=True, exist_ok=True)
+#
+#     file_path = CORPUS_DIR / file.filename
+#     with open(file_path, "wb") as f:
+#         shutil.copyfileobj(file.file, f)
+#
+#     threading.Thread(
+#         target=ingest_single_file,
+#         args=(file_path,),
+#         daemon=True
+#     ).start()
+#
+#     return {
+#         "status": "accepted",
+#         "message": f"{file.filename} uploaded, ingestion started in background",
+#     }
 @router.post("/upload_doc")
 async def upload_doc(
         file: UploadFile = File(...),
-        user = Depends(require_permission("ingest"))   # 🔐 ADMIN ONLY
+        user = Depends(require_permission("ingest"))
 ):
     CORPUS_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -83,18 +106,47 @@ async def upload_doc(
     with open(file_path, "wb") as f:
         shutil.copyfileobj(file.file, f)
 
-    ingest_single_file(file_path)
+    try:
+        # ✅ BLOCKING CALL
+        ingest_single_file(file_path)
 
-    return {
-        "status": "success",
-        "message": f"{file.filename} uploaded and ingested",
-    }
+        return {
+            "status": "success",
+            "message": f"{file.filename} uploaded and ingested successfully",
+        }
+
+    except Exception as e:
+        return {
+            "status": "error",
+            "message": f"Ingestion failed: {str(e)}",
+        }
+
+# ✅ FIXED: NON-BLOCKING SHAREPOINT INGESTION - async
+# @router.post("/ingest_sharepoint")
+# def ingest_sharepoint(site_id: str, folder_path: str):
+#     threading.Thread(
+#         target=ingest_from_sharepoint,
+#         args=(site_id,),
+#         daemon=True
+#     ).start()
+#
+#     return {
+#         "status": "accepted",
+#         "message": "SharePoint ingestion started in background"
+#     }
 
 @router.post("/ingest_sharepoint")
 def ingest_sharepoint(site_id: str, folder_path: str):
-    ingest_from_sharepoint(site_id)
+    try:
+        ingest_from_sharepoint(site_id)
 
-    return {
-        "status": "success",
-        "message": "SharePoint files ingested successfully"
-    }
+        return {
+            "status": "success",
+            "message": "SharePoint files ingested successfully"
+        }
+
+    except Exception as e:
+        return {
+            "status": "error",
+            "message": f"SharePoint ingestion failed: {str(e)}"
+        }
