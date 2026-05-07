@@ -9,6 +9,7 @@ from app.core.dependencies import require_permission
 
 router = APIRouter()
 
+
 # ------------------------
 # REQUEST MODELS
 # ------------------------
@@ -16,34 +17,27 @@ router = APIRouter()
 class CreateRoleRequest(BaseModel):
     role_name: str
 
-
 class AssignRoleRequest(BaseModel):
     email: str
     role_name: str
-
 
 class UpdateRolePermissionsRequest(BaseModel):
     role_name: str
     permissions: list[str]
 
-
 class RemoveRoleRequest(BaseModel):
     email: str
     role_name: str
 
-
 class DeleteRoleRequest(BaseModel):
     role_name: str
-
 
 class RemovePermissionRequest(BaseModel):
     role_name: str
     permission_name: str
 
-
 class DeleteUserRequest(BaseModel):
     email: str
-
 
 class ReactivateUserRequest(BaseModel):
     email: str
@@ -53,7 +47,10 @@ class ReactivateUserRequest(BaseModel):
 # SEED
 # ------------------------
 @router.get("/seed")
-def seed_data(db: Session = Depends(get_db)):
+def seed_data(
+        db: Session = Depends(get_db),
+        user=Depends(require_permission("manage_users")),
+):
     return {"message": seed_roles_permissions(db)}
 
 
@@ -66,15 +63,17 @@ def create_role(
         db: Session = Depends(get_db),
         user=Depends(require_permission("manage_users"))
 ):
-    existing = db.query(Role).filter(Role.name == req.role_name).first()
-    if existing:
-        raise HTTPException(status_code=400, detail="Role already exists")
+    role_name = req.role_name.strip().upper()
 
-    role = Role(name=req.role_name)
+    existing = db.query(Role).filter(Role.name == role_name).first()
+    if existing:
+        raise HTTPException(status_code=400, detail=f"Role '{role_name}' already exists")
+
+    role = Role(name=role_name)
     db.add(role)
     db.commit()
 
-    return {"message": f"Role '{req.role_name}' created"}
+    return {"message": f"Role '{role_name}' created"}
 
 
 # ------------------------
@@ -94,7 +93,7 @@ def assign_role(
     if not user_obj:
         raise HTTPException(status_code=404, detail="Active user not found")
 
-    role = db.query(Role).filter(Role.name == req.role_name).first()
+    role = db.query(Role).filter(Role.name == req.role_name.strip().upper()).first()
     if not role:
         raise HTTPException(status_code=404, detail="Role not found")
 
@@ -116,7 +115,7 @@ def update_role_permissions(
         db: Session = Depends(get_db),
         user=Depends(require_permission("manage_users"))
 ):
-    role = db.query(Role).filter(Role.name == req.role_name).first()
+    role = db.query(Role).filter(Role.name == req.role_name.strip().upper()).first()
     if not role:
         raise HTTPException(status_code=404, detail="Role not found")
 
@@ -129,7 +128,7 @@ def update_role_permissions(
 
     return {
         "message": f"Permissions updated for role '{req.role_name}'",
-        "permissions": req.permissions
+        "permissions": [p.name for p in permission_objs]
     }
 
 
@@ -142,7 +141,7 @@ def delete_role(
         db: Session = Depends(get_db),
         user=Depends(require_permission("manage_users"))
 ):
-    role = db.query(Role).filter(Role.name == req.role_name).first()
+    role = db.query(Role).filter(Role.name == req.role_name.strip().upper()).first()
 
     if not role:
         raise HTTPException(status_code=404, detail="Role not found")
@@ -173,7 +172,7 @@ def remove_role_from_user(
     if not user_obj:
         raise HTTPException(status_code=404, detail="Active user not found")
 
-    role = db.query(Role).filter(Role.name == req.role_name).first()
+    role = db.query(Role).filter(Role.name == req.role_name.strip().upper()).first()
     if not role:
         raise HTTPException(status_code=404, detail="Role not found")
 
@@ -195,7 +194,7 @@ def remove_permission_from_role(
         db: Session = Depends(get_db),
         user=Depends(require_permission("manage_users"))
 ):
-    role = db.query(Role).filter(Role.name == req.role_name).first()
+    role = db.query(Role).filter(Role.name == req.role_name.strip().upper()).first()
     if not role:
         raise HTTPException(status_code=404, detail="Role not found")
 
@@ -252,46 +251,83 @@ def delete_user(
 
     user.is_active = False
     user.roles.clear()
-
     db.commit()
 
     return {"message": f"User '{req.email}' deactivated successfully"}
 
 
 # ------------------------
-# LIST USERS
+# LIST USERS — includes inactive so admin can reactivate them
 # ------------------------
 @router.get("/admin/list-users")
 def list_users(
         db: Session = Depends(get_db),
         user=Depends(require_permission("manage_users"))
 ):
-    users = db.query(User).filter(User.is_active == True).all()
+    users = db.query(User).all()   # all users, active and inactive
 
     return [
         {
             "email": u.email,
+            "is_active": u.is_active,
             "roles": [r.name for r in u.roles]
         }
         for u in users
     ]
 
 
-# # ------------------------
-# # REACTIVATE USER
-# # ------------------------
-# @router.post("/admin/reactivate-user")
-# def reactivate_user(
-#         req: ReactivateUserRequest,
-#         db: Session = Depends(get_db),
-#         user=Depends(require_permission("manage_users"))
-# ):
-#     user_obj = db.query(User).filter(User.email == req.email).first()
-#
-#     if not user_obj:
-#         raise HTTPException(status_code=404, detail="User not found")
-#
-#     user_obj.is_active = True
-#     db.commit()
-#
-#     return {"message": f"User '{req.email}' reactivated"}
+# ------------------------
+# GET ROLE PERMISSIONS
+# ------------------------
+@router.get("/admin/role-permissions/{role_name}")
+def get_role_permissions(
+        role_name: str,
+        db: Session = Depends(get_db),
+        user=Depends(require_permission("manage_users"))
+):
+    role = db.query(Role).filter(Role.name == role_name).first()
+    if not role:
+        raise HTTPException(status_code=404, detail="Role not found")
+
+    return {
+        "role": role.name,
+        "permissions": [p.name for p in role.permissions]
+    }
+
+
+# ------------------------
+# LIST ROLES
+# ------------------------
+@router.get("/admin/list-roles")
+def list_roles(
+        db: Session = Depends(get_db),
+        user=Depends(require_permission("manage_users"))
+):
+    roles = db.query(Role).all()
+    return [
+        {
+            "role": r.name,
+            "permissions": [p.name for p in r.permissions]
+        }
+        for r in roles
+    ]
+
+
+# ------------------------
+# REACTIVATE USER
+# ------------------------
+@router.post("/admin/reactivate-user")
+def reactivate_user(
+        req: ReactivateUserRequest,
+        db: Session = Depends(get_db),
+        user=Depends(require_permission("manage_users"))
+):
+    user_obj = db.query(User).filter(User.email == req.email).first()
+
+    if not user_obj:
+        raise HTTPException(status_code=404, detail="User not found")
+
+    user_obj.is_active = True
+    db.commit()
+
+    return {"message": f"User '{req.email}' reactivated"}

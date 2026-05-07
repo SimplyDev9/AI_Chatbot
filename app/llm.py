@@ -11,7 +11,7 @@ AWS_REGION = os.getenv("AWS_DEFAULT_REGION", "us-east-1")
 
 try:
     llm = ChatBedrock(
-        model_id="anthropic.claude-3-haiku-20240307-v1:0",
+        model_id = "anthropic.claude-3-haiku-20240307-v1:0",
         region_name=AWS_REGION,
         aws_access_key_id=os.getenv("AWS_ACCESS_KEY_ID"),
         aws_secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY"),

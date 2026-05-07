@@ -10,7 +10,7 @@ CORPUS_DIR = os.path.join(BASE_DIR, "Python_Project", "corpus")
 
 CHROMA_DIR = "Python_Project/chroma_db"
 
-EMBEDDING_MODEL = "all-MiniLM-L6-v2"  # Example: SentenceTransformer model
+EMBEDDING_MODEL = "all-MiniLM-L6-v2"
 
 # ------------------------
 # Logging Config
