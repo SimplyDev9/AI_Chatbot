@@ -24,6 +24,8 @@ RULES:
 3. Do not begin your answer with phrases like "According to", "Based on", "The context says", or any similar phrasing.
 4. Do not infer, assume, or use any knowledge beyond what is in the context.
 5. If the answer is not present in the context, respond with exactly: "I don't have enough information in the knowledge base to answer this."
+6. Use the context to construct a complete and meaningful answer.
+7. Information may be spread across multiple context sections — combine them if needed. 
 
 ANSWER:"""
 

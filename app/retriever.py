@@ -1,103 +1,4 @@
-# from app.knowledge_base import KnowledgeBase
-# from app.logger import logger
-# from sentence_transformers import CrossEncoder
-#
-# # ✅ Load once
-# reranker = CrossEncoder("cross-encoder/ms-marco-MiniLM-L-6-v2")
-#
-#
-# def retrieve_documents(query: str, k: int = 3):
-#
-#     try:
-#         kb = KnowledgeBase()
-#         logger.debug("Retrieving documents for: %s", query)
-#
-#         # ============================================================
-#         # ✅ Step 1: Hybrid Retrieval
-#         # ============================================================
-#         vector_results = kb.search(query, k=10)
-#         bm25_results = kb.bm25_search(query, k=5)
-#
-#         combined_results = vector_results + bm25_results
-#
-#         if not combined_results:
-#             logger.warning("No documents found for query: %s", query)
-#             return []
-#
-#         # ============================================================
-#         # ✅ Step 2: Deduplication (CRITICAL)
-#         # ============================================================
-#         seen = set()
-#         unique_docs = []
-#
-#         for doc in combined_results:
-#             text = doc.get("text")
-#
-#             if text and text not in seen:
-#                 seen.add(text)
-#                 unique_docs.append({
-#                     "text": text,
-#                     "metadata": doc.get("metadata", {}),
-#                     "score": float(doc.get("score", 9999))
-#                 })
-#
-#
-#         # ============================================================
-#         # ✅ Step 3: Cross-Encoder Reranking
-#         # ============================================================
-#         pairs = [(query, d["text"]) for d in unique_docs]
-#         rerank_scores = reranker.predict(pairs)
-#
-#         for i in range(len(unique_docs)):
-#             unique_docs[i]["rerank_score"] = float(rerank_scores[i])
-#
-#         # Sort by rerank score (HIGHER = better)
-#         unique_docs = sorted(
-#             unique_docs,
-#             key=lambda x: x["rerank_score"],
-#             reverse=True
-#         )
-#
-#         logger.info("After reranking:")
-#         for d in unique_docs[:5]:
-#             logger.info(
-#                 "Rerank Score: %s | File: %s",
-#                 d["rerank_score"],
-#                 d["metadata"].get("filename")
-#             )
-#
-#         # ============================================================
-#         # ✅ Step 4: Confidence Filtering (NO LLM)
-#         # ============================================================
-#         if len(unique_docs) < 1:
-#             return []
-#
-#         best_score = unique_docs[0]["rerank_score"]
-#         second_score = (
-#             unique_docs[1]["rerank_score"]
-#             if len(unique_docs) > 1 else None
-#         )
-#
-#         if second_score is not None:
-#             score_gap = best_score - second_score
-#
-#             logger.info(
-#                 "Confidence Check → Best: %s | Second: %s | Gap: %s",
-#                 best_score, second_score, score_gap
-#             )
-#
-#             if score_gap < 0.5:
-#                 logger.warning("Rejected: Low confidence gap")
-#                 return []
-#
-#         # ============================================================
-#         # ✅ Step 5: Return Top-K
-#         # ============================================================
-#         return unique_docs[:k]
-#
-#     except Exception:
-#         logger.exception("Retriever error for query: %s", query)
-#         return []
+import os
 
 from app.knowledge_base import KnowledgeBase
 from app.logger import logger
@@ -134,13 +35,13 @@ def rerank_pairs(pairs):
 
 def retrieve_documents(query: str, k: int = None):
     if k is None:
-        k = int(3)
+        k = int(os.getenv("RETRIEVER_TOP_K", "3"))
     try:
         kb = KnowledgeBase()
         logger.debug("Retrieving documents for: %s", query)
 
         # ============================================================
-        # ✅ Step 1: Hybrid Retrieval
+        # Step 1: Hybrid Retrieval
         # ============================================================
         vector_results = kb.search(query, k=15)
         bm25_results = kb.bm25_search(query, k=10)
@@ -152,7 +53,7 @@ def retrieve_documents(query: str, k: int = None):
             return []
 
         # ============================================================
-        # ✅ Step 2: Deduplication
+        # Step 2: Deduplication
         # ============================================================
         seen = set()
         unique_docs = []
@@ -169,7 +70,7 @@ def retrieve_documents(query: str, k: int = None):
                 })
 
         # ============================================================
-        # ✅ Step 3: Cross-Encoder Reranking
+        # Step 3: Cross-Encoder Reranking
         # ============================================================
         pairs = [(query, d["text"]) for d in unique_docs]
         rerank_scores = rerank_pairs(pairs)
@@ -192,12 +93,12 @@ def retrieve_documents(query: str, k: int = None):
             )
 
         # ============================================================
-        # ✅ Step 4: Absolute Score Floor Filter
+        # Step 4: Absolute Score Floor Filter (read from env)
         # ============================================================
         if not unique_docs:
             return []
 
-        min_rerank_threshold = float(-3.0)
+        min_rerank_threshold = float(os.getenv("MIN_RERANK_SCORE", "-3.0"))
 
         unique_docs = [
             doc for doc in unique_docs
@@ -212,10 +113,10 @@ def retrieve_documents(query: str, k: int = None):
             return []
 
         # ============================================================
-        # ✅ Step 5: Relative Score Drop Filter + Top-K
+        # Step 5: Relative Score Drop Filter + Top-K (read from env)
         # ============================================================
         best_score = unique_docs[0]["rerank_score"]
-        max_score_drop = float(2.0)
+        max_score_drop = float(os.getenv("MAX_RERANK_SCORE_DROP", "4.0"))
         score_threshold = best_score - max_score_drop
 
         final_docs = [
@@ -229,45 +130,36 @@ def retrieve_documents(query: str, k: int = None):
         )
 
         # ============================================================
-        # ✅ Step 6: Context Cleaning (NEW — GENERIC FIX)
+        # Step 6: Context Cleaning — keep top sentences per chunk
         # ============================================================
 
-        def clean_chunk(text: str, query: str, max_sentences: int = 2):
+        def clean_chunk(text: str, query: str, max_sentences: int = 2) -> str:
             sentences = re.split(r'(?<=[.!?])\s+', text)
 
             if len(sentences) <= max_sentences:
                 return text
 
-            # Create (query, sentence) pairs
             pairs = [(query, s) for s in sentences]
 
             try:
                 scores = rerank_pairs(pairs)
             except Exception:
-                # fallback (never break system)
                 return " ".join(sentences[:max_sentences])
 
-            # Rank sentences by semantic relevance
             ranked = sorted(
                 zip(sentences, scores),
                 key=lambda x: x[1],
                 reverse=True
             )
 
-            # Take top N sentences
             top_sentences = [s for s, _ in ranked[:max_sentences]]
-
             return " ".join(top_sentences)
 
         cleaned_docs = []
 
         for doc in final_docs[:k]:
             cleaned_text = clean_chunk(doc["text"], query)
-
-            cleaned_docs.append({
-                **doc,
-                "text": cleaned_text
-            })
+            cleaned_docs.append({**doc, "text": cleaned_text})
 
         return cleaned_docs
 

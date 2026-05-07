@@ -80,17 +80,8 @@ def extract_text(fp: Path) -> str:
             text = docx2txt.process(str(fp))
 
         elif ext == ".pdf":
-            pages_text = []
-            with pdfplumber.open(str(fp)) as pdf:
-                for page in pdf.pages:
-                    page_text = page.extract_text() or ""
-                    tables = page.extract_tables()
-                    for table in tables:
-                        for row in table:
-                            cleaned_row = [str(cell).strip() if cell is not None else "" for cell in row]
-                            page_text += "\n" + " | ".join(cleaned_row)
-                    pages_text.append(page_text)
-            text = ("\n".join(pages_text))
+            reader = PdfReader(str(fp))
+            text = "\n".join(page.extract_text() or "" for page in reader.pages)
 
         elif ext == ".csv":
             df = pd.read_csv(fp, encoding="utf-8", encoding_errors="ignore")

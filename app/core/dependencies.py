@@ -10,7 +10,6 @@ from app.db.models import User
 security = HTTPBearer()
 
 
-# ✅ Extract current user from JWT
 def get_current_user(
         credentials: HTTPAuthorizationCredentials = Depends(security),
         db: Session = Depends(get_db)
@@ -23,17 +22,23 @@ def get_current_user(
         if not email:
             raise HTTPException(status_code=401, detail="Invalid token")
 
-        user = db.query(User).filter(User.email == email).first()
+        user = db.query(User).filter(
+            User.email == email,
+            User.is_active == True
+        ).first()
         if not user:
-            raise HTTPException(status_code=401, detail="User not found")
+            raise HTTPException(status_code=401, detail="User not found or inactive")
 
         return user
 
+    except HTTPException:
+        raise
     except Exception:
         raise HTTPException(status_code=401, detail="Invalid or expired token")
 
 
 def require_permission(permission: str):
+    """permission must be lowercase, matching seed.py: 'chat', 'ingest', 'manage_users'"""
     def checker(user: User = Depends(get_current_user)):
         user_permissions = {
             perm.name
