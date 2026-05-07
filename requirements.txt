@@ -1,6 +1,6 @@
 bcrypt==3.2.2
 docx2txt
-eepeval
+deepeval
 fastapi
 langchain-aws
 langchain-chroma
