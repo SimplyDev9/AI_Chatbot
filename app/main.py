@@ -25,6 +25,7 @@ from app.db.database import engine
 from app.db.database import test_connection
 from app.logger import logger
 from app.sharepoint_loader import get_access_token
+from routers.voice_router import router as voice_router
 
 load_dotenv()
 
@@ -106,6 +107,12 @@ def db_test(user=Depends(require_permission("manage_users"))):
 app.include_router(admin_router)
 app.include_router(chat_router)
 app.include_router(ingest_router)
+
+
+# =========================================
+# VOICE
+# =========================================
+app.include_router(voice_router, prefix="/voice", tags=["voice"])
 
 
 def start():
