@@ -25,7 +25,7 @@ from app.db.database import engine
 from app.db.database import test_connection
 from app.logger import logger
 from app.sharepoint_loader import get_access_token
-from routers.voice_router import router as voice_router
+from app.routers.voice_router import router as voice_router
 
 load_dotenv()
 
