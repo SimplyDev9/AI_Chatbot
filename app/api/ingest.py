@@ -65,16 +65,36 @@ def delete_doc(
 
 @router.get("/list_docs")
 def list_docs(user=Depends(require_permission("ingest"))):
+    import os
+    from datetime import datetime
+
     vectordb = get_vectordb()
     data = vectordb.get(include=["metadatas"])
 
-    filenames = list({
+    unique_filenames = list({
         meta.get("filename")
         for meta in data.get("metadatas", [])
         if meta and "filename" in meta
     })
 
-    return {"count": len(filenames), "files": filenames}
+    files = []
+    for filename in unique_filenames:
+        file_path = CORPUS_DIR / filename
+        size = None
+        uploaded_on = None
+
+        if file_path.exists():
+            stat = file_path.stat()
+            size = stat.st_size
+            uploaded_on = datetime.fromtimestamp(stat.st_mtime).isoformat()
+
+        files.append({
+            "filename": filename,
+            "size": size,
+            "uploaded_on": uploaded_on,
+        })
+
+    return {"count": len(files), "files": files}
 
 
 @router.post("/upload_doc")
