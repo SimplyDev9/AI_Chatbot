@@ -37,19 +37,34 @@ app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 CORPUS_DIR = Path(os.getenv("CORPUS_DIR", "corpus"))
 
-# Prepare middleware class in a way that satisfies type checkers
-middleware_cls: Any = CORSMiddleware
+# ============================================
+# CORS — restrict to known frontend origins
+#
+# allow_origins=["*"] + allow_credentials=True is prohibited by the CORS spec
+# and is a CSRF attack vector. Any malicious site could make authenticated
+# requests using the victim's JWT. Restrict to explicit origins only.
+#
+# Set ALLOWED_ORIGINS in .env:
+#   ALLOWED_ORIGINS=https://app.yourcompany.com,https://admin.yourcompany.com
+# For local dev, leave it blank — defaults to localhost:3000 only.
+# ============================================
+_raw_origins = os.getenv("ALLOWED_ORIGINS", "")
+ALLOWED_ORIGINS = [o.strip() for o in _raw_origins.split(",") if o.strip()]
 
-# ============================================
-# CORS
-# ============================================
+if not ALLOWED_ORIGINS:
+    ALLOWED_ORIGINS = ["http://localhost:3000"]
+    logger.warning(
+        "CORS: ALLOWED_ORIGINS not set — restricting to localhost:3000 only. "
+        "Set ALLOWED_ORIGINS in .env before deploying to production."
+    )
+
 app.add_middleware(
-    middleware_cls,  # type: ignore[arg-type]
-    allow_origins=["*"],
+    CORSMiddleware,
+    allow_origins=ALLOWED_ORIGINS,
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)  # type: ignore
+    allow_methods=["GET", "POST", "DELETE", "PUT", "PATCH"],
+    allow_headers=["Authorization", "Content-Type"],
+)
 
 
 # ============================================
@@ -87,8 +102,16 @@ def health_check():
     return {"status": "ok", "message": "AI Chatbot API is running 🚀"}
 
 
-# ✅ Create tables
-Base.metadata.create_all(bind=engine)
+# ── Database tables are managed by Alembic migrations, NOT create_all() ────
+# create_all() is an antipattern for production:
+#   - silently skips existing tables (cannot apply schema changes)
+#   - no rollback capability, no migration history
+#   - race condition when two instances start simultaneously
+#
+# Run migrations before starting the server:
+#   alembic upgrade head
+#
+# In Docker: CMD ["sh", "-c", "alembic upgrade head && uvicorn app.main:app ..."]
 
 
 @app.get("/")

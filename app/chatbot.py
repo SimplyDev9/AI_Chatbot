@@ -69,7 +69,8 @@ def answer_query(query: str):
             sources.append({
                 "name": metadata.get("filename", "Unknown"),
                 "type": metadata.get("source_type", "unknown"),
-                "url": metadata.get("source_url")
+                "url": metadata.get("source_url"),
+                "retrieved_context": docs
             })
 
         # ✅ Fallback: use best ranked doc (top-1)

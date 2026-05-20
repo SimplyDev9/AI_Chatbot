@@ -159,3 +159,38 @@ class KnowledgeBase:
         except Exception:
             logger.exception("DB check error")
             return False
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Module-level singleton — BM25 is built ONCE and reused across all queries.
+#
+# Without this, every call to retrieve_documents() does:
+#   KnowledgeBase() -> vectordb.get() -> tokenize all docs -> BM25Okapi()
+# With 500 docs that adds ~100ms per query. With 5000 docs it reaches 1s+.
+#
+# After ingestion completes, call invalidate_knowledge_base() so the next
+# query triggers a fresh BM25 build with the new documents included.
+# ─────────────────────────────────────────────────────────────────────────────
+import threading as _threading
+
+_kb_instance = None
+_kb_lock = _threading.Lock()
+
+
+def get_knowledge_base():
+    # Return the shared KnowledgeBase singleton, building it if needed.
+    global _kb_instance
+    if _kb_instance is None:
+        with _kb_lock:
+            if _kb_instance is None:   # double-checked locking
+                logger.info("KnowledgeBase: building singleton (first call or post-ingest)")
+                _kb_instance = KnowledgeBase()
+    return _kb_instance
+
+
+def invalidate_knowledge_base():
+    # Drop the singleton so the next query triggers a fresh BM25 rebuild.
+    # Call this at the end of every successful ingest operation.
+    global _kb_instance
+    with _kb_lock:
+        _kb_instance = None
+    logger.info("KnowledgeBase: singleton invalidated — will rebuild on next query")
