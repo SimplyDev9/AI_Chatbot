@@ -101,12 +101,14 @@ def extract_text(fp: Path) -> str:
             text = "\n".join(slides_text)
 
         else:
-            log_ingest(message="unsupported_file_type", action="extract_text", filename=fp.name, error=f"No extractor for {ext}")
+            log_ingest(message="unsupported_file_type", action="extract_text", filename=fp.name,
+                       error=f"No extractor for {ext}")
 
     except Exception as e:
         log_ingest(message="failed_read", action="extract_text", filename=fp.name, error=str(e))
 
     return text.strip()
+
 
 def ingest(corpus_dir=None, clear=False):
     if corpus_dir is None:
@@ -200,8 +202,19 @@ def calculate_file_hash(file_path: Path):
     return hasher.hexdigest()
 
 
+def ingest_single_file(file_path: Path, metadata=None, progress=None):
+    """
+    progress: optional callable(stage: str, percent: int, message: str)
+    Stages: loading, chunking, embedding, done, error
+    """
 
-def ingest_single_file(file_path: Path, metadata=None):
+    def _emit(stage, percent, message):
+        if callable(progress):
+            try:
+                progress(stage, percent, message)
+            except Exception:
+                pass  # never let a callback crash ingestion
+
     try:
         start_ts = time.time()
         logger.info("[INGEST] Starting ingestion for file: %s", file_path.name)
@@ -225,6 +238,7 @@ def ingest_single_file(file_path: Path, metadata=None):
             if existing_hash == file_hash:
                 logger.info("[INGEST] File unchanged, skipping ingestion: %s", file_path.name)
                 logger.debug("[INGEST] Total time for skip: %.3fs", time.time() - start_ts)
+                _emit('done', 100, 'File unchanged — already up to date')
                 return
             logger.info("[INGEST] File changed, deleting old entries for: %s", file_path.name)
             try:
@@ -234,10 +248,12 @@ def ingest_single_file(file_path: Path, metadata=None):
                 logger.warning("[INGEST] Failed to delete old entries for %s: %s", file_path.name, str(e))
 
         logger.info("[INGEST] Extracting text from file: %s", file_path.name)
+        _emit('loading', 15, f'Loading {file_path.name}...')
         text = extract_text(file_path)
         if not text:
             logger.warning("[INGEST] No text extracted from file, aborting: %s", file_path.name)
             logger.debug("[INGEST] Total time when extraction empty: %.3fs", time.time() - start_ts)
+            _emit('error', 0, 'No text could be extracted from this file')
             return
         logger.debug("[INGEST] Extracted text length: %d", len(text))
 
@@ -261,8 +277,10 @@ def ingest_single_file(file_path: Path, metadata=None):
             separators=["\n\n", "\n", "Q:", "A:", ".", " "]
         )
 
+        _emit('chunking', 35, f'Splitting into chunks...')
         chunks = splitter.split_text(text)
         logger.info("[INGEST] Split into %d chunks (approx).", len(chunks))
+        _emit('chunking', 50, f'Split into {len(chunks)} chunks')
 
         metadatas = [
             {
@@ -283,6 +301,7 @@ def ingest_single_file(file_path: Path, metadata=None):
             for i in range(0, len(chunks), batch_size)
         ]
         logger.info("[INGEST] Created %d batches (batch_size=%d).", len(batches), batch_size)
+        _emit('embedding', 55, f'Embedding {len(chunks)} chunks in {len(batches)} batches...')
 
         for i, (text_batch, meta_batch) in enumerate(batches):
             batch_start = time.time()
@@ -291,20 +310,19 @@ def ingest_single_file(file_path: Path, metadata=None):
             for attempt in range(5):
                 try:
                     logger.debug("[INGEST] Attempt %d for batch %d", attempt + 1, i + 1)
-                    vectordb.add_texts(texts=text_batch, metadatas=meta_batch)
-
-                    # time.sleep(0.4)  # RATE LIMIT
                     START = time.time()
-                    vectordb.add_texts(texts=text_batch, metadatas=meta_batch)
+                    vectordb.add_texts(texts=text_batch, metadatas=meta_batch)  # single write
                     ELAPSED = time.time() - START
 
-                    # only sleep if API was too fast
+                    # rate-limit guard — Bedrock can throttle on rapid sequential requests
                     if ELAPSED < 0.5:
                         time.sleep(0.5 - ELAPSED)
                     batch_time = time.time() - batch_start
                     logger.info("[INGEST] Batch %d/%d done (%d chunks) in %.3fs",
                                 i + 1, len(batches), len(text_batch), batch_time)
                     success = True
+                    pct = 55 + int(40 * (i + 1) / len(batches))
+                    _emit('embedding', pct, f'Embedded batch {i + 1}/{len(batches)}')
                     break
 
                 except Exception as e:
@@ -314,14 +332,16 @@ def ingest_single_file(file_path: Path, metadata=None):
                     time.sleep(wait)
 
             if not success:
-                err_msg = f"Failed batch {i+1} for file {file_path.name}"
+                err_msg = f"Failed batch {i + 1} for file {file_path.name}"
                 logger.error("[INGEST] %s", err_msg)
                 raise Exception(err_msg)
 
         total_time = time.time() - start_ts
         logger.info("[INGEST] Completed ingestion: %s (%d chunks) in %.3fs", file_path.name, len(chunks), total_time)
+        _emit('done', 100, f'Ingested {len(chunks)} chunks in {total_time:.1f}s')
 
     except Exception as e:
         # log full exception with stack trace
-        logger.exception("[INGEST] Failed ingestion for %s: %s", file_path.name if file_path is not None else "unknown", str(e))
+        logger.exception("[INGEST] Failed ingestion for %s: %s", file_path.name if file_path is not None else "unknown",
+                         str(e))
         raise

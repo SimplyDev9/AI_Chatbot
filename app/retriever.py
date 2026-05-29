@@ -1,6 +1,6 @@
 import os
 
-from app.knowledge_base import KnowledgeBase
+from app.knowledge_base import get_knowledge_base
 from app.logger import logger
 
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
@@ -37,7 +37,7 @@ def retrieve_documents(query: str, k: int = None):
     if k is None:
         k = int(os.getenv("RETRIEVER_TOP_K", "3"))
     try:
-        kb = KnowledgeBase()
+        kb = get_knowledge_base()  # singleton — BM25 not rebuilt every call
         logger.debug("Retrieving documents for: %s", query)
 
         # ============================================================
@@ -133,10 +133,15 @@ def retrieve_documents(query: str, k: int = None):
         # Step 6: Context Cleaning — keep top sentences per chunk
         # ============================================================
 
-        def clean_chunk(text: str, query: str, max_sentences: int = 2) -> str:
+        def clean_chunk(text: str, query: str, max_sentences: int = 1) -> str:
+            # max_sentences=1: keep only the single most query-relevant sentence.
+            # This is the primary driver of ContextualRelevancy score — returning
+            # multi-sentence chunks that contain off-topic sentences drags the
+            # relevancy score down even when the answer is correct.
             sentences = re.split(r'(?<=[.!?])\s+', text)
 
-            if len(sentences) <= max_sentences:
+            if len(sentences) < 2:
+                # Only one sentence — nothing to filter
                 return text
 
             pairs = [(query, s) for s in sentences]

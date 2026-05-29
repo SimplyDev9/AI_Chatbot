@@ -162,8 +162,16 @@ def delete_role(
 def remove_role_from_user(
         req: RemoveRoleRequest,
         db: Session = Depends(get_db),
-        user=Depends(require_permission("manage_users"))
+        current_user=Depends(require_permission("manage_users"))
 ):
+    # ── Self-role-removal guard ──────────────────────────────────────────────
+    if req.email == current_user.email:
+        raise HTTPException(
+            status_code=400,
+            detail="You cannot remove a role from your own account."
+        )
+    # ────────────────────────────────────────────────────────────────────────
+
     user_obj = db.query(User).filter(
         User.email == req.email,
         User.is_active == True

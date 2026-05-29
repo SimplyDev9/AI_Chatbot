@@ -29,8 +29,8 @@ def get_auth_token():
     login_resp = requests.post(
         LOGIN_URL,
         json={
-            "email": os.getenv("TEST_EMAIL", "mahesh@test.com"),
-            "password": os.getenv("TEST_PASSWORD", "Mahesh@123")
+            "email": os.getenv("TEST_EMAIL", "admin@test.com"),
+            "password": os.getenv("TEST_PASSWORD", "Admin@123")
         }
     )
 
@@ -109,7 +109,12 @@ def test_rag_full_evaluation_deepeval():
         assert resp.status_code == 200, f"Chat API failed: {response}"
 
         generated_output = response.get("response", "")
-        retrieved_docs = response.get("retrieved_context", [])
+        retrieved_docs = []
+
+        for source in response.get("sources", []):
+            retrieved_docs.extend(
+                source.get("retrieved_context", [])
+            )
 
         assert generated_output.strip() != "", f"Empty LLM response: {response}"
 

@@ -1,42 +1,106 @@
-from fastapi import APIRouter, Depends
-from pydantic import BaseModel, field_validator
-from starlette.requests import Request
+"""
+app/api/chat.py
+───────────────
+POST /chat  — main RAG chat endpoint.
+
+Guardrail pipeline is injected BEFORE the query reaches the LLM:
+  1. AWS Comprehend  (toxicity / hate-speech / profanity)
+  2. AWS Bedrock Guardrail  (custom organisational policy / prompt-injection)
+
+Both layers fail-open so an AWS outage never blocks a legitimate request.
+"""
+
+from __future__ import annotations
+
+import logging
+
+from fastapi import APIRouter, Depends, HTTPException, status
+from pydantic import BaseModel, Field
 
 from app.chatbot import answer_query
-from app.core.dependencies import require_permission
-from app.core.limiter import limiter
+from app.core.dependencies import get_current_user
+from app.guardrails import run_guardrails
+
+logger = logging.getLogger(__name__)
 
 router = APIRouter()
 
-MAX_QUERY_LENGTH = 500
 
+# ─────────────────────────────────────────────────────────────────────────────
+# Request / Response models
+# ─────────────────────────────────────────────────────────────────────────────
 
 class ChatRequest(BaseModel):
-    query: str
-
-    @field_validator("query")
-    @classmethod
-    def query_must_not_be_empty_or_too_long(cls, v: str) -> str:
-        v = v.strip()
-        if not v:
-            raise ValueError("Query must not be empty.")
-        if len(v) > MAX_QUERY_LENGTH:
-            raise ValueError(f"Query exceeds maximum length of {MAX_QUERY_LENGTH} characters.")
-        return v
+    query: str = Field(..., min_length=1, max_length=4_000)
 
 
-@router.post("/chat")
-@limiter.limit("30/minute")
-def chat(
-        req: ChatRequest,
-        request: Request,
-        user=Depends(require_permission("chat")),
+class ChatResponse(BaseModel):
+    response: str
+    sources:  list = []
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Route
+# ─────────────────────────────────────────────────────────────────────────────
+
+@router.post(
+    "/chat",
+    response_model=ChatResponse,
+    summary="RAG chat with dual-layer guardrails",
+)
+async def chat(
+        body: ChatRequest,
+        current_user=Depends(get_current_user),
 ):
-    result = answer_query(req.query)
+    """
+    Accept a user query, run it through the dual-layer guardrail pipeline,
+    then forward to the RAG chain if the content is clean.
 
-    return {
-        "query": req.query,
-        "response": result["response"],
-        "sources": result["sources"],
-        # retrieved_context intentionally omitted — internal KB detail
-    }
+    HTTP 400 is returned with a structured body when either guardrail layer
+    blocks the message:
+
+        {
+          "detail": {
+            "code":    "CONTENT_BLOCKED",
+            "message": "<user-facing explanation>"
+          }
+        }
+    """
+    raw_query = body.query.strip()
+
+    if not raw_query:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Query must not be empty.",
+        )
+
+    # ── Dual-layer guardrail check ────────────────────────────────────────
+    is_blocked, user_message = run_guardrails(raw_query)
+
+    if is_blocked:
+        logger.warning(
+            "Guardrail blocked request | user=%s | preview=%r",
+            getattr(current_user, "email", "unknown"),
+            raw_query[:120],
+        )
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail={
+                "code":    "CONTENT_BLOCKED",
+                "message": user_message,
+            },
+        )
+
+    # ── Clean — forward to RAG chain ─────────────────────────────────────
+    try:
+        result = answer_query(raw_query)
+        return ChatResponse(
+            response=result.get("response", ""),
+            sources=result.get("sources", []),
+        )
+    except Exception as exc:
+        logger.exception("answer_query failed: %s", exc)
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="An error occurred while processing your request.",
+        )
