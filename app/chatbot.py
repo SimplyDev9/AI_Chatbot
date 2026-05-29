@@ -2,6 +2,7 @@ from app.llm import call_bedrock_llm
 from app.logger import log_interaction, logger
 from app.retriever import retrieve_documents
 from app.prompt_builder import build_prompt
+from app.guardrails import check_output_guardrail
 
 
 def answer_query(query: str):
@@ -87,6 +88,19 @@ def answer_query(query: str):
         sources = list({s["name"]: s for s in sources}.values())
 
         log_interaction(query, response, "RAG", None)
+        is_hard_blocked, guardrail_text = check_output_guardrail(response)
+
+        if is_hard_blocked:
+            # Bedrock blocked the response entirely (grounding failure, content
+            # policy violation, etc.). Return a safe fallback. Sources are cleared
+            # so the user cannot infer what was retrieved.
+            return {"response": guardrail_text, "sources": []}
+
+        if guardrail_text:
+            # Bedrock anonymized PII in the response (e.g. "[NAME] approved your
+            # leave request."). Use the anonymized version — it is already safe.
+            # Sources are kept because the answer is still grounded and useful.
+            return {"response": guardrail_text, "sources": sources}
 
         return {
             "response": response,

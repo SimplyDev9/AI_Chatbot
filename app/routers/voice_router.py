@@ -1,6 +1,19 @@
+"""
+app/routers/voice_router.py
+────────────────────────────
+Voice endpoints — Speech-to-Text (Amazon Transcribe) and Text-to-Speech (Amazon Polly).
+
+Guardrail pipeline is injected AFTER transcription and BEFORE the RAG query,
+using the same dual-layer (Comprehend + Bedrock Guardrail) used by the chat endpoint.
+This ensures voice input receives identical policy enforcement to text input.
+
+    Audio → Transcribe → [GUARDRAIL CHECK] → RAG → Polly → MP3
+"""
+
+from __future__ import annotations
+
 import asyncio
 import io
-import json
 import logging
 import os
 import time
@@ -13,28 +26,20 @@ from fastapi import APIRouter, Depends, File, HTTPException, UploadFile, status
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 
-# ── Optional: reuse your existing auth dependency ──────────────────────────
-# Replace this import with the actual path in your project.
-# If you don't have one, remove the `dependencies` parameter below.
-try:
-    from auth import get_current_user  # adjust import as needed
-    _AUTH_DEP = [Depends(get_current_user)]
-except ImportError:
-    _AUTH_DEP = []
+from app.core.dependencies import get_current_user
+from app.guardrails import run_guardrails
 
 logger = logging.getLogger(__name__)
 
-router = APIRouter(dependencies=_AUTH_DEP)
+router = APIRouter()
 
-# ── AWS config ──────────────────────────────────────────────────────────────
-AWS_REGION          = os.environ.get("AWS_REGION", "us-east-1")
-# Optional S3 bucket for Transcribe (required by the batch Transcribe API).
-# If blank, we fall back to a pre-signed-URL approach.
+# ── AWS config ───────────────────────────────────────────────────────────────
+AWS_REGION           = os.environ.get("AWS_REGION", "us-east-1")
 TRANSCRIBE_S3_BUCKET = os.environ.get("TRANSCRIBE_S3_BUCKET", "")
 
 _transcribe_client = boto3.client("transcribe", region_name=AWS_REGION)
 _polly_client      = boto3.client("polly",      region_name=AWS_REGION)
-_s3_client         = boto3.client("s3",          region_name=AWS_REGION) if TRANSCRIBE_S3_BUCKET else None
+_s3_client         = boto3.client("s3",         region_name=AWS_REGION) if TRANSCRIBE_S3_BUCKET else None
 
 
 # ════════════════════════════════════════════════════════════════════════════
@@ -44,8 +49,6 @@ _s3_client         = boto3.client("s3",          region_name=AWS_REGION) if TRAN
 async def _transcribe_from_bytes(audio_bytes: bytes, media_format: str = "webm") -> str:
     """
     Upload audio to S3 → start Transcription job → poll until done → return transcript.
-
-    Falls back to a small in-process approach if no S3 bucket is configured.
     Raises HTTPException on failure.
     """
     if not TRANSCRIBE_S3_BUCKET:
@@ -57,9 +60,9 @@ async def _transcribe_from_bytes(audio_bytes: bytes, media_format: str = "webm")
             ),
         )
 
-    job_name   = f"voice-{uuid.uuid4().hex}"
-    s3_key     = f"transcribe-input/{job_name}.{media_format}"
-    s3_uri     = f"s3://{TRANSCRIBE_S3_BUCKET}/{s3_key}"
+    job_name = f"voice-{uuid.uuid4().hex}"
+    s3_key   = f"transcribe-input/{job_name}.{media_format}"
+    s3_uri   = f"s3://{TRANSCRIBE_S3_BUCKET}/{s3_key}"
 
     # 1. Upload raw audio to S3
     try:
@@ -70,10 +73,7 @@ async def _transcribe_from_bytes(audio_bytes: bytes, media_format: str = "webm")
         )
     except (BotoCoreError, ClientError) as exc:
         logger.error("S3 upload failed: %s", exc)
-        raise HTTPException(
-            status_code=status.HTTP_502_BAD_GATEWAY,
-            detail=f"S3 upload error: {exc}",
-        )
+        raise HTTPException(status_code=status.HTTP_502_BAD_GATEWAY, detail=f"S3 upload error: {exc}")
 
     # 2. Start Transcription job
     try:
@@ -85,10 +85,7 @@ async def _transcribe_from_bytes(audio_bytes: bytes, media_format: str = "webm")
         )
     except (BotoCoreError, ClientError) as exc:
         logger.error("Transcribe start failed: %s", exc)
-        raise HTTPException(
-            status_code=status.HTTP_502_BAD_GATEWAY,
-            detail=f"Transcribe start error: {exc}",
-        )
+        raise HTTPException(status_code=status.HTTP_502_BAD_GATEWAY, detail=f"Transcribe start error: {exc}")
 
     # 3. Poll until COMPLETED or FAILED (max 25 s)
     deadline = time.time() + 25
@@ -103,7 +100,6 @@ async def _transcribe_from_bytes(audio_bytes: bytes, media_format: str = "webm")
 
         if job_status == "COMPLETED":
             transcript_uri = resp["TranscriptionJob"]["Transcript"]["TranscriptFileUri"]
-            # Fetch JSON transcript over HTTPS
             async with httpx.AsyncClient(timeout=10) as client:
                 r = await client.get(transcript_uri)
                 r.raise_for_status()
@@ -111,7 +107,6 @@ async def _transcribe_from_bytes(audio_bytes: bytes, media_format: str = "webm")
 
             transcript_text = data["results"]["transcripts"][0]["transcript"]
 
-            # Clean up S3 object (best-effort)
             try:
                 _s3_client.delete_object(Bucket=TRANSCRIBE_S3_BUCKET, Key=s3_key)
             except Exception:
@@ -136,22 +131,17 @@ async def _transcribe_from_bytes(audio_bytes: bytes, media_format: str = "webm")
 # Helper — Amazon Polly
 # ════════════════════════════════════════════════════════════════════════════
 
-def _polly_synthesize(text: str, voice_id: str = "Joanna") -> bytes:
-    """
-    Call Polly SynthesizeSpeech and return raw MP3 bytes.
-    Raises HTTPException on failure.
-    """
-    # Truncate to Polly's 3000-char limit per request
+def _polly_synthesize(text: str, voice_id: str = "Ruth") -> bytes:
+    """Call Polly SynthesizeSpeech and return raw MP3 bytes."""
     truncated = text[:3000]
     try:
         response = _polly_client.synthesize_speech(
             Text=truncated,
             OutputFormat="mp3",
             VoiceId=voice_id,
-            Engine="neural",         # Neural voices sound much more natural
+            Engine="Generative",
         )
     except _polly_client.exceptions.TextLengthExceededException:
-        # Retry with plain text engine which handles longer inputs differently
         response = _polly_client.synthesize_speech(
             Text=truncated[:1500],
             OutputFormat="mp3",
@@ -159,10 +149,7 @@ def _polly_synthesize(text: str, voice_id: str = "Joanna") -> bytes:
         )
     except (BotoCoreError, ClientError) as exc:
         logger.error("Polly synthesis failed: %s", exc)
-        raise HTTPException(
-            status_code=status.HTTP_502_BAD_GATEWAY,
-            detail=f"Polly TTS error: {exc}",
-        )
+        raise HTTPException(status_code=status.HTTP_502_BAD_GATEWAY, detail=f"Polly TTS error: {exc}")
 
     return response["AudioStream"].read()
 
@@ -182,18 +169,25 @@ class SynthesizeRequest(BaseModel):
 
 @router.post(
     "/transcribe",
-    summary="Speech-to-Text via Amazon Transcribe",
+    summary="Speech-to-Text via Amazon Transcribe + Guardrail check",
     response_model=dict,
 )
 async def transcribe_audio(
         audio: UploadFile = File(..., description="Audio recording (WebM/Opus from browser MediaRecorder)"),
+        _user=Depends(get_current_user),
 ):
     """
-    Accept an audio file (WebM from the browser's MediaRecorder API),
-    run it through Amazon Transcribe, and return the transcript.
+    Accept an audio file, transcribe it via Amazon Transcribe, run the
+    transcript through the dual-layer guardrail pipeline, then return it.
+
+    The guardrail check happens HERE (not in /chat) so the frontend can
+    display the blocked-message banner before attempting the RAG query.
 
     Returns:
         { "transcript": "what the user said" }
+
+    Raises HTTP 400 with { "code": "CONTENT_BLOCKED", "message": "..." }
+    if either guardrail layer flags the transcribed text.
     """
     audio_bytes = await audio.read()
 
@@ -210,9 +204,36 @@ async def transcribe_audio(
     elif "mp4" in content_type or (audio.filename or "").endswith(".mp4"):
         media_format = "mp4"
     else:
-        media_format = "webm"   # default — Chrome/Firefox MediaRecorder default
+        media_format = "webm"
 
+    # 1. Transcribe
     transcript = await _transcribe_from_bytes(audio_bytes, media_format=media_format)
+
+    if not transcript.strip():
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Could not detect speech. Please speak clearly and try again.",
+        )
+
+    # 2. ── Dual-layer guardrail check on the transcribed text ────────────
+    is_blocked, user_message = run_guardrails(transcript)
+
+    if is_blocked:
+        logger.warning(
+            "Guardrail blocked voice input | user=%s | transcript=%r",
+            getattr(_user, "email", "unknown"),
+            transcript[:120],
+        )
+        # Return 400 with the same structured body the chat endpoint uses,
+        # so the frontend can handle both identically.
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail={
+                "code":       "CONTENT_BLOCKED",
+                "message":    user_message,
+                "transcript": transcript,  # include so FE can still display what was said
+            },
+        )
 
     return {"transcript": transcript}
 
@@ -222,13 +243,10 @@ async def transcribe_audio(
     summary="Text-to-Speech via Amazon Polly",
     response_class=StreamingResponse,
 )
-async def synthesize_speech(body: SynthesizeRequest):
+async def synthesize_speech(body: SynthesizeRequest, _user=Depends(get_current_user)):
     """
-    Accept a JSON body with `text` and optional `voice_id`,
+    Accept JSON body with `text` and optional `voice_id`,
     call Amazon Polly, and stream MP3 audio back to the client.
-
-    The frontend creates a blob URL from the binary response and
-    plays it directly in an <audio> element.
     """
     if not body.text.strip():
         raise HTTPException(
@@ -236,7 +254,6 @@ async def synthesize_speech(body: SynthesizeRequest):
             detail="text must not be empty.",
         )
 
-    # Run in thread pool to avoid blocking the event loop
     mp3_bytes = await asyncio.get_event_loop().run_in_executor(
         None, _polly_synthesize, body.text, body.voice_id
     )
