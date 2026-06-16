@@ -17,6 +17,8 @@ from app.knowledge_base import invalidate_knowledge_base
 from app.logger import log_ingest
 from app.rag import get_vectordb
 from app.sharepoint_ingestion import ingest_from_sharepoint
+from app.db.database import SessionLocal
+from app.db.dashboard_models import DocumentRegistry
 
 router = APIRouter()
 
@@ -38,6 +40,41 @@ def _make_job() -> tuple[str, asyncio.Queue]:
 def _cleanup_job(job_id: str):
     _jobs.pop(job_id, None)
 
+def _register_document(
+    filename: str,
+    source_type: str,
+    file_size_bytes: int | None = None,
+    chunk_count: int = 0,
+    embedding_count: int = 0,
+):
+    db = SessionLocal()
+
+    try:
+        existing = (
+            db.query(DocumentRegistry)
+            .filter(DocumentRegistry.filename == filename)
+            .first()
+        )
+
+        if existing:
+            existing.status = "active"
+            existing.chunk_count = chunk_count
+            existing.embedding_count = embedding_count
+        else:
+            db.add(
+                DocumentRegistry(
+                    filename=filename,
+                    source_type=source_type,
+                    status="active",
+                    chunk_count=chunk_count,
+                    embedding_count=embedding_count,
+                )
+            )
+
+        db.commit()
+
+    finally:
+        db.close()
 
 # ─────────────────────────────────────────────────────────────
 # SSE helper
@@ -136,7 +173,7 @@ def list_docs(user=Depends(require_permission("ingest"))):
 # ─────────────────────────────────────────────────────────────
 # Allowed file types — matches the frontend acceptedTypes list
 _ALLOWED_EXTENSIONS = {".pdf", ".docx", ".doc", ".txt", ".pptx", ".ppt", ".csv", ".xlsx"}
-_MAX_FILE_SIZE_MB = int(os.getenv("MAX_FILE_SIZE_MB", "50"))
+_MAX_FILE_SIZE_MB = int(os.getenv("MAX_FILE_SIZE_MB", "100"))
 
 
 @router.post("/upload_doc")
@@ -190,9 +227,17 @@ async def upload_doc(
 
     async def _run():
         try:
-            await loop.run_in_executor(
+            result = await loop.run_in_executor(
                 None,
                 lambda: ingest_single_file(file_path, progress=_progress),
+            )
+
+            _register_document(
+                filename=file.filename,
+                source_type="upload",
+                file_size_bytes=file_path.stat().st_size,
+                chunk_count=result.get("chunk_count", 0) if result else 0,
+                embedding_count=result.get("embedding_count", 0) if result else 0,
             )
             # Ensure a final done event even if callback already sent one
             if not queue.empty():
@@ -271,11 +316,22 @@ async def ingest_sharepoint_endpoint(
                 None,
                 lambda: ingest_from_sharepoint(site_id, progress=_progress),
             )
+
+            _register_document(
+                filename=folder_path,
+                source_type="sharepoint",
+            )
+
             if not queue.empty():
                 return
-            invalidate_knowledge_base()  # force BM25 rebuild on next query
-            await queue.put({"stage": "done", "percent": 100,
-                             "message": "SharePoint ingestion completed"})
+
+            invalidate_knowledge_base()
+
+            await queue.put({
+                "stage": "done",
+                "percent": 100,
+                "message": "SharePoint ingestion completed"
+            })
         except Exception as e:
             await queue.put({"stage": "error", "percent": 0, "message": str(e)})
 

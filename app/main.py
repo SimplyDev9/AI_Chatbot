@@ -26,12 +26,14 @@ from app.db.database import test_connection
 from app.logger import logger
 from app.sharepoint_loader import get_access_token
 from app.routers.voice_router import router as voice_router
+from app.api.dashboard import router as dashboard_router
 
 load_dotenv()
 
 logger.info("main.py loaded successfully")
 
 app = FastAPI(title="AI Chatbot API", version="1.0")
+Base.metadata.create_all(bind=engine)
 app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
@@ -128,6 +130,7 @@ def db_test(user=Depends(require_permission("manage_users"))):
 # Admin + Chat + Ingest
 # =========================================
 app.include_router(admin_router)
+app.include_router(dashboard_router)
 app.include_router(chat_router)
 app.include_router(ingest_router)
 

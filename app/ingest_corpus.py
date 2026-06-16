@@ -337,8 +337,19 @@ def ingest_single_file(file_path: Path, metadata=None, progress=None):
                 raise Exception(err_msg)
 
         total_time = time.time() - start_ts
-        logger.info("[INGEST] Completed ingestion: %s (%d chunks) in %.3fs", file_path.name, len(chunks), total_time)
+        logger.info(
+            "[INGEST] Completed ingestion: %s (%d chunks) in %.3fs",
+            file_path.name,
+            len(chunks),
+            total_time
+        )
+
         _emit('done', 100, f'Ingested {len(chunks)} chunks in {total_time:.1f}s')
+
+        return {
+            "chunk_count": len(chunks),
+            "embedding_count": len(chunks),
+        }
 
     except Exception as e:
         # log full exception with stack trace

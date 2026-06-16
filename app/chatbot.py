@@ -99,7 +99,10 @@ def answer_query(query: str):
             "response": response,
             "sources": sources,
             "highlight_text": response[:200],
-            "retrieved_context": docs
+            "retrieved_context": docs,
+            # "grounding_score": grounding_score,
+            # "retrieval_time_ms": retrieval_time_ms,
+            # "llm_time_ms": llm_time_ms,
         }
 
     except Exception:
